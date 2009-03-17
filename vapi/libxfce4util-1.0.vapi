@@ -76,12 +76,6 @@ namespace Xfce {
 		THEMES
 	}
 	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
-	public const int LIBXFCE4UTIL_MAJOR_VERSION;
-	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
-	public const int LIBXFCE4UTIL_MICRO_VERSION;
-	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
-	public const int LIBXFCE4UTIL_MINOR_VERSION;
-	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
 	public static unowned string get_license_text (Xfce.LicenseTextType type);
 	[CCode (cname = "xfce_version_string", cheader_filename = "libxfce4util/libxfce4util.h")]
 	public static unowned string get_version_string ();

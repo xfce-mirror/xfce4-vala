@@ -10,6 +10,7 @@ public class Libxfce4utilTests {
 		rc.write_entry ("string", "hello-world");
 		rc.write_int_entry ("int", 5);
 		rc.write_bool_entry ("bool", true);
+		rc.flush ();
 		print ("resource saved under file %s\n", filename);
 
 		rc = new Xfce.Rc (filename, true);
@@ -54,15 +55,15 @@ public class Libxfce4utilTests {
 
 	public void test_signal () {
 		try {
-			message ("To trigger the signal send: kill -TERM <pid>");
+			debug ("trigger a signal with: kill -TERM <pid>");
 			Xfce.PosixSignalHandler.set_handler (ProcessSignal.TERM,
 					(@signal) => { print ("Catched SIGTERM (%d)\n", @signal); });
 		} catch (Error ex) {}
 	}
 
 	static int main (string[] args) {
-		MainLoop mainloop = new MainLoop (null, false);
-		Libxfce4utilTests tests = new Libxfce4utilTests ();
+		var mainloop = new MainLoop (null, false);
+		var tests = new Libxfce4utilTests ();
 		string rcfilename = "rcfile.rc";
 		string kiosk_module = "my-module";
 

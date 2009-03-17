@@ -30,7 +30,6 @@ namespace Xfce {
 	[Compact]
 	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
 	public class PosixSignalHandler {
-		[CCode (cname = "XfcePosixSignalHandler")]
 		public delegate void Callback (int @signal);
 		public static bool init () throws GLib.Error;
 		public static void restore_handler (int @signal);

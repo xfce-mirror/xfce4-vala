@@ -216,8 +216,5 @@
 			<member name="XFCE_RESOURCE_ICONS" value="3"/>
 			<member name="XFCE_RESOURCE_THEMES" value="4"/>
 		</enum>
-		<constant name="LIBXFCE4UTIL_MAJOR_VERSION" type="int" value="4"/>
-		<constant name="LIBXFCE4UTIL_MICRO_VERSION" type="int" value="0"/>
-		<constant name="LIBXFCE4UTIL_MINOR_VERSION" type="int" value="6"/>
 	</namespace>
 </api>
