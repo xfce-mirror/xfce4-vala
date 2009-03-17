@@ -1,0 +1,5 @@
+Xfce cheader_filename="libxfce4menu/libxfce4menu.h"
+# This is a dirty hack to "just get it compiled"
+xfce_menu_item_supports_startup_notification name="xfce_menu_item_supports_startup_notification"
+xfce_menu_item_requires_terminal name="xfce_menu_item_requires_terminal"
+xfce_menu_move_new name="xfce_menu_move_new"

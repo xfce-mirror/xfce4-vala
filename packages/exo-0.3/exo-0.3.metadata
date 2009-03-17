@@ -1,0 +1,8 @@
+Exo cheader_filename="exo/exo.h"
+# This is a dirty hack to "just get it compiled"
+ExoIconView::item_activated hidden="1"
+ExoIconView::select_all hidden="1"
+ExoIconView::unselect_all hidden="1"
+ExoToolbarsModel::get_item_data hidden="1"
+ExoToolbarsModel::get_item_id hidden="1"
+ExoToolbarsModel::get_item_type hidden="1"

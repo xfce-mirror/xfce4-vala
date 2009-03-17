@@ -1,0 +1,5 @@
+include/xfce4/libxfcegui4/gtktoxevent.h
+include/xfce4/libxfcegui4/netk-*
+include/xfce4/libxfcegui4/xfce_decorbutton.h
+include/xfce4/libxfcegui4/xfce_decortoggle.h
+include/xfce4/libxfcegui4/xfce_movehandler.h

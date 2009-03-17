@@ -1,0 +1,39 @@
+dnl
+dnl Xfce4 Vala - Bindings for the Xfce4 framework
+dnl
+dnl Copyright (c) 2009 Mike Massonnet <mmassonnet@xfce.org>
+dnl
+
+dnl Version information
+m4_define([project_version_major], [0])
+m4_define([project_version_minor], [1])
+m4_define([project_version_build], [@REVISION@])
+m4_define([project_version_tag], [git]) # leave empty for release
+m4_define([project_version], [project_version_major().project_version_minor()ifelse(project_version_tag(), [git], [project_version_tag()-project_version_build()], [project_version_tag()])])
+
+dnl Initialize
+AC_INIT([xfce4-vala], [project_version], [mmassonnet@xfce.org], [xfce4-vala])
+AM_INIT_AUTOMAKE([dist-bzip2])
+AM_MAINTAINER_MODE()
+
+dnl Check for basic programs
+AC_PROG_INSTALL()
+
+dnl Check for required packages
+M8T_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.6.0])
+M8T_CHECK_PACKAGE([LIBXFCE4MENU], [libxfce4menu-0.1], [4.6.0])
+M8T_CHECK_PACKAGE([XFCONF], [libxfconf-0], [4.6.0])
+M8T_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.6.0])
+M8T_CHECK_PACKAGE([EXO], [exo-0.3], [0.3.100])
+dnl M8T_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.6.0])
+
+dnl Check for Vala programs
+AC_PATH_PROG([VALAGI], [vala-gen-introspect], [vala-gen-introspect])
+AC_PATH_PROG([VAPIGEN], [vapigen], [vapigen])
+AC_PATH_PROG([VALAC], [valac], [valac])
+
+dnl Makefile outputs
+AC_OUTPUT([
+Makefile
+])
+
