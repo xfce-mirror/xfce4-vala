@@ -1,14 +1,6 @@
 <?xml version="1.0"?>
 <api version="1.0">
 	<namespace name="Xfce">
-		<function name="libxfce4menu_check_version" symbol="libxfce4menu_check_version">
-			<return-type type="gchar*"/>
-			<parameters>
-				<parameter name="required_major" type="guint"/>
-				<parameter name="required_minor" type="guint"/>
-				<parameter name="required_micro" type="guint"/>
-			</parameters>
-		</function>
 		<struct name="XfceMenuAndRulesClass">
 		</struct>
 		<struct name="XfceMenuClass">
@@ -941,8 +933,5 @@
 				</parameters>
 			</vfunc>
 		</interface>
-		<constant name="LIBXFCE4MENU_MAJOR_VERSION" type="int" value="4"/>
-		<constant name="LIBXFCE4MENU_MICRO_VERSION" type="int" value="0"/>
-		<constant name="LIBXFCE4MENU_MINOR_VERSION" type="int" value="6"/>
 	</namespace>
 </api>

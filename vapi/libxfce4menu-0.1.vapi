@@ -9,7 +9,6 @@ namespace Xfce {
 		public bool get_deleted ();
 		public unowned Xfce.MenuDirectory get_directory ();
 		public unowned GLib.SList get_directory_dirs ();
-		public static unowned string get_environment ();
 		public unowned string get_filename ();
 		public unowned Xfce.MenuItemPool get_item_pool ();
 		public unowned GLib.SList get_items ();
@@ -21,31 +20,13 @@ namespace Xfce {
 		public unowned Xfce.Menu get_parent ();
 		public static unowned Xfce.Menu get_root () throws GLib.Error;
 		public bool has_layout ();
-		public static void init (string env);
-		public void* monitor_add_directory (string directory);
-		public void* monitor_add_file (string filename);
-		public void* monitor_add_item (Xfce.MenuItem item);
-		public static Xfce.MenuMonitorFlags monitor_get_flags ();
-		public static bool monitor_has_flags (Xfce.MenuMonitorFlags flags);
-		public void monitor_remove_directory (string directory);
-		public void monitor_remove_file (string filename);
-		public void monitor_remove_item (Xfce.MenuItem item);
-		public static void monitor_set_flags (Xfce.MenuMonitorFlags flags);
-		public static void monitor_set_vtable (Xfce.MenuMonitorVTable vtable);
 		[CCode (has_construct_function = false)]
 		public Menu (string filename) throws GLib.Error;
 		public void set_deleted (bool deleted);
 		public void set_directory (Xfce.MenuDirectory directory);
-		public static void set_environment (string env);
 		public void set_filename (string filename);
 		public void set_name (string name);
 		public void set_only_unallocated (bool only_unallocated);
-		public static void shutdown ();
-		public bool deleted { get; set; }
-		public Xfce.MenuDirectory directory { get; set; }
-		public string filename { get; set; }
-		public string name { get; set; }
-		public bool only_unallocated { get; set; }
 	}
 	[CCode (cheader_filename = "libxfce4menu/libxfce4menu.h")]
 	public class MenuAndRules : Xfce.MenuStandardRules, Xfce.MenuRules {
@@ -74,11 +55,6 @@ namespace Xfce {
 		public void set_name (string name);
 		public void set_no_display (bool no_display);
 		public bool show_in_environment ();
-		public string comment { get; set; }
-		public string filename { get; set; }
-		public string icon { get; set; }
-		public string name { get; set; }
-		public bool no_display { get; set; }
 	}
 	[Compact]
 	[CCode (cheader_filename = "libxfce4menu/libxfce4menu.h")]
@@ -102,7 +78,7 @@ namespace Xfce {
 		[CCode (has_construct_function = false)]
 		public MenuItem (string filename);
 		public bool only_show_in_environment ();
-		public void @ref ();
+		public bool requires_terminal ();
 		public void set_categories (GLib.List categories);
 		public void set_command (string command);
 		public void set_comment (string comment);
@@ -117,31 +93,14 @@ namespace Xfce {
 		public void set_supports_startup_notification (bool supports_startup_notification);
 		public void set_try_exec (string try_exec);
 		public bool show_in_environment ();
-		public void unref ();
-		[CCode (cname = "xfce_menu_item_requires_terminal")]
-		public bool xfce_menu_item_requires_terminal ();
-		[CCode (cname = "xfce_menu_item_supports_startup_notification")]
-		public bool xfce_menu_item_supports_startup_notification ();
-		public string command { get; set; }
-		public string comment { get; set; }
-		public string desktop_id { get; set; }
-		public string filename { get; set; }
-		public string generic_name { get; set; }
-		public string icon_name { get; set; }
-		public string name { get; set; }
-		public bool no_display { get; set; }
-		public string path { get; set; }
-		[NoAccessorMethod]
-		public bool requires_terminal { get; set; }
-		[NoAccessorMethod]
-		public bool supports_startup_notification { get; set; }
-		public string try_exec { get; set; }
+		public bool supports_startup_notification ();
 	}
 	[CCode (cheader_filename = "libxfce4menu/libxfce4menu.h")]
 	public class MenuItemCache : GLib.Object {
 		public void @foreach (GLib.HFunc func);
 		public static unowned Xfce.MenuItemCache get_default ();
 		public void invalidate ();
+		public unowned Xfce.MenuItem lookup (string filename, string desktop_id);
 	}
 	[Compact]
 	[CCode (cheader_filename = "libxfce4menu/libxfce4menu.h")]
@@ -190,6 +149,20 @@ namespace Xfce {
 	}
 	[Compact]
 	[CCode (cheader_filename = "libxfce4menu/libxfce4menu.h")]
+	public class MenuMonitor {
+		public void* add_directory (string directory);
+		public void* add_file (string filename);
+		public void* add_item (Xfce.MenuItem item);
+		public static Xfce.MenuMonitorFlags get_flags ();
+		public static bool has_flags (Xfce.MenuMonitorFlags flags);
+		public void remove_directory (string directory);
+		public void remove_file (string filename);
+		public void remove_item (Xfce.MenuItem item);
+		public static void set_flags (Xfce.MenuMonitorFlags flags);
+		public static void set_vtable (Xfce.MenuMonitorVTable vtable);
+	}
+	[Compact]
+	[CCode (cheader_filename = "libxfce4menu/libxfce4menu.h")]
 	public class MenuMonitorVTable {
 		public weak GLib.Callback monitor_directory;
 		public weak GLib.Callback monitor_file;
@@ -199,12 +172,10 @@ namespace Xfce {
 	public class MenuMove : GLib.Object {
 		public unowned string get_new ();
 		public unowned string get_old ();
+		[CCode (has_construct_function = false)]
+		public MenuMove ();
 		public void set_new (string @new);
 		public void set_old (string old);
-		[CCode (cname = "xfce_menu_move_new", has_construct_function = false)]
-		public MenuMove.xfce_menu_move_new ();
-		public string @new { get; set; }
-		public string old { get; set; }
 	}
 	[Compact]
 	[CCode (cheader_filename = "libxfce4menu/libxfce4menu.h")]
@@ -241,10 +212,10 @@ namespace Xfce {
 		public uint all;
 		public weak GLib.List categories;
 		public weak GLib.List filenames;
+		public bool include;
 		public weak GLib.List rules;
 		public bool get_include ();
 		public void set_include (bool include);
-		public bool include { get; set; }
 	}
 	[Compact]
 	[CCode (cheader_filename = "libxfce4menu/libxfce4menu.h")]
@@ -285,11 +256,11 @@ namespace Xfce {
 		DESKTOP_FILES
 	}
 	[CCode (cheader_filename = "libxfce4menu/libxfce4menu.h")]
-	public const int LIBXFCE4MENU_MAJOR_VERSION;
+	public static unowned string menu_get_environment ();
 	[CCode (cheader_filename = "libxfce4menu/libxfce4menu.h")]
-	public const int LIBXFCE4MENU_MICRO_VERSION;
+	public static void menu_init (string env);
 	[CCode (cheader_filename = "libxfce4menu/libxfce4menu.h")]
-	public const int LIBXFCE4MENU_MINOR_VERSION;
-	[CCode (cname = "libxfce4menu_check_version", cheader_filename = "libxfce4menu/libxfce4menu.h")]
-	public static unowned string libxfce4menu_check_version (uint required_major, uint required_minor, uint required_micro);
+	public static void menu_set_environment (string env);
+	[CCode (cheader_filename = "libxfce4menu/libxfce4menu.h")]
+	public static void menu_shutdown ();
 }

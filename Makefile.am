@@ -13,7 +13,8 @@ update-vapi:
 		../packages/$(LIBXFCE4UTIL)/$(LIBXFCE4UTIL).gi\
 		../packages/$(LIBXFCE4UTIL)/$(LIBXFCE4UTIL)-custom.vala;\
 	$(VAPIGEN) --vapidir=. --library $(LIBXFCE4MENU)\
-		../packages/$(LIBXFCE4MENU)/$(LIBXFCE4MENU).gi;\
+		../packages/$(LIBXFCE4MENU)/$(LIBXFCE4MENU).gi\
+		../packages/$(LIBXFCE4MENU)/$(LIBXFCE4MENU)-custom.vala;\
 	$(VAPIGEN) --vapidir=. --library $(XFCONF)\
 		../packages/$(XFCONF)/$(XFCONF).gi;\
 	$(VAPIGEN) --vapidir=. --library $(LIBXFCEGUI4)\
@@ -27,6 +28,7 @@ tests: tests.stamp
 tests.stamp:
 	(cd tests;\
 	$(VALAC) --pkg=$(LIBXFCE4UTIL) --vapidir=../vapi $(LIBXFCE4UTIL).vala;\
+	$(VALAC) --pkg=gtk+-2.0 --pkg=$(LIBXFCE4MENU) --vapidir=../vapi $(LIBXFCE4MENU).vala;\
 	)
 	touch $@
 
