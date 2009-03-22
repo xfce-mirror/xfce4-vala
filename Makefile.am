@@ -1,5 +1,6 @@
 NULL = 
 
+if MAINTAINER_MODE
 update-gi:
 	$(VALAGI) $(LIBXFCE4UTIL) packages/$(LIBXFCE4UTIL)
 	$(VALAGI) $(LIBXFCE4MENU) packages/$(LIBXFCE4MENU)
@@ -16,19 +17,21 @@ update-vapi:
 		../packages/$(LIBXFCE4MENU)/$(LIBXFCE4MENU).gi\
 		../packages/$(LIBXFCE4MENU)/$(LIBXFCE4MENU)-custom.vala;\
 	$(VAPIGEN) --vapidir=. --library $(XFCONF)\
-		../packages/$(XFCONF)/$(XFCONF).gi;\
+		../packages/$(XFCONF)/$(XFCONF).gi\
+		../packages/$(XFCONF)/$(XFCONF)-custom.vala;\
 	$(VAPIGEN) --vapidir=. --library $(LIBXFCEGUI4)\
 		../packages/$(LIBXFCEGUI4)/$(LIBXFCEGUI4).gi;\
 	$(VAPIGEN) --vapidir=. --library $(EXO)\
 		../packages/$(EXO)/$(EXO).gi;\
 	)
+endif
 
 tests: tests.stamp
-
 tests.stamp:
 	(cd tests;\
 	$(VALAC) --pkg=$(LIBXFCE4UTIL) --vapidir=../vapi $(LIBXFCE4UTIL).vala;\
 	$(VALAC) --pkg=gtk+-2.0 --pkg=$(LIBXFCE4MENU) --vapidir=../vapi $(LIBXFCE4MENU).vala;\
+	$(VALAC) --pkg=$(XFCONF) --vapidir=../vapi $(XFCONF).vala;\
 	)
 	touch $@
 
@@ -45,13 +48,19 @@ CLEANFILES =								\
 	tests.stamp							\
 	tests/$(LIBXFCE4UTIL)						\
 	tests/rcfile.rc							\
+	tests/$(LIBXFCE4MENU)						\
+	tests/$(XFCONF)							\
 	$(NULL)
+
+distclean-local:
+	-rm -rf autom4te.cache
 
 DISTCLEANFILES =							\
 	INSTALL								\
 	aclocal.m4							\
 	configure							\
 	configure.ac							\
+	depcomp								\
 	install-sh							\
 	Makefile.in							\
 	missing								\

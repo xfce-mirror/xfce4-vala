@@ -7,72 +7,6 @@
 				<parameter name="arr" type="GPtrArray*"/>
 			</parameters>
 		</function>
-		<function name="g_property_bind" symbol="xfconf_g_property_bind">
-			<return-type type="gulong"/>
-			<parameters>
-				<parameter name="channel" type="XfconfChannel*"/>
-				<parameter name="xfconf_property" type="gchar*"/>
-				<parameter name="xfconf_property_type" type="GType"/>
-				<parameter name="object" type="gpointer"/>
-				<parameter name="object_property" type="gchar*"/>
-			</parameters>
-		</function>
-		<function name="g_property_bind_gdkcolor" symbol="xfconf_g_property_bind_gdkcolor">
-			<return-type type="gulong"/>
-			<parameters>
-				<parameter name="channel" type="XfconfChannel*"/>
-				<parameter name="xfconf_property" type="gchar*"/>
-				<parameter name="object" type="gpointer"/>
-				<parameter name="object_property" type="gchar*"/>
-			</parameters>
-		</function>
-		<function name="g_property_unbind" symbol="xfconf_g_property_unbind">
-			<return-type type="void"/>
-			<parameters>
-				<parameter name="id" type="gulong"/>
-			</parameters>
-		</function>
-		<function name="g_property_unbind_all" symbol="xfconf_g_property_unbind_all">
-			<return-type type="void"/>
-			<parameters>
-				<parameter name="channel_or_object" type="gpointer"/>
-			</parameters>
-		</function>
-		<function name="g_property_unbind_by_property" symbol="xfconf_g_property_unbind_by_property">
-			<return-type type="void"/>
-			<parameters>
-				<parameter name="channel" type="XfconfChannel*"/>
-				<parameter name="xfconf_property" type="gchar*"/>
-				<parameter name="object" type="gpointer"/>
-				<parameter name="object_property" type="gchar*"/>
-			</parameters>
-		</function>
-		<function name="g_value_get_int16" symbol="xfconf_g_value_get_int16">
-			<return-type type="gint16"/>
-			<parameters>
-				<parameter name="value" type="GValue*"/>
-			</parameters>
-		</function>
-		<function name="g_value_get_uint16" symbol="xfconf_g_value_get_uint16">
-			<return-type type="guint16"/>
-			<parameters>
-				<parameter name="value" type="GValue*"/>
-			</parameters>
-		</function>
-		<function name="g_value_set_int16" symbol="xfconf_g_value_set_int16">
-			<return-type type="void"/>
-			<parameters>
-				<parameter name="value" type="GValue*"/>
-				<parameter name="v_int16" type="gint16"/>
-			</parameters>
-		</function>
-		<function name="g_value_set_uint16" symbol="xfconf_g_value_set_uint16">
-			<return-type type="void"/>
-			<parameters>
-				<parameter name="value" type="GValue*"/>
-				<parameter name="v_uint16" type="guint16"/>
-			</parameters>
-		</function>
 		<function name="get_error_quark" symbol="xfconf_get_error_quark">
 			<return-type type="GQuark"/>
 		</function>
@@ -81,9 +15,6 @@
 			<parameters>
 				<parameter name="error" type="GError**"/>
 			</parameters>
-		</function>
-		<function name="int16_get_type" symbol="xfconf_int16_get_type">
-			<return-type type="GType"/>
 		</function>
 		<function name="list_channels" symbol="xfconf_list_channels">
 			<return-type type="gchar**"/>
@@ -98,9 +29,6 @@
 		</function>
 		<function name="shutdown" symbol="xfconf_shutdown">
 			<return-type type="void"/>
-		</function>
-		<function name="uint16_get_type" symbol="xfconf_uint16_get_type">
-			<return-type type="GType"/>
 		</function>
 		<enum name="XfconfError" type-name="XfconfError" get-type="xfconf_error_get_type">
 			<member name="XFCONF_ERROR_UNKNOWN" value="0"/>

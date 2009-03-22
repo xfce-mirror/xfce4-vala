@@ -23,7 +23,7 @@ echo >>configure.ac
 
 # substitute revision
 if [ -d .git ]; then
-    revision=$(git log -1 --pretty=format:%h > /dev/null 2>&1 || echo NOHEAD)
+    revision=$(git log -1 --pretty=format:%h 2>&1 || echo NOHEAD)
 else
     revision=UNKNOWN
 fi
