@@ -20,7 +20,8 @@ update-vapi:
 		../packages/$(XFCONF)/$(XFCONF).gi\
 		../packages/$(XFCONF)/$(XFCONF)-custom.vala;\
 	$(VAPIGEN) --vapidir=. --library $(LIBXFCEGUI4)\
-		../packages/$(LIBXFCEGUI4)/$(LIBXFCEGUI4).gi;\
+		../packages/$(LIBXFCEGUI4)/$(LIBXFCEGUI4).gi\
+		../packages/$(LIBXFCEGUI4)/$(LIBXFCEGUI4)-custom.vala;\
 	$(VAPIGEN) --vapidir=. --library $(EXO)\
 		../packages/$(EXO)/$(EXO).gi;\
 	)
