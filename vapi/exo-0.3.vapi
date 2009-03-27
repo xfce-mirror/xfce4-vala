@@ -5,9 +5,6 @@ namespace Exo {
 	[Compact]
 	[CCode (cheader_filename = "exo/exo.h")]
 	public class Binding {
-		public weak Exo.BindingBase @base;
-		public weak Exo.BindingLink link;
-		public weak GLib.Object src_object;
 		[CCode (has_construct_function = false)]
 		public Binding.full (GLib.Object src_object, string src_property, GLib.Object dst_object, string dst_property, Exo.BindingTransform transform, GLib.DestroyNotify destroy_notify);
 		[CCode (has_construct_function = false)]
@@ -15,21 +12,6 @@ namespace Exo {
 		public void unbind ();
 		[CCode (has_construct_function = false)]
 		public Binding.with_negation (GLib.Object src_object, string src_property, GLib.Object dst_object, string dst_property);
-	}
-	[Compact]
-	[CCode (cheader_filename = "exo/exo.h")]
-	public class BindingBase {
-		public weak GLib.DestroyNotify destroy;
-	}
-	[Compact]
-	[CCode (cheader_filename = "exo/exo.h")]
-	public class BindingLink {
-		public ulong dst_handler;
-		public weak GLib.Object dst_object;
-		public weak GLib.ParamSpec dst_pspec;
-		public ulong handler;
-		public weak Exo.BindingTransform transform;
-		public void* user_data;
 	}
 	[CCode (cheader_filename = "exo/exo.h")]
 	public class CellRendererEllipsizedText : Gtk.CellRendererText {
@@ -60,6 +42,29 @@ namespace Exo {
 		public string icon { owned get; set; }
 		[NoAccessorMethod]
 		public int size { get; set construct; }
+	}
+	[Compact]
+	[CCode (cheader_filename = "exo/exo.h")]
+	public class Execute {
+		public static bool preferred_application (string category, string? parameter, string working_directory, string[]? envp) throws GLib.Error;
+		public static bool preferred_application_on_screen (string category, string? parameter, string working_directory, string[]? envp, Gdk.Screen screen) throws GLib.Error;
+		public static bool terminal_shell (string command_line, string? working_directory, string[]? envp) throws GLib.Error;
+		public static bool terminal_shell_on_screen (string command_line, string? working_directory, string[]? envp, Gdk.Screen screen) throws GLib.Error;
+	}
+	[Compact]
+	[CCode (cheader_filename = "exo/exo.h")]
+	public class Extensions {
+		public static bool g_value_transform_negate (GLib.Value src_value, GLib.Value dst_value);
+		public static Gdk.Pixbuf gdk_pixbuf_colorize (Gdk.Pixbuf src, Gdk.Color color);
+		public static Gdk.Pixbuf gdk_pixbuf_frame (Gdk.Pixbuf src, Gdk.Pixbuf frame, int left_offset, int top_offset, int right_offset, int bottom_offset);
+		public static Gdk.Pixbuf gdk_pixbuf_lucent (Gdk.Pixbuf src, uint percent);
+		public static Gdk.Pixbuf gdk_pixbuf_new_from_file_at_max_size (string filename, int max_width, int max_height, bool preserve_aspect_ratio) throws GLib.Error;
+		public static Gdk.Pixbuf gdk_pixbuf_scale_down (Gdk.Pixbuf source, bool preserve_aspect_ratio, int dest_width, int dest_height);
+		public static Gdk.Pixbuf gdk_pixbuf_scale_ratio (Gdk.Pixbuf source, int dest_size);
+		public static Gdk.Pixbuf gdk_pixbuf_spotlight (Gdk.Pixbuf src);
+		public static void gtk_file_chooser_add_thumbnail_preview (Gtk.FileChooser chooser);
+		public static void gtk_object_destroy_later (Gtk.Object object);
+		public static void gtk_radio_action_set_current_value (Gtk.RadioAction action, int current_value);
 	}
 	[CCode (cheader_filename = "exo/exo.h")]
 	public class IconBar : Gtk.Container, Atk.Implementor, Gtk.Buildable {
@@ -228,31 +233,36 @@ namespace Exo {
 		public virtual signal void toggle_cursor_item ();
 	}
 	[Compact]
-	[CCode (type_id = "EXO_TYPE_MD5_DIGEST", cheader_filename = "exo/exo.h")]
+	[CCode (cheader_filename = "exo/exo.h")]
 	public class Md5Digest {
 		[CCode (array_length = false)]
 		public weak uchar[] digest;
 		public unowned Exo.Md5Digest dup ();
 		public static bool equal (void* digest1, void* digest2);
 		public static uint hash (void* digest);
+		[CCode (cname = "xfce_md5_str_to_digest")]
+		public static Exo.Md5Digest md5_str_to_digest (string str_digest);
+		[CCode (cname = "xfce_str_get_md5_digest")]
+		public static Exo.Md5Digest str_get_md5_digest (string contents);
+		[CCode (cname = "xfce_str_get_md5_str")]
+		public static string str_get_md5_str (string contents);
 		public unowned string to_str ();
 	}
 	[Compact]
-	[CCode (type_id = "EXO_TYPE_MOUNT_POINT", cheader_filename = "exo/exo.h")]
+	[CCode (cheader_filename = "exo/exo.h")]
 	public class MountPoint {
 		public weak string device;
 		public Exo.MountPointFlags flags;
 		public weak string folder;
 		public weak string fstype;
 		public unowned Exo.MountPoint dup ();
+		public static unowned GLib.SList list_active () throws GLib.Error;
+		public static unowned GLib.SList list_configured () throws GLib.Error;
 		public static unowned GLib.SList list_matched (Exo.MountPointMatchMask mask, string device, string folder, string fstype) throws GLib.Error;
 	}
 	[Compact]
 	[CCode (cheader_filename = "exo/exo.h")]
 	public class MutualBinding {
-		public weak Exo.BindingBase @base;
-		public weak Exo.BindingLink direct;
-		public weak Exo.BindingLink reverse;
 		[CCode (has_construct_function = false)]
 		public MutualBinding.full (GLib.Object object1, string property1, GLib.Object object2, string property2, Exo.BindingTransform transform, Exo.BindingTransform reverse_transform, GLib.DestroyNotify destroy_notify);
 		[CCode (has_construct_function = false)]
@@ -260,6 +270,24 @@ namespace Exo {
 		public void unbind ();
 		[CCode (has_construct_function = false)]
 		public MutualBinding.with_negation (GLib.Object object1, string property1, GLib.Object object2, string property2);
+	}
+	[Compact]
+	[CCode (cheader_filename = "exo/exo.h")]
+	public class String {
+		[CCode (cname = "xfce_strdup_strftime")]
+		public static string dup_strftime (string format, void* tm);
+		[CCode (cname = "xfce_str_elide_underscores")]
+		public static string elide_underscores (string text);
+		[CCode (cname = "xfce_intern_string")]
+		public static string intern (string str);
+		[CCode (cname = "xfce_intern_static_string")]
+		public static unowned string intern_static (string str);
+		[CCode (cname = "xfce_str_is_equal")]
+		public static bool is_equal (string a, string b);
+		[CCode (cname = "xfce_strndupv")]
+		public static string[] ndupv (string[] strv, int num);
+		[CCode (cname = "xfce_str_replace")]
+		public static string replace (string str, string pattern, string replacement);
 	}
 	[CCode (cheader_filename = "exo/exo.h")]
 	public class ToolbarsEditor : Gtk.VBox, Atk.Implementor, Gtk.Buildable {
@@ -396,6 +424,13 @@ namespace Exo {
 		public bool single_click { get; set; }
 		public uint single_click_timeout { get; set; }
 	}
+	[Compact]
+	[CCode (cheader_filename = "exo/exo.h")]
+	public class Url {
+		public static void url_about_dialog_hook (Gtk.AboutDialog about_dialog, string link);
+		public static bool url_show (string url, string envp) throws Exo.UrlError;
+		public static bool url_show_on_screen (string url, string envp, Gdk.Screen screen) throws Exo.UrlError;
+	}
 	[CCode (cheader_filename = "exo/exo.h")]
 	public class WrapTable : Gtk.Container, Atk.Implementor, Gtk.Buildable {
 		public uint get_col_spacing ();
@@ -420,14 +455,6 @@ namespace Exo {
 	}
 	[CCode (cheader_filename = "exo/exo.h")]
 	public class XsessionClient : GLib.Object {
-		public unowned Gdk.Window get_group ();
-		public bool get_restart_command (string argv, int argc);
-		[NoWrapper]
-		public virtual void reserved1 ();
-		[NoWrapper]
-		public virtual void reserved2 ();
-		public void set_group (Gdk.Window leader);
-		public void set_restart_command (string argv, int argc);
 		[CCode (has_construct_function = false)]
 		public XsessionClient.with_group (Gdk.Window leader);
 		public Gdk.Window group { get; set; }
@@ -448,10 +475,10 @@ namespace Exo {
 		ROWS,
 		COLS
 	}
-	[CCode (cprefix = "EXO_MOUNT_POINT_READ_", cheader_filename = "exo/exo.h")]
+	[CCode (cprefix = "EXO_MOUNT_POINT_", cheader_filename = "exo/exo.h")]
 	[Flags]
 	public enum MountPointFlags {
-		ONLY
+		READ_ONLY
 	}
 	[CCode (cprefix = "EXO_MOUNT_POINT_MATCH_", has_type_id = "0", cheader_filename = "exo/exo.h")]
 	public enum MountPointMatchMask {
@@ -468,9 +495,9 @@ namespace Exo {
 		ACCEPT_ITEMS_ONLY,
 		OVERRIDE_STYLE
 	}
-	[CCode (cprefix = "EXO_URL_ERROR_NOT_", has_type_id = "0", cheader_filename = "exo/exo.h")]
-	public enum UrlError {
-		SUPPORTED
+	[CCode (cprefix = "EXO_URL_ERROR_NOT_", cheader_filename = "exo/exo.h")]
+	public errordomain UrlError {
+		SUPPORTED,
 	}
 	[CCode (cheader_filename = "exo/exo.h")]
 	public delegate bool BindingTransform (GLib.Value src_value, GLib.Value dst_value);
@@ -481,91 +508,5 @@ namespace Exo {
 	[CCode (cheader_filename = "exo/exo.h")]
 	public delegate void IconViewSearchPositionFunc (Exo.IconView icon_view, Gtk.Widget search_dialog);
 	[CCode (cheader_filename = "exo/exo.h")]
-	public const int MAJOR_VERSION;
-	[CCode (cheader_filename = "exo/exo.h")]
-	public const int MICRO_VERSION;
-	[CCode (cheader_filename = "exo/exo.h")]
-	public const int MINOR_VERSION;
-	[CCode (cheader_filename = "exo/exo.h")]
-	public const int PARAM_READABLE;
-	[CCode (cheader_filename = "exo/exo.h")]
-	public const int PARAM_READWRITE;
-	[CCode (cheader_filename = "exo/exo.h")]
-	public const int PARAM_WRITABLE;
-	[CCode (cheader_filename = "exo/exo.h")]
 	public const string TOOLBARS_ITEM_TYPE;
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static unowned string check_version (uint required_major, uint required_minor, uint required_micro);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static bool execute_preferred_application (string category, string parameter, string working_directory, string envp) throws GLib.Error;
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static bool execute_preferred_application_on_screen (string category, string parameter, string working_directory, string envp, Gdk.Screen screen) throws GLib.Error;
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static bool execute_terminal_shell (string command_line, string working_directory, string envp) throws GLib.Error;
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static bool execute_terminal_shell_on_screen (string command_line, string working_directory, string envp, Gdk.Screen screen) throws GLib.Error;
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static bool g_value_transform_negate (GLib.Value src_value, GLib.Value dst_value);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static unowned Gdk.Pixbuf gdk_pixbuf_colorize (Gdk.Pixbuf src, Gdk.Color color);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static unowned Gdk.Pixbuf gdk_pixbuf_frame (Gdk.Pixbuf src, Gdk.Pixbuf frame, int left_offset, int top_offset, int right_offset, int bottom_offset);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static unowned Gdk.Pixbuf gdk_pixbuf_lucent (Gdk.Pixbuf src, uint percent);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static unowned Gdk.Pixbuf gdk_pixbuf_new_from_file_at_max_size (string filename, int max_width, int max_height, bool preserve_aspect_ratio) throws GLib.Error;
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static unowned Gdk.Pixbuf gdk_pixbuf_scale_down (Gdk.Pixbuf source, bool preserve_aspect_ratio, int dest_width, int dest_height);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static unowned Gdk.Pixbuf gdk_pixbuf_scale_ratio (Gdk.Pixbuf source, int dest_size);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static unowned Gdk.Pixbuf gdk_pixbuf_spotlight (Gdk.Pixbuf src);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static void gtk_file_chooser_add_thumbnail_preview (Gtk.FileChooser chooser);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static void gtk_object_destroy_later (Gtk.Object object);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static void* gtk_object_ref_sink (Gtk.Object object);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static void gtk_radio_action_set_current_value (Gtk.RadioAction action, int current_value);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static unowned string intern_static_string (string str);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static unowned string intern_string (string str);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static unowned Exo.Md5Digest md5_str_to_digest (string str_digest);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static void noop ();
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static bool noop_false ();
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static void* noop_null ();
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static int noop_one ();
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static bool noop_true ();
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static int noop_zero ();
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static unowned string str_elide_underscores (string text);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static unowned Exo.Md5Digest str_get_md5_digest (string contents);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static unowned string str_get_md5_str (string contents);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static bool str_is_equal (string a, string b);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static unowned string str_replace (string str, string pattern, string replacement);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static unowned string strdup_strftime (string format, void* tm);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static unowned string strndupv (string strv, int num);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static void url_about_dialog_hook (Gtk.AboutDialog about_dialog, string link);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static GLib.Quark url_error_quark ();
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static bool url_show (string url, string envp) throws GLib.Error;
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static bool url_show_on_screen (string url, string envp, Gdk.Screen screen) throws GLib.Error;
 }

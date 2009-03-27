@@ -1,183 +1,10 @@
 <?xml version="1.0"?>
 <api version="1.0">
 	<namespace name="Exo">
-		<function name="check_version" symbol="exo_check_version">
-			<return-type type="gchar*"/>
-			<parameters>
-				<parameter name="required_major" type="guint"/>
-				<parameter name="required_minor" type="guint"/>
-				<parameter name="required_micro" type="guint"/>
-			</parameters>
-		</function>
-		<function name="execute_preferred_application" symbol="exo_execute_preferred_application">
-			<return-type type="gboolean"/>
-			<parameters>
-				<parameter name="category" type="gchar*"/>
-				<parameter name="parameter" type="gchar*"/>
-				<parameter name="working_directory" type="gchar*"/>
-				<parameter name="envp" type="gchar**"/>
-				<parameter name="error" type="GError**"/>
-			</parameters>
-		</function>
-		<function name="execute_preferred_application_on_screen" symbol="exo_execute_preferred_application_on_screen">
-			<return-type type="gboolean"/>
-			<parameters>
-				<parameter name="category" type="gchar*"/>
-				<parameter name="parameter" type="gchar*"/>
-				<parameter name="working_directory" type="gchar*"/>
-				<parameter name="envp" type="gchar**"/>
-				<parameter name="screen" type="GdkScreen*"/>
-				<parameter name="error" type="GError**"/>
-			</parameters>
-		</function>
-		<function name="execute_terminal_shell" symbol="exo_execute_terminal_shell">
-			<return-type type="gboolean"/>
-			<parameters>
-				<parameter name="command_line" type="gchar*"/>
-				<parameter name="working_directory" type="gchar*"/>
-				<parameter name="envp" type="gchar**"/>
-				<parameter name="error" type="GError**"/>
-			</parameters>
-		</function>
-		<function name="execute_terminal_shell_on_screen" symbol="exo_execute_terminal_shell_on_screen">
-			<return-type type="gboolean"/>
-			<parameters>
-				<parameter name="command_line" type="gchar*"/>
-				<parameter name="working_directory" type="gchar*"/>
-				<parameter name="envp" type="gchar**"/>
-				<parameter name="screen" type="GdkScreen*"/>
-				<parameter name="error" type="GError**"/>
-			</parameters>
-		</function>
-		<function name="g_value_transform_negate" symbol="exo_g_value_transform_negate">
-			<return-type type="gboolean"/>
-			<parameters>
-				<parameter name="src_value" type="GValue*"/>
-				<parameter name="dst_value" type="GValue*"/>
-			</parameters>
-		</function>
-		<function name="gdk_pixbuf_colorize" symbol="exo_gdk_pixbuf_colorize">
-			<return-type type="GdkPixbuf*"/>
-			<parameters>
-				<parameter name="src" type="GdkPixbuf*"/>
-				<parameter name="color" type="GdkColor*"/>
-			</parameters>
-		</function>
-		<function name="gdk_pixbuf_frame" symbol="exo_gdk_pixbuf_frame">
-			<return-type type="GdkPixbuf*"/>
-			<parameters>
-				<parameter name="src" type="GdkPixbuf*"/>
-				<parameter name="frame" type="GdkPixbuf*"/>
-				<parameter name="left_offset" type="gint"/>
-				<parameter name="top_offset" type="gint"/>
-				<parameter name="right_offset" type="gint"/>
-				<parameter name="bottom_offset" type="gint"/>
-			</parameters>
-		</function>
-		<function name="gdk_pixbuf_lucent" symbol="exo_gdk_pixbuf_lucent">
-			<return-type type="GdkPixbuf*"/>
-			<parameters>
-				<parameter name="src" type="GdkPixbuf*"/>
-				<parameter name="percent" type="guint"/>
-			</parameters>
-		</function>
-		<function name="gdk_pixbuf_new_from_file_at_max_size" symbol="exo_gdk_pixbuf_new_from_file_at_max_size">
-			<return-type type="GdkPixbuf*"/>
-			<parameters>
-				<parameter name="filename" type="gchar*"/>
-				<parameter name="max_width" type="gint"/>
-				<parameter name="max_height" type="gint"/>
-				<parameter name="preserve_aspect_ratio" type="gboolean"/>
-				<parameter name="error" type="GError**"/>
-			</parameters>
-		</function>
-		<function name="gdk_pixbuf_scale_down" symbol="exo_gdk_pixbuf_scale_down">
-			<return-type type="GdkPixbuf*"/>
-			<parameters>
-				<parameter name="source" type="GdkPixbuf*"/>
-				<parameter name="preserve_aspect_ratio" type="gboolean"/>
-				<parameter name="dest_width" type="gint"/>
-				<parameter name="dest_height" type="gint"/>
-			</parameters>
-		</function>
-		<function name="gdk_pixbuf_scale_ratio" symbol="exo_gdk_pixbuf_scale_ratio">
-			<return-type type="GdkPixbuf*"/>
-			<parameters>
-				<parameter name="source" type="GdkPixbuf*"/>
-				<parameter name="dest_size" type="gint"/>
-			</parameters>
-		</function>
-		<function name="gdk_pixbuf_spotlight" symbol="exo_gdk_pixbuf_spotlight">
-			<return-type type="GdkPixbuf*"/>
-			<parameters>
-				<parameter name="src" type="GdkPixbuf*"/>
-			</parameters>
-		</function>
-		<function name="gtk_file_chooser_add_thumbnail_preview" symbol="exo_gtk_file_chooser_add_thumbnail_preview">
-			<return-type type="void"/>
-			<parameters>
-				<parameter name="chooser" type="GtkFileChooser*"/>
-			</parameters>
-		</function>
-		<function name="gtk_object_destroy_later" symbol="exo_gtk_object_destroy_later">
-			<return-type type="void"/>
-			<parameters>
-				<parameter name="object" type="GtkObject*"/>
-			</parameters>
-		</function>
-		<function name="gtk_object_ref_sink" symbol="exo_gtk_object_ref_sink">
-			<return-type type="gpointer"/>
-			<parameters>
-				<parameter name="object" type="GtkObject*"/>
-			</parameters>
-		</function>
-		<function name="gtk_radio_action_set_current_value" symbol="exo_gtk_radio_action_set_current_value">
-			<return-type type="void"/>
-			<parameters>
-				<parameter name="action" type="GtkRadioAction*"/>
-				<parameter name="current_value" type="gint"/>
-			</parameters>
-		</function>
-		<function name="intern_static_string" symbol="exo_intern_static_string">
-			<return-type type="gchar*"/>
-			<parameters>
-				<parameter name="string" type="gchar*"/>
-			</parameters>
-		</function>
-		<function name="intern_string" symbol="exo_intern_string">
-			<return-type type="gchar*"/>
-			<parameters>
-				<parameter name="string" type="gchar*"/>
-			</parameters>
-		</function>
 		<function name="md5_str_to_digest" symbol="exo_md5_str_to_digest">
 			<return-type type="ExoMd5Digest*"/>
 			<parameters>
 				<parameter name="str_digest" type="gchar*"/>
-			</parameters>
-		</function>
-		<function name="noop" symbol="exo_noop">
-			<return-type type="void"/>
-		</function>
-		<function name="noop_false" symbol="exo_noop_false">
-			<return-type type="gboolean"/>
-		</function>
-		<function name="noop_null" symbol="exo_noop_null">
-			<return-type type="gpointer"/>
-		</function>
-		<function name="noop_one" symbol="exo_noop_one">
-			<return-type type="gint"/>
-		</function>
-		<function name="noop_true" symbol="exo_noop_true">
-			<return-type type="gboolean"/>
-		</function>
-		<function name="noop_zero" symbol="exo_noop_zero">
-			<return-type type="gint"/>
-		</function>
-		<function name="str_elide_underscores" symbol="exo_str_elide_underscores">
-			<return-type type="gchar*"/>
-			<parameters>
-				<parameter name="text" type="gchar*"/>
 			</parameters>
 		</function>
 		<function name="str_get_md5_digest" symbol="exo_str_get_md5_digest">
@@ -190,35 +17,6 @@
 			<return-type type="gchar*"/>
 			<parameters>
 				<parameter name="contents" type="gchar*"/>
-			</parameters>
-		</function>
-		<function name="str_is_equal" symbol="exo_str_is_equal">
-			<return-type type="gboolean"/>
-			<parameters>
-				<parameter name="a" type="gchar*"/>
-				<parameter name="b" type="gchar*"/>
-			</parameters>
-		</function>
-		<function name="str_replace" symbol="exo_str_replace">
-			<return-type type="gchar*"/>
-			<parameters>
-				<parameter name="str" type="gchar*"/>
-				<parameter name="pattern" type="gchar*"/>
-				<parameter name="replacement" type="gchar*"/>
-			</parameters>
-		</function>
-		<function name="strdup_strftime" symbol="exo_strdup_strftime">
-			<return-type type="gchar*"/>
-			<parameters>
-				<parameter name="format" type="gchar*"/>
-				<parameter name="tm" type="struct tm*"/>
-			</parameters>
-		</function>
-		<function name="strndupv" symbol="exo_strndupv">
-			<return-type type="gchar**"/>
-			<parameters>
-				<parameter name="strv" type="gchar**"/>
-				<parameter name="num" type="gint"/>
 			</parameters>
 		</function>
 		<function name="url_about_dialog_hook" symbol="exo_url_about_dialog_hook">
@@ -1835,12 +1633,6 @@
 				<return-type type="void"/>
 			</vfunc>
 		</object>
-		<constant name="EXO_MAJOR_VERSION" type="int" value="0"/>
-		<constant name="EXO_MICRO_VERSION" type="int" value="100"/>
-		<constant name="EXO_MINOR_VERSION" type="int" value="3"/>
-		<constant name="EXO_PARAM_READABLE" type="int" value="0"/>
-		<constant name="EXO_PARAM_READWRITE" type="int" value="0"/>
-		<constant name="EXO_PARAM_WRITABLE" type="int" value="0"/>
 		<constant name="EXO_TOOLBARS_ITEM_TYPE" type="char*" value="application/x-exo-toolbars-item"/>
 	</namespace>
 </api>

@@ -1,1 +1,9 @@
 include/exo-0.3/exo/exo.h
+include/exo-0.3/exo/exo-config.h
+include/exo-0.3/exo/exo-execute.h
+include/exo-0.3/exo/exo-gdk-pixbuf-extensions.h
+include/exo-0.3/exo/exo-gobject-extensions.h
+include/exo-0.3/exo/exo-gtk-extensions.h
+include/exo-0.3/exo/exo-pango-extensions.h
+include/exo-0.3/exo/exo-string.h
+include/exo-0.3/exo/exo-utils.h
