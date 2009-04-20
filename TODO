@@ -1,3 +1,4 @@
 -Write test programs for libxfcegui4 and exo (verify that the ref/out/weak are correct, that memory is properly freed, ...)
+-Bindings for exo are missing the gtk+ widgets (they have not been taken care of)
 -Write the .deps files for each package
 -Add installation rules to the automake scripts
