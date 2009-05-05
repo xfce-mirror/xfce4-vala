@@ -503,8 +503,8 @@ namespace Exo {
 	public delegate bool BindingTransform (GLib.Value src_value, GLib.Value dst_value);
 	[CCode (cheader_filename = "exo/exo.h")]
 	public delegate void IconViewForeachFunc (Exo.IconView icon_view, Gtk.TreePath path);
-	[CCode (cheader_filename = "exo/exo.h")]
-	public static delegate bool IconViewSearchEqualFunc (Gtk.TreeModel model, int column, string key, Gtk.TreeIter iter, void* search_data);
+	[CCode (cheader_filename = "exo/exo.h", has_target = false)]
+	public delegate bool IconViewSearchEqualFunc (Gtk.TreeModel model, int column, string key, Gtk.TreeIter iter, void* search_data);
 	[CCode (cheader_filename = "exo/exo.h")]
 	public delegate void IconViewSearchPositionFunc (Exo.IconView icon_view, Gtk.Widget search_dialog);
 	[CCode (cheader_filename = "exo/exo.h")]

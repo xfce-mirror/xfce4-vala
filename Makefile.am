@@ -23,8 +23,10 @@ update-vapi:
 		../packages/$(LIBXFCEGUI4)/$(LIBXFCEGUI4).gi\
 		../packages/$(LIBXFCEGUI4)/$(LIBXFCEGUI4)-custom.vala;\
 	$(VAPIGEN) --vapidir=. --library $(EXO)\
-		../packages/$(EXO)/$(EXO).gi;\
+		../packages/$(EXO)/$(EXO).gi\
+		../packages/$(EXO)/$(EXO)-custom.vala;\
 	)
+	for i in packages/*/*.deps; do cp $$i vapi; done
 endif
 
 tests: tests.stamp
