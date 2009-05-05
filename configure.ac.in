@@ -12,7 +12,7 @@ m4_define([project_version_tag], [git]) # leave empty for release
 m4_define([project_version], [project_version_major().project_version_minor()ifelse(project_version_tag(), [git], [project_version_tag()-project_version_build()], [project_version_tag()])])
 
 dnl Initialize
-AC_INIT([xfce4-vala], [project_version], [mmassonnet@xfce.org], [xfce4-vala])
+AC_INIT([Xfce4 Vala], [project_version], [mmassonnet@xfce.org], [xfce4-vala])
 AM_INIT_AUTOMAKE([dist-bzip2])
 AM_MAINTAINER_MODE()
 
