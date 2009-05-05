@@ -7,7 +7,9 @@ public class ButtonMenu : Gtk.Button {
 
 	construct {
 		this.label = "Show Menu";
-		this.clicked += () => { menu.popup (null, null, null, 0, Gtk.get_current_event_time ()); };
+		this.clicked.connect (() => {
+				menu.popup (null, null, null, 0, Gtk.get_current_event_time ());
+				});
 
 		init_menu ();
 	}
@@ -45,7 +47,9 @@ public class ButtonMenu : Gtk.Button {
 			if (item is Xfce.MenuItem) {
 				mi = new Gtk.MenuItem.with_label (item.get_name ());
 				mi.set_data ("command", item.get_command());
-				mi.activate += (mi) => { debug ("execute `%s'", (string)mi.get_data ("command")); };
+				mi.activate.connect ((mi) => {
+						debug ("execute `%s'", (string)mi.get_data ("command"));
+						});
 			}
 			else if (item is Xfce.MenuSeparator) {
 				mi = new Gtk.SeparatorMenuItem ();
@@ -70,7 +74,7 @@ public class GtkSample : Gtk.Window {
 
 	construct {
 		this.title = "Xfce4 Menu";
-		this.destroy += Gtk.main_quit;
+		this.destroy.connect (() => { Gtk.main_quit (); });
 
 		var button = new ButtonMenu ();
 		this.add (button);

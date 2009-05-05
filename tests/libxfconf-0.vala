@@ -126,15 +126,15 @@ public class LibxfconfTests : Object {
 	public void test_property_binding () {
 		Xfconf.Property.bind (channel, "/int", typeof(int), this, "prop-int");
 
-		this.notify += (s, p) => { print ("notify::%s\n", p.name); };
-		channel.property_changed += (channel, prop, val) => {
+		this.notify.connect ((s, p) => { print ("notify::%s\n", p.name); });
+		channel.property_changed.connect ((channel, prop, val) => {
 			print ("property changed: %s\n", prop);
 			if (val.type () == typeof(int)) {
 				print ("value: %d\n", val.get_int ());
 			} else if (val.type () == typeof(string)) {
 				print ("value: %s\n", val.get_string ());
 			}
-		};
+		});
 
 		message ("binded property /int");
 		message ("example: xfconf-query -c test-vala-bindings -p /int -s 2\n");
