@@ -29,7 +29,7 @@ namespace Xfce {
 	[CCode (cheader_filename = "libxfcegui4/libxfcegui4.h")]
 	public class Dialog {
 		[CCode (cname = "xfce_confirm")]
-		public static bool confirm (string text, string stock_id, string action);
+		public static bool confirm (string text, string stock_id, string? action);
 		[CCode (cname = "xfce_err")]
 		public static void error (string format);
 		[CCode (cname = "xfce_info")]
@@ -51,7 +51,7 @@ namespace Xfce {
 		[CCode (cname = "xfce_gdk_display_get_fullname")]
 		public static string gdk_display_get_fullname (Gdk.Display display);
 		[CCode (cname = "xfce_gdk_display_locate_monitor_with_pointer")]
-		public static unowned Gdk.Screen gdk_display_locate_monitor_with_pointer (Gdk.Display display, out int monitor_return);
+		public static unowned Gdk.Screen gdk_display_locate_monitor_with_pointer (Gdk.Display? display, out int? monitor_return);
 		[CCode (cname = "xfce_gdk_screen_get_fullname")]
 		public static string gdk_screen_get_fullname (Gdk.Screen screen);
 		[CCode (cname = "xfce_gdk_spawn_command_line_on_screen")]
@@ -75,21 +75,12 @@ namespace Xfce {
 		[CCode (cname = "xfce_themed_icon_lookup")]
 		public static string lookup (string name, int size);
 	}
-	[Compact]
-	[CCode (cheader_filename = "libxfcegui4/libxfcegui4.h")]
-	public class StartupNotification {
-		public const string ENVIRONMENT_DESKTOP_STARTUP_ID;
-		public static void cancel (string id);
-		public static string[] cleanup_environment (string[] envp);
-		public static string[] modify_environment (string[] envp, string id);
-		public static string start (Gdk.Screen screen, string path);
-	}
 	[CCode (cheader_filename = "libxfcegui4/libxfcegui4.h")]
 	public class TitledDialog : Gtk.Dialog, Gtk.Buildable, Atk.Implementor {
 		[CCode (type = "GtkWidget*", has_construct_function = false)]
 		public TitledDialog ();
 		[CCode (type = "GtkWidget*", has_construct_function = false)]
-		public TitledDialog.with_buttons (string title, Gtk.Window parent, Gtk.DialogFlags flags, ...);
+		public TitledDialog.with_buttons (string? title, Gtk.Window? parent, Gtk.DialogFlags flags, ...);
 		public string subtitle { get; set; }
 	}
 	[Compact]

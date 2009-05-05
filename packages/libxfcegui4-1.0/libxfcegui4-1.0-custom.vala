@@ -4,7 +4,7 @@ namespace Xfce {
 	[Compact]
 	public class Dialog {
 		[CCode (cname = "xfce_confirm")]
-		public static bool confirm (string text, string stock_id, string action);
+		public static bool confirm (string text, string stock_id, string? action);
 		[CCode (cname = "xfce_err")]
 		public static void error (string format);
 		[CCode (cname = "xfce_info")]
@@ -46,7 +46,7 @@ namespace Xfce {
 		public static string gdk_display_get_fullname (Gdk.Display display);
 		/* TODO verify unowned */
 		[CCode (cname = "xfce_gdk_display_locate_monitor_with_pointer")]
-		public static unowned Gdk.Screen gdk_display_locate_monitor_with_pointer (Gdk.Display display, out int monitor_return);
+		public static unowned Gdk.Screen gdk_display_locate_monitor_with_pointer (Gdk.Display? display, out int? monitor_return);
 		[CCode (cname = "xfce_gdk_screen_get_fullname")]
 		public static string gdk_screen_get_fullname (Gdk.Screen screen);
 		[CCode (cname = "xfce_gdk_spawn_command_line_on_screen")]
@@ -59,16 +59,6 @@ namespace Xfce {
 		public static void gtk_window_center_on_monitor (Gtk.Window window, Gdk.Screen screen, int monitor);
 		[CCode (cname = "xfce_gtk_window_center_on_monitor_with_pointer")]
 		public static void gtk_window_center_on_monitor_with_pointer (Gtk.Window window);
-	}
-
-	/* xfce-startup-notification.h */
-	[Compact]
-	public class StartupNotification {
-		public const string ENVIRONMENT_DESKTOP_STARTUP_ID;
-		public static void cancel (string id);
-		public static string[] cleanup_environment (string[] envp);
-		public static string[] modify_environment (string[] envp, string id);
-		public static string start (Gdk.Screen screen, string path);
 	}
 
 	/* xfce-widget-helpers.h */

@@ -8,6 +8,8 @@ xfce_titled_dialog_reserved4 hidden="1"
 xfce_titled_dialog_reserved5 hidden="1"
 xfce_titled_dialog_get_subtitle hidden="1"
 xfce_titled_dialog_set_subtitle hidden="1"
+xfce_titled_dialog_new_with_buttons.title nullable="1"
+xfce_titled_dialog_new_with_buttons.parent nullable="1"
 
 XfceAppMenuItemPriv hidden="1"
 xfce_app_menu_item_new_from_desktop_entry hidden="1"
