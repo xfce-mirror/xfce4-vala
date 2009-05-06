@@ -1,0 +1,12 @@
+xfce4-vala offers Vala bindings to Xfce
+
+	Xfce: http://www.xfce.org
+	Vala: http://live.gnome.org/Vala
+
+Xfce is an open source software targetting a lightweight desktop environment.
+
+Vala is a new programming language that aims to bring modern programming
+language features to GNOME developers without imposing any additional runtime
+requirements and without using a different ABI compared to applications and
+libraries written in C.
+
