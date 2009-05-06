@@ -54,7 +54,6 @@ namespace Exo {
 	/* exo-string.h */
 	[Compact]
 	public class String {
-		/* TODO check weak, returned pointer shall not be freed */
 		[CCode (cname = "xfce_intern_static_string")]
 		public static weak string intern_static (string str);
 		[CCode (cname = "xfce_intern_string")]
@@ -62,7 +61,7 @@ namespace Exo {
 		[CCode (cname = "xfce_str_elide_underscores")]
 		public static string elide_underscores (string text);
 		[CCode (cname = "xfce_str_is_equal")]
-		public static bool is_equal (string a, string b);
+		public static bool is_equal (string? a, string? b);
 		[CCode (cname = "xfce_str_replace")]
 		public static string replace (string str, string pattern, string replacement);
 		[CCode (cname = "xfce_strdup_strftime")]
@@ -75,8 +74,8 @@ namespace Exo {
 	[Compact]
 	public class Url {
 		public static void url_about_dialog_hook (Gtk.AboutDialog about_dialog, string link);
-		public static bool url_show (string url, string envp) throws Exo.UrlError;
-		public static bool url_show_on_screen (string url, string envp, Gdk.Screen screen) throws Exo.UrlError;
+		public static bool url_show (string url, string? envp) throws Exo.UrlError;
+		public static bool url_show_on_screen (string url, string? envp, Gdk.Screen screen) throws Exo.UrlError;
 	}
 
 }

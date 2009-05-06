@@ -27,6 +27,7 @@ exo_xsession_client_get_group hidden="1"
 exo_xsession_client_set_group hidden="1"
 exo_xsession_client_reserved1 hidden="1"
 exo_xsession_client_reserved2 hidden="1"
+
 # This is a dirty hack to "just get it compiled"
 ExoIconView::item_activated hidden="1"
 ExoIconView::select_all hidden="1"
