@@ -39,6 +39,9 @@ tests.stamp:
 	)
 	touch $@
 
+vapidir = $(datadir)/vala/vapi
+vapi_DATA = vapi/*
+
 EXTRA_DIST =								\
 	AUTHORS								\
 	ChangeLog							\
@@ -46,6 +49,8 @@ EXTRA_DIST =								\
 	INSTALL								\
 	NEWS								\
 	README								\
+	packages							\
+	vapi								\
 	$(NULL)
 
 CLEANFILES =								\
