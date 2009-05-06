@@ -40,7 +40,15 @@ tests.stamp:
 	touch $@
 
 vapidir = $(datadir)/vala/vapi
-vapi_DATA = vapi/*
+vapi_DATA =								\
+	vapi/$(LIBXFCE4UTIL).vapi					\
+	vapi/$(LIBXFCE4MENU).vapi					\
+	vapi/$(XFCONF).vapi						\
+	vapi/$(LIBXFCEGUI4).vapi					\
+	vapi/$(LIBXFCEGUI4).deps					\
+	vapi/$(EXO).vapi						\
+	vapi/$(EXO).deps						\
+	$(NULL)
 
 EXTRA_DIST =								\
 	AUTHORS								\
