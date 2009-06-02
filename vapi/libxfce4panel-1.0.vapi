@@ -96,11 +96,6 @@ namespace Xfce {
 		public void set_panel_hidden (bool hidden);
 	}
 
-	/*
-	TODO:
-	- Widgets
-	- Convenience functions
-	*/
 	public class ArrowButton : Gtk.ToggleButton {
 		public Gtk.ArrowType arrow_type { get; set; }
 		public virtual signal void arrow_type_changed (Gtk.ArrowType type);
@@ -108,15 +103,12 @@ namespace Xfce {
 		public void set_arrow_type (Gtk.ArrowType type);
 		public Gtk.ArrowType get_arrow_type ();
 	}
-
 	public class HVBox : Gtk.Box {
 		public HVBox (Gtk.Orientation orientation, bool homogeneous, int spacing);
 		public void set_orientation (Gtk.Orientation orientation);
 	}
-
 	public class ItemBar : Gtk.Container {
 		public Gtk.Orientation orientation { get; set; }
-		//public bool expand { get; set; } // XXX Child property
 		public virtual signal void contents_changed ();
 		public virtual signal void orientation_changed (Gtk.Orientation orientation);
 		public ItemBar (Gtk.Orientation orientation);
@@ -138,12 +130,15 @@ namespace Xfce {
 		public Gtk.Widget get_item_at_point (int x, int y);
 		public int get_drop_index (int x, int y);
 	}
-
-	// TODO: check for a set_target_pos = ...
-	[CCode (has_target = false)]
-	public delegate bool PanelWindowMoveFunc (Gtk.Widget widget, void* data, out int x, out int y);
-	[CCode (has_target = false)]
-	public delegate bool PanelWindowResizeFunc (Gtk.Widget widget, void* data, out Gtk.Allocation previous, out Gtk.Allocation allocation, out int x, out int y);
+	[Compact]
+	public class ItemBarChild {
+		public bool expand;
+		public weak Gtk.Widget widget;
+	}
+	[CCode (delegate_target_pos = 1)]
+	public delegate bool PanelWindowMoveFunc (Gtk.Widget widget, out int x, out int y);
+	[CCode (delegate_target_pos = 1)]
+	public delegate bool PanelWindowResizeFunc (Gtk.Widget widget, out Gtk.Allocation previous, out Gtk.Allocation allocation, out int x, out int y);
 	public class PanelWindow : Gtk.Window {
 		public HandleStyle handle_style { get; set; }
 		public Gtk.Orientation orientation { get; set; }
@@ -163,6 +158,10 @@ namespace Xfce {
 		public void set_movable (bool movable);
 		public bool get_movable ();
 	}
+
+	public static Gtk.Button create_panel_button ();
+	public static Gtk.ToggleButton create_panel_toggle_button ();
+	public static bool allow_panel_customization ();
 
 	[CCode (has_type_id = false)]
 	public enum ScreenPosition {

@@ -1,18 +1,20 @@
 using Xfce;
 using Gtk;
 
-public class TestPlugin : Gtk.Button {
+public class TestPlugin : GLib.Object {
 
     private Xfce.PanelPlugin panel_plugin;
+    private Gtk.Button button;
 
     public TestPlugin (Xfce.PanelPlugin panel_plugin) {
         this.panel_plugin = panel_plugin;
-        label = "Hello World!";
-        show ();
-        panel_plugin.add (this);
-        panel_plugin.add_action_widget (this);
+	button = Xfce.create_panel_button ();
+        button.set_label ("Hello World!");
+        button.show ();
+        panel_plugin.add (button);
+        panel_plugin.add_action_widget (button);
 
-        this.clicked.connect ((button) => {
+        button.clicked.connect ((button) => {
                 var dialog = new Gtk.MessageDialog ((Gtk.Window)button.get_toplevel (),
                         Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO, Gtk.ButtonsType.OK,
                         "Hello World!");
