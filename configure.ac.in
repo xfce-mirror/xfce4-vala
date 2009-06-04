@@ -8,8 +8,8 @@ dnl Version information
 m4_define([project_version_major], [0])
 m4_define([project_version_minor], [1])
 m4_define([project_version_build], [@REVISION@])
-m4_define([project_version_tag], [-a]) # leave empty for release
-m4_define([project_version], [project_version_major().project_version_minor()ifelse(project_version_tag(), [git], [project_version_tag()-project_version_build()], [project_version_tag()])])
+m4_define([project_version_tag], [-a2]) # leave empty for release
+m4_define([project_version], [project_version_major().project_version_minor()project_version_tag()])
 
 dnl Initialize
 AC_INIT([Xfce4 Vala], [project_version], [mmassonnet@xfce.org], [xfce4-vala])
