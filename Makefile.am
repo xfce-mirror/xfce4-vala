@@ -46,6 +46,8 @@ vapi_DATA =								\
 	vapi/$(XFCONF).vapi						\
 	vapi/$(LIBXFCEGUI4).vapi					\
 	vapi/$(LIBXFCEGUI4).deps					\
+	vapi/$(LIBXFCE4PANEL).vapi					\
+	vapi/$(LIBXFCE4PANEL).deps					\
 	vapi/$(EXO).vapi						\
 	vapi/$(EXO).deps						\
 	$(NULL)

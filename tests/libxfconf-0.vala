@@ -143,12 +143,8 @@ public class LibxfconfTests : Object {
 	}
 }
 
-static void run_tests () {
-	/* It is important to initialize the class LibxfconfTests outside
-	 * the main() function, cause the objects get unreferred automatically
-	 * at the end of the functions, and within main() tests would fail to
-	 * unref its remaining Xfconf.Channel (inside the private data) since
-	 * Xfconf.shutdown() would have been called meanwhile. */
+static int main (string[] args) {
+	try { Xfconf.init (); } catch (Xfconf.Error ex) {}
 	var tests = new LibxfconfTests ();
 	tests.test_list_channels ();
 	tests.test_simple_types ();
@@ -157,11 +153,7 @@ static void run_tests () {
 	tests.test_int16 ();
 	tests.test_error ();
 	tests.test_property_binding ();
-}
-
-static int main (string[] args) {
-	try { Xfconf.init (); } catch (Xfconf.Error ex) {}
-	run_tests ();
+	tests.unref ();
 	Xfconf.shutdown ();
 	return 0;
 }
