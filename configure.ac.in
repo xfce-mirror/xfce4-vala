@@ -25,7 +25,7 @@ M8T_CHECK_PACKAGE([LIBXFCE4MENU], [libxfce4menu-0.1], [4.6.0])
 M8T_CHECK_PACKAGE([XFCONF], [libxfconf-0], [4.6.0])
 M8T_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.6.0])
 M8T_CHECK_PACKAGE([EXO], [exo-0.3], [0.3.100])
-dnl M8T_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.6.0])
+M8T_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.6.0])
 
 dnl Check for Vala programs
 AC_PATH_PROG([VALAGI], [vala-gen-introspect], [vala-gen-introspect])
