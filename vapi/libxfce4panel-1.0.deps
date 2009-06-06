@@ -5,3 +5,5 @@ pango
 gdk-pixbuf-2.0
 gdk-2.0
 gtk+-2.0
+libxfce4util-1.0
+libxfcegui4-1.0
