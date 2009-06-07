@@ -52,6 +52,9 @@ vapi_DATA =								\
 	vapi/$(EXO).deps						\
 	$(NULL)
 
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = xfce4-vala.pc
+
 EXTRA_DIST =								\
 	AUTHORS								\
 	ChangeLog							\

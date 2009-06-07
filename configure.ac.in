@@ -8,7 +8,7 @@ dnl Version information
 m4_define([project_version_major], [0])
 m4_define([project_version_minor], [1])
 m4_define([project_version_build], [@REVISION@])
-m4_define([project_version_tag], [-a2]) # leave empty for release
+m4_define([project_version_tag], [-a3]) # leave empty for release
 m4_define([project_version], [project_version_major().project_version_minor()project_version_tag()])
 
 dnl Initialize
@@ -35,5 +35,6 @@ AC_PATH_PROG([VALAC], [valac], [valac])
 dnl Makefile outputs
 AC_OUTPUT([
 Makefile
+xfce4-vala.pc
 ])
 
