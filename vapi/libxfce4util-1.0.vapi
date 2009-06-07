@@ -80,5 +80,5 @@ namespace Xfce {
 	[CCode (cname = "xfce_version_string", cheader_filename = "libxfce4util/libxfce4util.h")]
 	public static unowned string get_version_string ();
 	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
-	public static void textdomain (string package, string localedir, string? encoding);
+	public static void textdomain (string package, string localedir, string? encoding = null);
 }

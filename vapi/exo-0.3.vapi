@@ -283,7 +283,7 @@ namespace Exo {
 		[CCode (cname = "xfce_intern_static_string")]
 		public static unowned string intern_static (string str);
 		[CCode (cname = "xfce_str_is_equal")]
-		public static bool is_equal (string a, string b);
+		public static bool is_equal (string? a, string? b);
 		[CCode (cname = "xfce_strndupv")]
 		public static string[] ndupv (string[] strv, int num);
 		[CCode (cname = "xfce_str_replace")]
@@ -428,8 +428,8 @@ namespace Exo {
 	[CCode (cheader_filename = "exo/exo.h")]
 	public class Url {
 		public static void url_about_dialog_hook (Gtk.AboutDialog about_dialog, string link);
-		public static bool url_show (string url, string envp) throws Exo.UrlError;
-		public static bool url_show_on_screen (string url, string envp, Gdk.Screen screen) throws Exo.UrlError;
+		public static bool url_show (string url, string? envp) throws Exo.UrlError;
+		public static bool url_show_on_screen (string url, string? envp, Gdk.Screen screen) throws Exo.UrlError;
 	}
 	[CCode (cheader_filename = "exo/exo.h")]
 	public class WrapTable : Gtk.Container, Atk.Implementor, Gtk.Buildable {
