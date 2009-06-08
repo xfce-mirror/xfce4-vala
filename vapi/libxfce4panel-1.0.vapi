@@ -107,57 +107,6 @@ namespace Xfce {
 		public HVBox (Gtk.Orientation orientation, bool homogeneous, int spacing);
 		public void set_orientation (Gtk.Orientation orientation);
 	}
-	public class ItemBar : Gtk.Container {
-		public Gtk.Orientation orientation { get; set; }
-		public virtual signal void contents_changed ();
-		public virtual signal void orientation_changed (Gtk.Orientation orientation);
-		public ItemBar (Gtk.Orientation orientation);
-		public void set_orientation (Gtk.Orientation orientation);
-		public Gtk.Orientation get_orientation ();
-		public void insert (Gtk.Widget item, int position);
-		public void append (Gtk.Widget item);
-		public void prepend (Gtk.Widget item);
-		public void reorder_child (Gtk.Widget item, int position);
-		public void set_child_expand (Gtk.Widget item, bool expand);
-		public bool get_child_expand (Gtk.Widget item);
-		public void set_allow_expand (bool expand);
-		public int get_n_items ();
-		public int get_item_index (Gtk.Widget item);
-		public Gtk.Widget get_nth_item (int n);
-		public void raise_event_window ();
-		public void lower_event_window ();
-		public bool event_window_is_raised ();
-		public Gtk.Widget get_item_at_point (int x, int y);
-		public int get_drop_index (int x, int y);
-	}
-	[Compact]
-	public class ItemBarChild {
-		public bool expand;
-		public weak Gtk.Widget widget;
-	}
-	[CCode (delegate_target_pos = 1)]
-	public delegate bool PanelWindowMoveFunc (Gtk.Widget widget, out int x, out int y);
-	[CCode (delegate_target_pos = 1)]
-	public delegate bool PanelWindowResizeFunc (Gtk.Widget widget, out Gtk.Allocation previous, out Gtk.Allocation allocation, out int x, out int y);
-	public class PanelWindow : Gtk.Window {
-		public HandleStyle handle_style { get; set; }
-		public Gtk.Orientation orientation { get; set; }
-		public virtual signal void move (int x, int y);
-		public virtual signal void move_end (int x, int y);
-		public virtual signal void move_start ();
-		public virtual signal void orientation_changed (Gtk.Orientation orientation);
-		public PanelWindow ();
-		public void set_orientation (Gtk.Orientation orientation);
-		public Gtk.Orientation get_orientation ();
-		public void set_handle_style (HandleStyle style);
-		public HandleStyle get_handle_style ();
-		public void set_show_border (bool top_border, bool bottom_border, bool left_border, bool right_border);
-		public void get_show_border (out bool top_border, out bool bottom_border, out bool left_border, out bool right_border);
-		public void set_resize_function (PanelWindowResizeFunc function);
-		public void set_move_function (PanelWindowMoveFunc function);
-		public void set_movable (bool movable);
-		public bool get_movable ();
-	}
 
 	public static Gtk.Button create_panel_button ();
 	public static Gtk.ToggleButton create_panel_toggle_button ();
