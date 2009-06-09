@@ -39,7 +39,6 @@ tests.stamp:
 	)
 	touch $@
 
-vapidir = $(datadir)/vala/vapi
 vapi_DATA =								\
 	vapi/$(LIBXFCE4UTIL).vapi					\
 	vapi/$(LIBXFCE4MENU).vapi					\
