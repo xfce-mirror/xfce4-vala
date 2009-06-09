@@ -28,11 +28,7 @@ M8T_CHECK_PACKAGE([EXO], [exo-0.3], [0.3.100])
 M8T_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.6.0])
 
 dnl Check for Vala
-PKG_CHECK_MODULES([VALA], [vala-1.0 >= 0.7.1])
-AC_PATH_PROG([VALAC], [valac], [valac])
-AC_SUBST([VAPIGEN], $($PKG_CONFIG --variable=vapigen vala-1.0))
-AC_SUBST([VALAGI], $($PKG_CONFIG --variable=vala_gen_introspect vala-1.0))
-AC_SUBST([vapidir], $($PKG_CONFIG --variable=vapidir vala-1.0))
+M8T_CHECK_VALA([0.7.1])
 
 dnl Makefile outputs
 AC_OUTPUT([

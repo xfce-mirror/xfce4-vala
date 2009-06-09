@@ -4,7 +4,7 @@ dnl
 
 dnl # M8T_CHECK_PACKAGE(varname, package, minimum_version)
 dnl #
-dnl # Checks for a package and sets a variable
+dnl # Checks for a package and substitutes the name.
 dnl #
 AC_DEFUN([M8T_CHECK_PACKAGE],
 [
@@ -16,3 +16,33 @@ PKG_CHECK_EXISTS([$2 >= $3], [],
 		 AC_MSG_WARN([]))
 ])
 
+dnl # M8T_CHECK_VALA(minimum_version)
+dnl #
+dnl # Check for the package vala-1.0 and substitutes useful Vala variables.
+dnl #
+AC_DEFUN([M8T_CHECK_VALA],
+[
+PKG_CHECK_MODULES([VALA], [vala-1.0 >= $1])
+M8T_VALA_PROGS()
+M8T_VAPI_DIR()
+])
+
+dnl # M8T_VALA_PROGS()
+dnl #
+dnl # Substitutes VALAC, VAPIGEN and VALAGI from vala-1.0 pkgconfig file.
+dnl #
+AC_DEFUN([M8T_VALA_PROGS],
+[
+AC_PATH_PROG([VALAC], [valac], [valac])
+AC_SUBST([VAPIGEN], `$PKG_CONFIG --variable=vapigen vala-1.0`)
+AC_SUBST([VALAGI], `$PKG_CONFIG --variable=vala_gen_introspect vala-1.0`)
+])
+
+dnl # M8T_VAPI_DIR()
+dnl #
+dnl # Substitutes vapidir from vala-1.0 pkgconfig file.
+dnl #
+AC_DEFUN([M8T_VAPI_DIR],
+[
+AC_SUBST([vapidir], `$PKG_CONFIG --variable=vapidir vala-1.0`)
+])
