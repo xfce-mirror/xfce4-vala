@@ -1,0 +1,5 @@
+include/xfce4/libxfce4panel-1.0/libxfce4panel/libxfce4panel-config.h
+include/xfce4/libxfce4panel-1.0/libxfce4panel/libxfce4panel-deprecated.h
+include/xfce4/libxfce4panel-1.0/libxfce4panel/libxfce4panel.h
+include/xfce4/libxfce4panel-1.0/libxfce4panel/xfce-panel-image.h
+include/xfce4/libxfce4panel-1.0/libxfce4panel/xfce-panel-plugin-provider.h

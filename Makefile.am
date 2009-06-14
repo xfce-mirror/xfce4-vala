@@ -3,9 +3,9 @@ NULL =
 if MAINTAINER_MODE
 update-gi:
 	$(VALAGI) $(LIBXFCE4UTIL) packages/$(LIBXFCE4UTIL)
-	$(VALAGI) $(LIBXFCE4MENU) packages/$(LIBXFCE4MENU)
 	$(VALAGI) $(XFCONF) packages/$(XFCONF)
-	$(VALAGI) $(LIBXFCEGUI4) packages/$(LIBXFCEGUI4)
+	$(VALAGI) $(LIBXFCE4UI) packages/$(LIBXFCE4UI)
+	$(VALAGI) $(LIBXFCE4PANEL) packages/$(LIBXFCE4PANEL)
 	$(VALAGI) $(EXO) packages/$(EXO)
 
 update-vapi:
@@ -13,15 +13,14 @@ update-vapi:
 	$(VAPIGEN) --vapidir=. --library $(LIBXFCE4UTIL)\
 		../packages/$(LIBXFCE4UTIL)/$(LIBXFCE4UTIL).gi\
 		../packages/$(LIBXFCE4UTIL)/$(LIBXFCE4UTIL)-custom.vala;\
-	$(VAPIGEN) --vapidir=. --library $(LIBXFCE4MENU)\
-		../packages/$(LIBXFCE4MENU)/$(LIBXFCE4MENU).gi\
-		../packages/$(LIBXFCE4MENU)/$(LIBXFCE4MENU)-custom.vala;\
 	$(VAPIGEN) --vapidir=. --library $(XFCONF)\
 		../packages/$(XFCONF)/$(XFCONF).gi\
 		../packages/$(XFCONF)/$(XFCONF)-custom.vala;\
-	$(VAPIGEN) --vapidir=. --library $(LIBXFCEGUI4)\
-		../packages/$(LIBXFCEGUI4)/$(LIBXFCEGUI4).gi\
-		../packages/$(LIBXFCEGUI4)/$(LIBXFCEGUI4)-custom.vala;\
+	$(VAPIGEN) --vapidir=. --library $(LIBXFCE4UI)\
+		../packages/$(LIBXFCE4UI)/$(LIBXFCE4UI).gi;\
+	$(VAPIGEN) --vapidir=. --library $(LIBXFCE4PANEL)\
+		../packages/$(LIBXFCE4PANEL)/$(LIBXFCE4PANEL).gi\
+		../packages/$(LIBXFCE4PANEL)/$(LIBXFCE4PANEL)-custom.vala;\
 	$(VAPIGEN) --vapidir=. --library $(EXO)\
 		../packages/$(EXO)/$(EXO).gi\
 		../packages/$(EXO)/$(EXO)-custom.vala;\
@@ -33,19 +32,16 @@ tests: tests.stamp
 tests.stamp:
 	(cd tests;\
 	$(VALAC) --pkg=$(LIBXFCE4UTIL) --vapidir=../vapi $(LIBXFCE4UTIL).vala;\
-	$(VALAC) --pkg=gtk+-2.0 --pkg=$(LIBXFCE4MENU) --vapidir=../vapi $(LIBXFCE4MENU).vala;\
 	$(VALAC) --pkg=$(XFCONF) --vapidir=../vapi $(XFCONF).vala;\
-	$(VALAC) --pkg=$(LIBXFCEGUI4) --vapidir=../vapi $(LIBXFCEGUI4).vala;\
 	$(VALAC) --pkg=$(EXO) --vapidir=../vapi $(EXO).vala;\
 	)
 	touch $@
 
 vapi_DATA =								\
 	vapi/$(LIBXFCE4UTIL).vapi					\
-	vapi/$(LIBXFCE4MENU).vapi					\
 	vapi/$(XFCONF).vapi						\
-	vapi/$(LIBXFCEGUI4).vapi					\
-	vapi/$(LIBXFCEGUI4).deps					\
+	vapi/$(LIBXFCE4UI).vapi						\
+	vapi/$(LIBXFCE4UI).deps						\
 	vapi/$(LIBXFCE4PANEL).vapi					\
 	vapi/$(LIBXFCE4PANEL).deps					\
 	vapi/$(EXO).vapi						\
@@ -66,9 +62,7 @@ EXTRA_DIST =								\
 	packages							\
 	vapi								\
 	tests/$(LIBXFCE4UTIL).vala					\
-	tests/$(LIBXFCE4MENU).vala					\
 	tests/$(XFCONF).vala						\
-	tests/$(LIBXFCEGUI4).vala					\
 	tests/$(EXO).vala						\
 	$(NULL)
 
@@ -76,9 +70,7 @@ CLEANFILES =								\
 	tests.stamp							\
 	tests/$(LIBXFCE4UTIL)						\
 	tests/rcfile.rc							\
-	tests/$(LIBXFCE4MENU)						\
 	tests/$(XFCONF)							\
-	tests/$(LIBXFCEGUI4)						\
 	tests/$(EXO)							\
 	$(NULL)
 

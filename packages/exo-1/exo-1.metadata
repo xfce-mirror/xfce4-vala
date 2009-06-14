@@ -9,18 +9,6 @@ ExoMutualBinding.base hidden="1"
 ExoMutualBinding.direct hidden="1"
 ExoMutualBinding.reverse hidden="1"
 
-ExoMountPointFlags hidden="1"
-
-exo_md5_str_to_digest hidden="1"
-exo_str_get_md5_digest hidden="1"
-exo_str_get_md5_str hidden="1"
-
-ExoUrlError hidden="1"
-exo_url_error_quark hidden="1"
-exo_url_about_dialog_hook hidden="1"
-exo_url_show hidden="1"
-exo_url_show_on_screen hidden="1"
-
 exo_xsession_client_get_restart_command hidden="1"
 exo_xsession_client_set_restart_command hidden="1"
 exo_xsession_client_get_group hidden="1"
@@ -33,6 +21,8 @@ exo_*_reserved* hidden="1"
 # Rename signal names duplicated with method names
 ExoIconView::item_activated hidden="0"
 exo_icon_view_item_activated name="exo_icon_view_activate_item"
+ExoJob::info_message name="info_message_received"
+ExoJob::percent name="percent_progress"
 ExoIconView::select_all name="all_selected"
 ExoIconView::unselect_all name="all_unselected"
 ExoToolbarsModel::get_item_data name="item_data"

@@ -4,6 +4,8 @@
 namespace Xfconf {
 	[CCode (cheader_filename = "xfconf/xfconf.h")]
 	public class Channel : GLib.Object {
+		[CCode (has_construct_function = false)]
+		public Channel (string channel_name);
 		public static unowned Xfconf.Channel @get (string channel_name);
 		[CCode (sentinel = "G_TYPE_INVALID")]
 		public bool get_array (string property, ...);
@@ -23,8 +25,6 @@ namespace Xfconf {
 		public uint64 get_uint64 (string property, uint64 default_value);
 		public bool has_property (string property);
 		public bool is_property_locked (string property);
-		[CCode (has_construct_function = false)]
-		public Channel (string channel_name);
 		public void reset_property (string property_base, bool recursive);
 		[CCode (sentinel = "G_TYPE_INVALID")]
 		public bool set_array (string property, ...);
@@ -42,6 +42,8 @@ namespace Xfconf {
 		public bool set_uint64 (string property, uint64 value);
 		[CCode (has_construct_function = false)]
 		public Channel.with_property_base (string channel_name, string property_base);
+		[NoAccessorMethod]
+		public bool is_singleton { get; construct; }
 		public virtual signal void property_changed (string p0, GLib.Value p1);
 	}
 	[Compact]

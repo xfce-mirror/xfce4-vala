@@ -344,6 +344,7 @@
 				</parameters>
 			</method>
 			<property name="channel-name" type="char*" readable="1" writable="1" construct="0" construct-only="1"/>
+			<property name="is-singleton" type="gboolean" readable="1" writable="1" construct="0" construct-only="1"/>
 			<property name="property-base" type="char*" readable="1" writable="1" construct="0" construct-only="1"/>
 			<signal name="property-changed" when="LAST">
 				<return-type type="void"/>

@@ -37,40 +37,9 @@ namespace Exo {
 		public static bool terminal_shell_on_screen (string command_line, string? working_directory, string[]? envp, Gdk.Screen screen) throws GLib.Error;
 	}
 
-	/* exo-md5.h */
-	[Compact]
-	public class Md5Digest {
-		[CCode (cname = "exo_md5_str_to_digest")]
-		public static Exo.Md5Digest md5_str_to_digest (string str_digest);
-		[CCode (cname = "exo_str_get_md5_digest")]
-		public static Exo.Md5Digest str_get_md5_digest (string contents);
-	}
-	[Compact]
-	public class Md5 {
-		[CCode (cname = "exo_str_get_md5_str")]
-		public static string str_get_md5_str (string contents);
-	}
-
-	/* exo-mount-point.h */
-	[CCode (cprefix = "EXO_MOUNT_POINT_")]
-	[Flags]
-	public enum MountPointFlags {
-		READ_ONLY
-	}
-
-	[Compact]
-	public class MountPoint {
-		public static unowned GLib.SList list_active () throws GLib.Error;
-		public static unowned GLib.SList list_configured () throws GLib.Error;
-	}
-
 	/* exo-string.h */
 	[Compact]
 	public class String {
-		[CCode (cname = "exo_intern_static_string")]
-		public static weak string intern_static (string str);
-		[CCode (cname = "exo_intern_string")]
-		public static weak string intern (string str);
 		[CCode (cname = "exo_str_elide_underscores")]
 		public static string elide_underscores (string text);
 		[CCode (cname = "exo_str_is_equal")]
@@ -81,19 +50,6 @@ namespace Exo {
 		public static string dup_strftime (string format, void* tm);
 		[CCode (cname = "exo_strndupv")]
 		public static string[] ndupv (string[] strv, int num);
-	}
-
-	/* exo-url.h */
-	[CCode (cprefix = "EXO_URL_ERROR_")]
-	public errordomain UrlError {
-		NOT_SUPPORTED
-	}
-
-	[Compact]
-	public class Url {
-		public static void about_dialog_hook (Gtk.AboutDialog about_dialog, string link);
-		public static bool show (string url, string? envp) throws Exo.UrlError;
-		public static bool show_on_screen (string url, string? envp, Gdk.Screen screen) throws Exo.UrlError;
 	}
 
 }

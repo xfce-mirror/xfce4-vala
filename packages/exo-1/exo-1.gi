@@ -1,52 +1,6 @@
 <?xml version="1.0"?>
 <api version="1.0">
 	<namespace name="Exo">
-		<function name="md5_str_to_digest" symbol="exo_md5_str_to_digest">
-			<return-type type="ExoMd5Digest*"/>
-			<parameters>
-				<parameter name="str_digest" type="gchar*"/>
-			</parameters>
-		</function>
-		<function name="str_get_md5_digest" symbol="exo_str_get_md5_digest">
-			<return-type type="ExoMd5Digest*"/>
-			<parameters>
-				<parameter name="contents" type="gchar*"/>
-			</parameters>
-		</function>
-		<function name="str_get_md5_str" symbol="exo_str_get_md5_str">
-			<return-type type="gchar*"/>
-			<parameters>
-				<parameter name="contents" type="gchar*"/>
-			</parameters>
-		</function>
-		<function name="url_about_dialog_hook" symbol="exo_url_about_dialog_hook">
-			<return-type type="void"/>
-			<parameters>
-				<parameter name="about_dialog" type="GtkAboutDialog*"/>
-				<parameter name="link" type="gchar*"/>
-				<parameter name="user_data" type="gpointer"/>
-			</parameters>
-		</function>
-		<function name="url_error_quark" symbol="exo_url_error_quark">
-			<return-type type="GQuark"/>
-		</function>
-		<function name="url_show" symbol="exo_url_show">
-			<return-type type="gboolean"/>
-			<parameters>
-				<parameter name="url" type="gchar*"/>
-				<parameter name="envp" type="gchar**"/>
-				<parameter name="error" type="GError**"/>
-			</parameters>
-		</function>
-		<function name="url_show_on_screen" symbol="exo_url_show_on_screen">
-			<return-type type="gboolean"/>
-			<parameters>
-				<parameter name="url" type="gchar*"/>
-				<parameter name="envp" type="gchar**"/>
-				<parameter name="screen" type="GdkScreen*"/>
-				<parameter name="error" type="GError**"/>
-			</parameters>
-		</function>
 		<callback name="ExoBindingTransform">
 			<return-type type="gboolean"/>
 			<parameters>
@@ -79,6 +33,14 @@
 				<parameter name="icon_view" type="ExoIconView*"/>
 				<parameter name="search_dialog" type="GtkWidget*"/>
 				<parameter name="user_data" type="gpointer"/>
+			</parameters>
+		</callback>
+		<callback name="ExoSimpleJobFunc">
+			<return-type type="gboolean"/>
+			<parameters>
+				<parameter name="job" type="ExoJob*"/>
+				<parameter name="param_values" type="GValueArray*"/>
+				<parameter name="error" type="GError**"/>
 			</parameters>
 		</callback>
 		<struct name="ExoBinding">
@@ -118,20 +80,6 @@
 					<parameter name="binding" type="ExoBinding*"/>
 				</parameters>
 			</method>
-			<field name="src_object" type="GObject*"/>
-			<field name="base" type="ExoBindingBase"/>
-			<field name="link" type="ExoBindingLink"/>
-		</struct>
-		<struct name="ExoBindingBase">
-			<field name="destroy" type="GDestroyNotify"/>
-		</struct>
-		<struct name="ExoBindingLink">
-			<field name="dst_object" type="GObject*"/>
-			<field name="dst_pspec" type="GParamSpec*"/>
-			<field name="dst_handler" type="gulong"/>
-			<field name="handler" type="gulong"/>
-			<field name="transform" type="ExoBindingTransform"/>
-			<field name="user_data" type="gpointer"/>
 		</struct>
 		<struct name="ExoMutualBinding">
 			<method name="new" symbol="exo_mutual_binding_new">
@@ -171,72 +119,9 @@
 					<parameter name="binding" type="ExoMutualBinding*"/>
 				</parameters>
 			</method>
-			<field name="base" type="ExoBindingBase"/>
-			<field name="direct" type="ExoBindingLink"/>
-			<field name="reverse" type="ExoBindingLink"/>
 		</struct>
-		<boxed name="ExoMd5Digest" type-name="ExoMd5Digest" get-type="exo_md5_digest_get_type">
-			<method name="dup" symbol="exo_md5_digest_dup">
-				<return-type type="ExoMd5Digest*"/>
-				<parameters>
-					<parameter name="digest" type="ExoMd5Digest*"/>
-				</parameters>
-			</method>
-			<method name="equal" symbol="exo_md5_digest_equal">
-				<return-type type="gboolean"/>
-				<parameters>
-					<parameter name="digest1" type="gconstpointer"/>
-					<parameter name="digest2" type="gconstpointer"/>
-				</parameters>
-			</method>
-			<method name="free" symbol="exo_md5_digest_free">
-				<return-type type="void"/>
-				<parameters>
-					<parameter name="digest" type="ExoMd5Digest*"/>
-				</parameters>
-			</method>
-			<method name="hash" symbol="exo_md5_digest_hash">
-				<return-type type="guint"/>
-				<parameters>
-					<parameter name="digest" type="gconstpointer"/>
-				</parameters>
-			</method>
-			<method name="to_str" symbol="exo_md5_digest_to_str">
-				<return-type type="gchar*"/>
-				<parameters>
-					<parameter name="digest" type="ExoMd5Digest*"/>
-				</parameters>
-			</method>
-			<field name="digest" type="guchar[]"/>
-		</boxed>
-		<boxed name="ExoMountPoint" type-name="ExoMountPoint" get-type="exo_mount_point_get_type">
-			<method name="dup" symbol="exo_mount_point_dup">
-				<return-type type="ExoMountPoint*"/>
-				<parameters>
-					<parameter name="mount_point" type="ExoMountPoint*"/>
-				</parameters>
-			</method>
-			<method name="free" symbol="exo_mount_point_free">
-				<return-type type="void"/>
-				<parameters>
-					<parameter name="mount_point" type="ExoMountPoint*"/>
-				</parameters>
-			</method>
-			<method name="list_matched" symbol="exo_mount_point_list_matched">
-				<return-type type="GSList*"/>
-				<parameters>
-					<parameter name="mask" type="ExoMountPointMatchMask"/>
-					<parameter name="device" type="gchar*"/>
-					<parameter name="folder" type="gchar*"/>
-					<parameter name="fstype" type="gchar*"/>
-					<parameter name="error" type="GError**"/>
-				</parameters>
-			</method>
-			<field name="flags" type="ExoMountPointFlags"/>
-			<field name="device" type="gchar*"/>
-			<field name="folder" type="gchar*"/>
-			<field name="fstype" type="gchar*"/>
-		</boxed>
+		<struct name="ExoSimpleJobClass">
+		</struct>
 		<enum name="ExoIconViewDropPosition" type-name="ExoIconViewDropPosition" get-type="exo_icon_view_drop_position_get_type">
 			<member name="EXO_ICON_VIEW_NO_DROP" value="0"/>
 			<member name="EXO_ICON_VIEW_DROP_INTO" value="1"/>
@@ -249,19 +134,6 @@
 			<member name="EXO_ICON_VIEW_LAYOUT_ROWS" value="0"/>
 			<member name="EXO_ICON_VIEW_LAYOUT_COLS" value="1"/>
 		</enum>
-		<enum name="ExoMountPointMatchMask">
-			<member name="EXO_MOUNT_POINT_MATCH_ACTIVE" value="0"/>
-			<member name="EXO_MOUNT_POINT_MATCH_CONFIGURED" value="1"/>
-			<member name="EXO_MOUNT_POINT_MATCH_DEVICE" value="2"/>
-			<member name="EXO_MOUNT_POINT_MATCH_FOLDER" value="4"/>
-			<member name="EXO_MOUNT_POINT_MATCH_FSTYPE" value="8"/>
-		</enum>
-		<enum name="ExoUrlError">
-			<member name="EXO_URL_ERROR_NOT_SUPPORTED" value="0"/>
-		</enum>
-		<flags name="ExoMountPointFlags" type-name="ExoMountPointFlags" get-type="exo_mount_point_flags_get_type">
-			<member name="EXO_MOUNT_POINT_READ_ONLY" value="1"/>
-		</flags>
 		<flags name="ExoToolbarsModelFlags" type-name="ExoToolbarsModelFlags" get-type="exo_toolbars_model_flags_get_type">
 			<member name="EXO_TOOLBARS_MODEL_NOT_REMOVABLE" value="1"/>
 			<member name="EXO_TOOLBARS_MODEL_ACCEPT_ITEMS_ONLY" value="2"/>
@@ -278,6 +150,7 @@
 				<return-type type="GtkCellRenderer*"/>
 			</constructor>
 			<property name="follow-state" type="gboolean" readable="1" writable="1" construct="1" construct-only="0"/>
+			<property name="gicon" type="GIcon*" readable="1" writable="1" construct="0" construct-only="0"/>
 			<property name="icon" type="char*" readable="1" writable="1" construct="0" construct-only="0"/>
 			<property name="size" type="gint" readable="1" writable="1" construct="1" construct-only="0"/>
 			<vfunc name="reserved1">
@@ -354,7 +227,7 @@
 				<return-type type="void"/>
 				<parameters>
 					<parameter name="icon_bar" type="ExoIconBar*"/>
-					<parameter name="index" type="gint"/>
+					<parameter name="idx" type="gint"/>
 				</parameters>
 			</method>
 			<method name="set_active_iter" symbol="exo_icon_bar_set_active_iter">
@@ -471,9 +344,9 @@
 		</object>
 		<object name="ExoIconView" parent="GtkContainer" type-name="ExoIconView" get-type="exo_icon_view_get_type">
 			<implements>
+				<interface name="GtkCellLayout"/>
 				<interface name="AtkImplementor"/>
 				<interface name="GtkBuildable"/>
-				<interface name="GtkCellLayout"/>
 			</implements>
 			<method name="create_drag_icon" symbol="exo_icon_view_create_drag_icon">
 				<return-type type="GdkPixmap*"/>
@@ -1014,10 +887,118 @@
 				<return-type type="void"/>
 			</vfunc>
 		</object>
+		<object name="ExoJob" parent="GObject" type-name="ExoJob" get-type="exo_job_get_type">
+			<method name="cancel" symbol="exo_job_cancel">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="job" type="ExoJob*"/>
+				</parameters>
+			</method>
+			<method name="emit" symbol="exo_job_emit">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="job" type="ExoJob*"/>
+					<parameter name="signal_id" type="guint"/>
+					<parameter name="signal_detail" type="GQuark"/>
+				</parameters>
+			</method>
+			<method name="get_cancellable" symbol="exo_job_get_cancellable">
+				<return-type type="GCancellable*"/>
+				<parameters>
+					<parameter name="job" type="ExoJob*"/>
+				</parameters>
+			</method>
+			<method name="info_message" symbol="exo_job_info_message">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="job" type="ExoJob*"/>
+					<parameter name="format" type="gchar*"/>
+				</parameters>
+			</method>
+			<method name="is_cancelled" symbol="exo_job_is_cancelled">
+				<return-type type="gboolean"/>
+				<parameters>
+					<parameter name="job" type="ExoJob*"/>
+				</parameters>
+			</method>
+			<method name="launch" symbol="exo_job_launch">
+				<return-type type="ExoJob*"/>
+				<parameters>
+					<parameter name="job" type="ExoJob*"/>
+				</parameters>
+			</method>
+			<method name="percent" symbol="exo_job_percent">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="job" type="ExoJob*"/>
+					<parameter name="percent" type="gdouble"/>
+				</parameters>
+			</method>
+			<method name="send_to_mainloop" symbol="exo_job_send_to_mainloop">
+				<return-type type="gboolean"/>
+				<parameters>
+					<parameter name="job" type="ExoJob*"/>
+					<parameter name="func" type="GSourceFunc"/>
+					<parameter name="user_data" type="gpointer"/>
+					<parameter name="destroy_notify" type="GDestroyNotify"/>
+				</parameters>
+			</method>
+			<method name="set_error_if_cancelled" symbol="exo_job_set_error_if_cancelled">
+				<return-type type="gboolean"/>
+				<parameters>
+					<parameter name="job" type="ExoJob*"/>
+					<parameter name="error" type="GError**"/>
+				</parameters>
+			</method>
+			<signal name="error" when="LAST">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="job" type="ExoJob*"/>
+					<parameter name="error" type="gpointer"/>
+				</parameters>
+			</signal>
+			<signal name="finished" when="LAST">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="job" type="ExoJob*"/>
+				</parameters>
+			</signal>
+			<signal name="info-message" when="LAST">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="job" type="ExoJob*"/>
+					<parameter name="message" type="char*"/>
+				</parameters>
+			</signal>
+			<signal name="percent" when="LAST">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="job" type="ExoJob*"/>
+					<parameter name="percent" type="gdouble"/>
+				</parameters>
+			</signal>
+			<vfunc name="execute">
+				<return-type type="gboolean"/>
+				<parameters>
+					<parameter name="job" type="ExoJob*"/>
+					<parameter name="error" type="GError**"/>
+				</parameters>
+			</vfunc>
+		</object>
+		<object name="ExoSimpleJob" parent="ExoJob" type-name="ExoSimpleJob" get-type="exo_simple_job_get_type">
+			<method name="launch" symbol="exo_simple_job_launch">
+				<return-type type="ExoJob*"/>
+				<parameters>
+					<parameter name="func" type="ExoSimpleJobFunc"/>
+					<parameter name="n_param_values" type="guint"/>
+				</parameters>
+			</method>
+		</object>
 		<object name="ExoToolbarsEditor" parent="GtkVBox" type-name="ExoToolbarsEditor" get-type="exo_toolbars_editor_get_type">
 			<implements>
 				<interface name="AtkImplementor"/>
 				<interface name="GtkBuildable"/>
+				<interface name="GtkOrientable"/>
 			</implements>
 			<method name="get_model" symbol="exo_toolbars_editor_get_model">
 				<return-type type="ExoToolbarsModel*"/>
@@ -1373,6 +1354,7 @@
 			<implements>
 				<interface name="AtkImplementor"/>
 				<interface name="GtkBuildable"/>
+				<interface name="GtkOrientable"/>
 			</implements>
 			<method name="get_editing" symbol="exo_toolbars_view_get_editing">
 				<return-type type="gboolean"/>

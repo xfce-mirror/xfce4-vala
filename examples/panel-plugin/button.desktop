@@ -1,8 +1,1 @@
-[Xfce Panel]
-Type=X-XFCE-PanelPlugin
-Encoding=UTF-8
-Name=Button
-Comment=Vala test plugin
-Icon=xfce4_xicon
-X-XFCE-Exec=/home/mmassonnet/Développement/xfce4-vala/tests/panel-plugin/button
-X-XFCE-Unique=false
+

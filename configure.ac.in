@@ -6,7 +6,7 @@ dnl
 
 dnl Version information
 m4_define([project_version_major], [4])
-m4_define([project_version_minor], [6])
+m4_define([project_version_minor], [7])
 m4_define([project_version_micro], [0])
 m4_define([project_version_build], [@REVISION@])
 m4_define([project_version_tag], []) # leave empty for release
@@ -21,12 +21,11 @@ dnl Check for basic programs
 AC_PROG_INSTALL()
 
 dnl Check for required packages
-M8T_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.6.0])
-M8T_CHECK_PACKAGE([LIBXFCE4MENU], [libxfce4menu-0.1], [4.6.0])
-M8T_CHECK_PACKAGE([XFCONF], [libxfconf-0], [4.6.0])
-M8T_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.6.0])
-M8T_CHECK_PACKAGE([EXO], [exo-0.3], [0.3.100])
-M8T_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.6.0])
+M8T_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.7.0])
+M8T_CHECK_PACKAGE([XFCONF], [libxfconf-0], [4.7.0])
+M8T_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-1], [4.7.0])
+M8T_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.7.0])
+M8T_CHECK_PACKAGE([EXO], [exo-1], [0.5])
 
 dnl Check for Vala
 M8T_CHECK_VALA([0.7.1])
