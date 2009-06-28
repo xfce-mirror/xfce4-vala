@@ -104,7 +104,9 @@ namespace Xfce {
 		public Gtk.ArrowType get_arrow_type ();
 	}
 	public class HVBox : Gtk.Box {
+		[CCode (cname = "xfce_hvbox_new")]
 		public HVBox (Gtk.Orientation orientation, bool homogeneous, int spacing);
+		[CCode (cname = "xfce_hvbox_set_orientation")]
 		public void set_orientation (Gtk.Orientation orientation);
 	}
 
