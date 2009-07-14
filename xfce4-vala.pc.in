@@ -5,5 +5,4 @@ includedir=@includedir@
 
 Name: @PACKAGE_TARNAME@
 Description: Vala bindings for the Xfce framework
-Requires: @LIBXFCE4UTIL@ @LIBXFCE4MENU@ @XFCONF@ @LIBXFCEGUI4@ @EXO@ @LIBXFCE4PANEL@
 Version: @PACKAGE_VERSION@
