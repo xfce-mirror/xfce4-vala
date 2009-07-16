@@ -71,11 +71,16 @@ namespace Exo {
 	}
 
 	/* exo-url.h */
+	[CCode (cprefix = "EXO_URL_ERROR_")]
+	public errordomain UrlError {
+		NOT_SUPPORTED
+	}
+
 	[Compact]
 	public class Url {
-		public static void url_about_dialog_hook (Gtk.AboutDialog about_dialog, string link);
-		public static bool url_show (string url, string? envp) throws Exo.UrlError;
-		public static bool url_show_on_screen (string url, string? envp, Gdk.Screen screen) throws Exo.UrlError;
+		public static void about_dialog_hook (Gtk.AboutDialog about_dialog, string link);
+		public static bool show (string url, string? envp) throws Exo.UrlError;
+		public static bool show_on_screen (string url, string? envp, Gdk.Screen screen) throws Exo.UrlError;
 	}
 
 }

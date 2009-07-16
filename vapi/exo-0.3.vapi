@@ -24,18 +24,6 @@ namespace Exo {
 	public class CellRendererIcon : Gtk.CellRenderer {
 		[CCode (type = "GtkCellRenderer*", has_construct_function = false)]
 		public CellRendererIcon ();
-		[NoWrapper]
-		public virtual void reserved1 ();
-		[NoWrapper]
-		public virtual void reserved2 ();
-		[NoWrapper]
-		public virtual void reserved3 ();
-		[NoWrapper]
-		public virtual void reserved4 ();
-		[NoWrapper]
-		public virtual void reserved5 ();
-		[NoWrapper]
-		public virtual void reserved6 ();
 		[NoAccessorMethod]
 		public bool follow_state { get; set construct; }
 		[NoAccessorMethod]
@@ -76,14 +64,6 @@ namespace Exo {
 		public int get_text_column ();
 		[CCode (type = "GtkWidget*", has_construct_function = false)]
 		public IconBar ();
-		[NoWrapper]
-		public virtual void reserved1 ();
-		[NoWrapper]
-		public virtual void reserved2 ();
-		[NoWrapper]
-		public virtual void reserved3 ();
-		[NoWrapper]
-		public virtual void reserved4 ();
 		public void set_active (int index);
 		public void set_active_iter (Gtk.TreeIter iter);
 		public void set_model (Gtk.TreeModel model);
@@ -105,18 +85,6 @@ namespace Exo {
 		public unowned string get_icon ();
 		[CCode (type = "GtkWidget*", has_construct_function = false)]
 		public IconChooserDialog (string title, Gtk.Window parent, ...);
-		[NoWrapper]
-		public virtual void reserved1 ();
-		[NoWrapper]
-		public virtual void reserved2 ();
-		[NoWrapper]
-		public virtual void reserved3 ();
-		[NoWrapper]
-		public virtual void reserved4 ();
-		[NoWrapper]
-		public virtual void reserved5 ();
-		[NoWrapper]
-		public virtual void reserved6 ();
 		public bool set_icon (string icon);
 	}
 	[CCode (cheader_filename = "exo/exo.h")]
@@ -124,6 +92,8 @@ namespace Exo {
 		public unowned Gdk.Pixmap create_drag_icon (Gtk.TreePath path);
 		public void enable_model_drag_dest (Gtk.TargetEntry[] targets, Gdk.DragAction actions);
 		public void enable_model_drag_source (Gdk.ModifierType start_button_mask, Gtk.TargetEntry[] targets, Gdk.DragAction actions);
+		[CCode (cname = "exo_icon_view_item_activated")]
+		public void exo_icon_view_activate_item (Gtk.TreePath path);
 		public int get_column_spacing ();
 		public int get_columns ();
 		public bool get_cursor (out unowned Gtk.TreePath path, out unowned Gtk.CellRenderer cell);
@@ -149,30 +119,9 @@ namespace Exo {
 		public int get_spacing ();
 		public bool get_visible_range (out unowned Gtk.TreePath start_path, out unowned Gtk.TreePath end_path);
 		public void icon_to_widget_coords (int ix, int iy, int wx, int wy);
-		public void item_activated (Gtk.TreePath path);
 		[CCode (type = "GtkWidget*", has_construct_function = false)]
 		public IconView ();
 		public bool path_is_selected (Gtk.TreePath path);
-		[NoWrapper]
-		public virtual void reserved0 ();
-		[NoWrapper]
-		public virtual void reserved1 ();
-		[NoWrapper]
-		public virtual void reserved2 ();
-		[NoWrapper]
-		public virtual void reserved3 ();
-		[NoWrapper]
-		public virtual void reserved4 ();
-		[NoWrapper]
-		public virtual void reserved5 ();
-		[NoWrapper]
-		public virtual void reserved6 ();
-		[NoWrapper]
-		public virtual void reserved7 ();
-		[NoWrapper]
-		public virtual void reserved8 ();
-		[NoWrapper]
-		public virtual void reserved9 ();
 		public void scroll_to_path (Gtk.TreePath path, bool use_align, float row_align, float col_align);
 		public void select_all ();
 		public void select_path (Gtk.TreePath path);
@@ -225,6 +174,9 @@ namespace Exo {
 		[NoAccessorMethod]
 		public int text_column { get; set; }
 		public virtual signal bool activate_cursor_item ();
+		public virtual signal void all_selected ();
+		public virtual signal void all_unselected ();
+		public virtual signal void item_activated (Gtk.TreePath path);
 		public virtual signal bool move_cursor (Gtk.MovementStep step, int count);
 		public virtual signal void select_cursor_item ();
 		public virtual signal void selection_changed ();
@@ -295,14 +247,6 @@ namespace Exo {
 		public unowned Gtk.UIManager get_ui_manager ();
 		[CCode (type = "GtkWidget*", has_construct_function = false)]
 		public ToolbarsEditor (Gtk.UIManager ui_manager);
-		[NoWrapper]
-		public virtual void reserved1 ();
-		[NoWrapper]
-		public virtual void reserved2 ();
-		[NoWrapper]
-		public virtual void reserved3 ();
-		[NoWrapper]
-		public virtual void reserved4 ();
 		public void set_model (Exo.ToolbarsModel model);
 		public void set_ui_manager (Gtk.UIManager ui_manager);
 		[CCode (type = "GtkWidget*", has_construct_function = false)]
@@ -312,14 +256,6 @@ namespace Exo {
 	}
 	[CCode (cheader_filename = "exo/exo.h")]
 	public class ToolbarsEditorDialog : Gtk.Dialog, Atk.Implementor, Gtk.Buildable {
-		[NoWrapper]
-		public virtual void reserved1 ();
-		[NoWrapper]
-		public virtual void reserved2 ();
-		[NoWrapper]
-		public virtual void reserved3 ();
-		[NoWrapper]
-		public virtual void reserved4 ();
 		[CCode (type = "GtkWidget*", has_construct_function = false)]
 		public ToolbarsEditorDialog.with_model (Gtk.UIManager ui_manager, Exo.ToolbarsModel model);
 	}
@@ -343,22 +279,6 @@ namespace Exo {
 		public ToolbarsModel ();
 		public void remove_item (int toolbar_position, int item_position);
 		public void remove_toolbar (int toolbar_position);
-		[NoWrapper]
-		public virtual void reserved1 ();
-		[NoWrapper]
-		public virtual void reserved2 ();
-		[NoWrapper]
-		public virtual void reserved3 ();
-		[NoWrapper]
-		public virtual void reserved4 ();
-		[NoWrapper]
-		public virtual void reserved5 ();
-		[NoWrapper]
-		public virtual void reserved6 ();
-		[NoWrapper]
-		public virtual void reserved7 ();
-		[NoWrapper]
-		public virtual void reserved8 ();
 		public bool save_to_file (string filename) throws GLib.Error;
 		public void set_actions (string[] actions);
 		public void set_flags (Exo.ToolbarsModelFlags flags, int toolbar_position);
@@ -366,7 +286,10 @@ namespace Exo {
 		public unowned string toolbar_nth (int toolbar_position);
 		public void unset_style (int toolbar_position);
 		public virtual signal void item_added (int toolbar_position, int item_position);
+		public virtual signal unowned string item_data (string type, string id);
+		public virtual signal unowned string item_id (string type, string data);
 		public virtual signal void item_removed (int toolbar_position, int item_position);
+		public virtual signal unowned string item_type (void* dnd_type);
 		public virtual signal void toolbar_added (int toolbar_position);
 		public virtual signal void toolbar_changed (int toolbar_position);
 		public virtual signal void toolbar_removed (int toolbar_position);
@@ -378,14 +301,6 @@ namespace Exo {
 		public unowned Gtk.UIManager get_ui_manager ();
 		[CCode (type = "GtkWidget*", has_construct_function = false)]
 		public ToolbarsView (Gtk.UIManager ui_manager);
-		[NoWrapper]
-		public virtual void reserved1 ();
-		[NoWrapper]
-		public virtual void reserved2 ();
-		[NoWrapper]
-		public virtual void reserved3 ();
-		[NoWrapper]
-		public virtual void reserved4 ();
 		public void set_editing (bool editing);
 		public void set_model (Exo.ToolbarsModel model);
 		public void set_ui_manager (Gtk.UIManager ui_manager);
@@ -403,22 +318,6 @@ namespace Exo {
 		public uint get_single_click_timeout ();
 		[CCode (type = "GtkWidget*", has_construct_function = false)]
 		public TreeView ();
-		[NoWrapper]
-		public virtual void reserved1 ();
-		[NoWrapper]
-		public virtual void reserved2 ();
-		[NoWrapper]
-		public virtual void reserved3 ();
-		[NoWrapper]
-		public virtual void reserved4 ();
-		[NoWrapper]
-		public virtual void reserved5 ();
-		[NoWrapper]
-		public virtual void reserved6 ();
-		[NoWrapper]
-		public virtual void reserved7 ();
-		[NoWrapper]
-		public virtual void reserved8 ();
 		public void set_single_click (bool single_click);
 		public void set_single_click_timeout (uint single_click_timeout);
 		public bool single_click { get; set; }
@@ -427,9 +326,9 @@ namespace Exo {
 	[Compact]
 	[CCode (cheader_filename = "exo/exo.h")]
 	public class Url {
-		public static void url_about_dialog_hook (Gtk.AboutDialog about_dialog, string link);
-		public static bool url_show (string url, string? envp) throws Exo.UrlError;
-		public static bool url_show_on_screen (string url, string? envp, Gdk.Screen screen) throws Exo.UrlError;
+		public static void about_dialog_hook (Gtk.AboutDialog about_dialog, string link);
+		public static bool show (string url, string? envp) throws Exo.UrlError;
+		public static bool show_on_screen (string url, string? envp, Gdk.Screen screen) throws Exo.UrlError;
 	}
 	[CCode (cheader_filename = "exo/exo.h")]
 	public class WrapTable : Gtk.Container, Atk.Implementor, Gtk.Buildable {
@@ -438,14 +337,6 @@ namespace Exo {
 		public uint get_row_spacing ();
 		[CCode (type = "GtkWidget*", has_construct_function = false)]
 		public WrapTable (bool homogeneous);
-		[NoWrapper]
-		public virtual void reserved1 ();
-		[NoWrapper]
-		public virtual void reserved2 ();
-		[NoWrapper]
-		public virtual void reserved3 ();
-		[NoWrapper]
-		public virtual void reserved4 ();
 		public void set_col_spacing (uint col_spacing);
 		public void set_homogeneous (bool homogeneous);
 		public void set_row_spacing (uint row_spacing);
@@ -495,9 +386,9 @@ namespace Exo {
 		ACCEPT_ITEMS_ONLY,
 		OVERRIDE_STYLE
 	}
-	[CCode (cprefix = "EXO_URL_ERROR_NOT_", cheader_filename = "exo/exo.h")]
+	[CCode (cprefix = "EXO_URL_ERROR_", cheader_filename = "exo/exo.h")]
 	public errordomain UrlError {
-		SUPPORTED,
+		NOT_SUPPORTED,
 	}
 	[CCode (cheader_filename = "exo/exo.h")]
 	public delegate bool BindingTransform (GLib.Value src_value, GLib.Value dst_value);
