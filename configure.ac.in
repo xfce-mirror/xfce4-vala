@@ -8,7 +8,7 @@ dnl Version information
 m4_define([project_version_major], [0])
 m4_define([project_version_minor], [1])
 m4_define([project_version_build], [@REVISION@])
-m4_define([project_version_tag], [-a3]) # leave empty for release
+m4_define([project_version_tag], [-rc]) # leave empty for release
 m4_define([project_version], [project_version_major().project_version_minor()project_version_tag()])
 
 dnl Initialize
@@ -29,6 +29,14 @@ M8T_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.6.0])
 
 dnl Check for Vala
 M8T_CHECK_VALA([0.7.1])
+AC_ARG_WITH([default-vapidir],
+		AC_HELP_STRING([--with-default-vapidir],
+				[Use default VAPI prefix from Vala installation]),
+		[],
+		[with_default_vapidir=no])
+if test x"$with_default_vapidir" == xno ; then
+	AC_SUBST([vapidir], [${datarootdir}/vala/vapi])
+fi
 
 dnl Makefile outputs
 AC_OUTPUT([

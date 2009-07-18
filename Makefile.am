@@ -72,12 +72,14 @@ CLEANFILES =								\
 	tests/rcfile.rc							\
 	tests/$(LIBXFCE4MENU)						\
 	tests/$(XFCONF)							\
+	tests/$(LIBXFCEGUI4)						\
+	tests/$(EXO)							\
 	$(NULL)
 
 distclean-local:
 	-rm -rf autom4te.cache
 
-DISTCLEANFILES =							\
+MAINTAINERCLEANFILES =							\
 	INSTALL								\
 	aclocal.m4							\
 	configure							\
