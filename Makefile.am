@@ -36,6 +36,7 @@ tests.stamp:
 	$(VALAC) --pkg=gtk+-2.0 --pkg=$(LIBXFCE4MENU) --vapidir=../vapi $(LIBXFCE4MENU).vala;\
 	$(VALAC) --pkg=$(XFCONF) --vapidir=../vapi $(XFCONF).vala;\
 	$(VALAC) --pkg=$(LIBXFCEGUI4) --vapidir=../vapi $(LIBXFCEGUI4).vala;\
+	$(VALAC) --pkg=$(EXO) --vapidir=../vapi $(EXO).vala;\
 	)
 	touch $@
 

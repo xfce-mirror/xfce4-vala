@@ -3,7 +3,7 @@
 [CCode (cprefix = "Exo", lower_case_cprefix = "exo_")]
 namespace Exo {
 	[Compact]
-	[CCode (cheader_filename = "exo/exo.h")]
+	[CCode (free_function = "", cheader_filename = "exo/exo.h")]
 	public class Binding {
 		[CCode (has_construct_function = false)]
 		public Binding.full (GLib.Object src_object, string src_property, GLib.Object dst_object, string dst_property, Exo.BindingTransform transform, GLib.DestroyNotify destroy_notify);
@@ -186,18 +186,22 @@ namespace Exo {
 	}
 	[Compact]
 	[CCode (cheader_filename = "exo/exo.h")]
+	public class Md5 {
+		[CCode (cname = "exo_str_get_md5_str")]
+		public static string str_get_md5_str (string contents);
+	}
+	[Compact]
+	[CCode (cheader_filename = "exo/exo.h")]
 	public class Md5Digest {
 		[CCode (array_length = false)]
 		public weak uchar[] digest;
 		public unowned Exo.Md5Digest dup ();
 		public static bool equal (void* digest1, void* digest2);
 		public static uint hash (void* digest);
-		[CCode (cname = "xfce_md5_str_to_digest")]
+		[CCode (cname = "exo_md5_str_to_digest")]
 		public static Exo.Md5Digest md5_str_to_digest (string str_digest);
-		[CCode (cname = "xfce_str_get_md5_digest")]
+		[CCode (cname = "exo_str_get_md5_digest")]
 		public static Exo.Md5Digest str_get_md5_digest (string contents);
-		[CCode (cname = "xfce_str_get_md5_str")]
-		public static string str_get_md5_str (string contents);
 		public unowned string to_str ();
 	}
 	[Compact]
@@ -213,7 +217,7 @@ namespace Exo {
 		public static unowned GLib.SList list_matched (Exo.MountPointMatchMask mask, string device, string folder, string fstype) throws GLib.Error;
 	}
 	[Compact]
-	[CCode (cheader_filename = "exo/exo.h")]
+	[CCode (free_function = "", cheader_filename = "exo/exo.h")]
 	public class MutualBinding {
 		[CCode (has_construct_function = false)]
 		public MutualBinding.full (GLib.Object object1, string property1, GLib.Object object2, string property2, Exo.BindingTransform transform, Exo.BindingTransform reverse_transform, GLib.DestroyNotify destroy_notify);
@@ -226,19 +230,19 @@ namespace Exo {
 	[Compact]
 	[CCode (cheader_filename = "exo/exo.h")]
 	public class String {
-		[CCode (cname = "xfce_strdup_strftime")]
+		[CCode (cname = "exo_strdup_strftime")]
 		public static string dup_strftime (string format, void* tm);
-		[CCode (cname = "xfce_str_elide_underscores")]
+		[CCode (cname = "exo_str_elide_underscores")]
 		public static string elide_underscores (string text);
-		[CCode (cname = "xfce_intern_string")]
-		public static string intern (string str);
-		[CCode (cname = "xfce_intern_static_string")]
+		[CCode (cname = "exo_intern_string")]
+		public static unowned string intern (string str);
+		[CCode (cname = "exo_intern_static_string")]
 		public static unowned string intern_static (string str);
-		[CCode (cname = "xfce_str_is_equal")]
+		[CCode (cname = "exo_str_is_equal")]
 		public static bool is_equal (string? a, string? b);
-		[CCode (cname = "xfce_strndupv")]
+		[CCode (cname = "exo_strndupv")]
 		public static string[] ndupv (string[] strv, int num);
-		[CCode (cname = "xfce_str_replace")]
+		[CCode (cname = "exo_str_replace")]
 		public static string replace (string str, string pattern, string replacement);
 	}
 	[CCode (cheader_filename = "exo/exo.h")]

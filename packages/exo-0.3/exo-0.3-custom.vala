@@ -1,5 +1,15 @@
 namespace Exo {
 
+	[Compact]
+	[CCode (free_function = "")]
+	public class Binding {
+	}
+
+	[Compact]
+	[CCode (free_function = "")]
+	public class MutualBinding {
+	}
+
 	/* exo-gdk-pixbuf-extensions.h exo-gobject-extensions.h exo-gtk-extensions.h exo-pango-extensions.h */
 	[Compact]
 	public class Extensions {
@@ -30,11 +40,14 @@ namespace Exo {
 	/* exo-md5.h */
 	[Compact]
 	public class Md5Digest {
-		[CCode (cname = "xfce_md5_str_to_digest")]
+		[CCode (cname = "exo_md5_str_to_digest")]
 		public static Exo.Md5Digest md5_str_to_digest (string str_digest);
-		[CCode (cname = "xfce_str_get_md5_digest")]
+		[CCode (cname = "exo_str_get_md5_digest")]
 		public static Exo.Md5Digest str_get_md5_digest (string contents);
-		[CCode (cname = "xfce_str_get_md5_str")]
+	}
+	[Compact]
+	public class Md5 {
+		[CCode (cname = "exo_str_get_md5_str")]
 		public static string str_get_md5_str (string contents);
 	}
 
@@ -54,19 +67,19 @@ namespace Exo {
 	/* exo-string.h */
 	[Compact]
 	public class String {
-		[CCode (cname = "xfce_intern_static_string")]
+		[CCode (cname = "exo_intern_static_string")]
 		public static weak string intern_static (string str);
-		[CCode (cname = "xfce_intern_string")]
-		public static string intern (string str);
-		[CCode (cname = "xfce_str_elide_underscores")]
+		[CCode (cname = "exo_intern_string")]
+		public static weak string intern (string str);
+		[CCode (cname = "exo_str_elide_underscores")]
 		public static string elide_underscores (string text);
-		[CCode (cname = "xfce_str_is_equal")]
+		[CCode (cname = "exo_str_is_equal")]
 		public static bool is_equal (string? a, string? b);
-		[CCode (cname = "xfce_str_replace")]
+		[CCode (cname = "exo_str_replace")]
 		public static string replace (string str, string pattern, string replacement);
-		[CCode (cname = "xfce_strdup_strftime")]
+		[CCode (cname = "exo_strdup_strftime")]
 		public static string dup_strftime (string format, void* tm);
-		[CCode (cname = "xfce_strndupv")]
+		[CCode (cname = "exo_strndupv")]
 		public static string[] ndupv (string[] strv, int num);
 	}
 
