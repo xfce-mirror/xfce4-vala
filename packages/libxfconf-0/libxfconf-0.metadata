@@ -1,5 +1,6 @@
 Xfconf cheader_filename="xfconf/xfconf.h"
 
+xfconf_init hidden="1"
 xfconf_free_array hidden="1"
 xfconf_list_channels is_array="1" no_array_length="1" transfer_ownership="1"
 xfconf_named_struct_register.n_members hidden="1"

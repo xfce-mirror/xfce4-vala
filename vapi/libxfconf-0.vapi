@@ -4,7 +4,7 @@
 namespace Xfconf {
 	[CCode (cheader_filename = "xfconf/xfconf.h")]
 	public class Channel : GLib.Object {
-		public static unowned Xfconf.Channel get (string channel_name);
+		public static unowned Xfconf.Channel @get (string channel_name);
 		[CCode (sentinel = "G_TYPE_INVALID")]
 		public bool get_array (string property, ...);
 		public bool get_bool (string property, bool default_value);
@@ -74,7 +74,7 @@ namespace Xfconf {
 	[CCode (cheader_filename = "xfconf/xfconf.h")]
 	public static void array_free (GLib.PtrArray arr);
 	[CCode (cheader_filename = "xfconf/xfconf.h")]
-	public static bool init () throws GLib.Error;
+	public static bool init () throws Xfconf.Error;
 	[CCode (cheader_filename = "xfconf/xfconf.h", array_length = false)]
 	public static string[] list_channels ();
 	[CCode (cheader_filename = "xfconf/xfconf.h")]

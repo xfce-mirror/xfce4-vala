@@ -1,5 +1,7 @@
 namespace Xfconf {
 
+	public static bool init () throws Xfconf.Error;
+
 	[Compact]
 	public class Property {
 		[CCode (cname = "xfconf_g_property_bind")]
