@@ -1,0 +1,72 @@
+dnl
+dnl product - Product short description
+dnl
+dnl 2009 Jack Sparr <got@noinet.com>
+dnl
+
+m4_define([product_version_major], [0])
+m4_define([product_version_minor], [0])
+m4_define([product_version_micro], [0])
+m4_define([product_version_nano], [])
+m4_define([product_version_build], [@REVISION@])
+m4_define([product_version_tag], [git]) # Leave empty for releases
+m4_define([product_version], [product_version_major().product_version_minor().product_version_micro()ifelse(product_version_nano(), [], [], [.product_version_nano()])ifelse(product_version_tag(), [git], [product_version_tag()-product_version_build()], [product_version_tag()])])
+
+AC_PREREQ([2.50])
+AC_INIT([Product], [product_version], [http://bugzilla.noinet.com/], [product],
+	[http://noinet.com/])
+AC_REVISION([product_version_build])
+AC_CANONICAL_TARGET()
+
+AM_INIT_AUTOMAKE([1.11 dist-bzip2])
+AM_CONFIG_HEADER([config.h])
+AM_MAINTAINER_MODE()
+
+dnl Check for basic programs
+AC_PROG_CC_C_O()
+AC_PROG_LD()
+AC_PROG_LIBTOOL()
+AC_PROG_INSTALL()
+AC_PROG_INTLTOOL()
+
+dnl Check for standard header files
+AC_HEADER_STDC()
+
+dnl Check for required packages
+XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.10.0])
+
+dnl Check for valac
+if test "x$USE_MAINTAINER_MODE" = "xyes" ; then
+	AM_PROG_VALAC([0.7.1])
+	if test "x$VALAC" = "x" ; then
+		AC_MSG_WARN([Cannot find the "valac" compiler in your PATH])
+	fi
+	XDT_CHECK_PACKAGE([XFCE4VALA], [xfce4-vala], [0.1]) # 4.6
+fi
+
+dnl Translations
+XDT_I18N([@LINGUAS@])
+
+dnl Check for debugging support
+XDT_FEATURE_DEBUG()
+
+AC_OUTPUT([
+Makefile
+src/Makefile
+])
+
+dnl ***************************
+dnl *** Print configuration ***
+dnl ***************************
+echo
+echo "Build Configuration:"
+echo
+echo "* Maintainer Mode:        $USE_MAINTAINER_MODE"
+if test "x$USE_MAINTAINER_MODE" = "xyes" ; then
+echo
+echo "    * Vala:               $VALAC"
+echo
+fi
+echo "* Debug Support:          $enable_debug"
+echo
+

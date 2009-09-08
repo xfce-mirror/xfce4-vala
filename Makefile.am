@@ -62,8 +62,14 @@ EXTRA_DIST =								\
 	INSTALL								\
 	NEWS								\
 	README								\
+	examples							\
 	packages							\
 	vapi								\
+	tests/$(LIBXFCE4UTIL).vala					\
+	tests/$(LIBXFCE4MENU).vala					\
+	tests/$(XFCONF).vala						\
+	tests/$(LIBXFCEGUI4).vala					\
+	tests/$(EXO).vala						\
 	$(NULL)
 
 CLEANFILES =								\

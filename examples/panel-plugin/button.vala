@@ -1,3 +1,4 @@
+// build with valac --pkg=libxfce4panel-1.0 button.vala 
 using Xfce;
 using Gtk;
 
