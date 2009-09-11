@@ -1,0 +1,263 @@
+2009-09-11  Mike Massonnet
+
+=== Release 4.6.0 ===
+
+
+2009-09-11  Mike Massonnet
+
+Fix two small mistakes in the autotools example
+
+Pass the generated header file to the _VALABUILTSOURCES variable and
+quit with an error within the autoconf script in case VALAC was not
+found.
+
+2009-09-11  Mike Massonnet
+
+Add some comments in the autotools example
+
+
+2009-09-08  Mike Massonnet
+
+Add examples directory
+
+Moved tests/panel-plugin into examples/.
+Created an initial example for a autotools build.
+
+2009-08-28  Mike Massonnet
+
+Throw Xfconf.Error on Xfconf.init()
+
+
+2009-08-13  Mike Massonnet
+
+Add module.xml file for cgit
+
+
+2009-07-18  Mike Massonnet
+
+Bump to rc1
+
+- Slight automake script update, clean new test programs and switch
+DISTCLEANFILES to MAINTAINERCLEANFILES (make maintainer-clean).
+- Default make distcheck doesn't pass with vapidir=/usr/share/vala/vapi
+heance the autoconf script has a --with-default-vapidir flag but set by
+default to false in which case the VAPI files are installed under the
+default prefix.
+
+2009-07-18  Mike Massonnet
+
+More updates on exo-0.3 bindings
+
+- Add a test file. It's mostly incomplete, it doesn't test any of the
+widgets as they were very good introspected, the MountPoint class is
+pretty annoying to use and I simply suggest "use GIO", and I didn't
+succeed to use String.dup_strftime properly with a struct tm. The CCode
+made use of 'tm' and not 'struct tm', might be a bug in the Posix
+bindings... but anyway there are date and time functions in GLib.
+- Fixed Binding classes.
+- Fixed Md5Digest functions, moved str_get_md5_str to new class Md5.
+- Fixed String class and some weak references.
+
+2009-07-16  Mike Massonnet
+
+Update exo-0.3 bindings
+
+Rename Exo.Url functions (drop the url_ prefix).
+Rename signal names duplicated with method names.
+Fix Exo.UrlError.
+Hide all reserved* functions.
+
+2009-07-15  Mike Massonnet
+
+Drop requirements from pkgconfig file
+
+The projects using the provided pkgconfig file should work without
+needing all the Xfce dependencies.
+
+2009-06-28  Diego Ongaro
+
+Fix Xfce.HVBox cnames
+
+
+2009-06-09  Mike Massonnet
+
+Simplify the build when checking for Vala
+
+Include new m4 macros in acinclude.m4 that are doing checks and
+substitutions for Vala. Now a single m4 macro call is needed in the
+autoconf script to check for Vala.
+
+2009-06-09  Mike Massonnet
+
+Update build to check package vala-1.0
+
+Substitude variables from vala-1.0.
+
+2009-06-08  Mike Massonnet
+
+Drop ItemBar and PanelWindow from libxfce4panel
+
+
+2009-06-07  Mike Massonnet
+
+Update vapi files
+
+
+2009-06-07  Mike Massonnet
+
+Bump to alpha3
+
+Install a pkgconfig file.
+
+2009-06-06  Mike Massonnet
+
+Fix libxfce4panel deps
+
+Libxfce4panel depends on libxfce4util and libxfcegui4.
+Set null as default value for encoding in Xfce.textdomain from
+libxfce4util.
+
+2009-06-06  Mike Massonnet
+
+Uncomment libxfce4panel in the autoconf script
+
+
+2009-06-06  Mike Massonnet
+
+Forgot to distribute libxfce4panel-1.0.vapi
+
+Add libxfe4panel to the list of installed vapi files.
+Simplify the test libxfconf-0.vala. There is no need to create the
+object in an external function, instead just unref() the object before
+calling Xfconf.shutdown().
+
+2009-06-04  Mike Massonnet
+
+Bump to alpha2
+
+
+2009-06-02  Mike Massonnet
+
+Libxfce4panel bindings
+
+Added missing child property for Xfce.ItemBar. Use delegate_target_pos
+for PanelWindow delegates to hide the user_data. Added the convencience
+functions.
+Updated the test panel plugin to use create_panel_plugin() from the
+convenience functions.
+
+2009-06-02  Mike Massonnet
+
+Libxfce4panel bindings
+
+Wasn't part of the 0.1 release, but here they are. Vala bindings for
+libxfce4panel, with a test panel plugin.
+
+2009-05-06  Mike Massonnet
+
+Bump to alpha1
+
+Update license from GPLv2 to LGPLv2.1.
+Add content inside README.
+
+2009-05-06  Mike Massonnet
+
+Make distcheck happy
+
+
+2009-05-06  Mike Massonnet
+
+Make Vapi files installable and distributable
+
+
+2009-05-06  Mike Massonnet
+
+Update nullables in Exo bindings
+
+
+2009-05-05  Mike Massonnet
+
+Forgot the vala test source for libxfcegui4
+
+
+2009-05-05  Mike Massonnet
+
+Update libxfcegui4 bindings
+
+Fixed the nullables.
+Dropped StartupNotification.
+Added libxfcegui4 inside the tests make rule.
+
+2009-05-05  Mike Massonnet
+
+Set real project name in autoconf script
+
+
+2009-05-05  Mike Massonnet
+
+Copy deps files to vapi directory -- Compile Exo bindings properly
+
+
+2009-05-05  Mike Massonnet
+
+Update tests with new signal syntax from Vala 0.7.1
+
+
+2009-04-20  Mike Massonnet
+
+Add missing exo-0.3-custom.vala
+
+
+2009-03-27  Mike Massonnet
+
+Add TODO
+
+
+2009-03-27  Mike Massonnet
+
+Exo bindings for extensions and miscelleanous
+
+The widgets still need to be checked and cleaned up
+
+2009-03-27  Mike Massonnet
+
+Forgot to add the custom libxfcegui4 bindings
+
+
+2009-03-25  Mike Massonnet
+
+Libxfcegui4 bindings
+
+
+2009-03-25  Mike Massonnet
+
+Forgot to add the custom libxfconf bindings
+
+Also, add a script to print the ChangeLog.
+
+2009-03-22  Mike Massonnet
+
+Libxfconf bindings
+
+
+2009-03-18  Mike Massonnet
+
+Libxfce4menu bindings
+
+
+2009-03-17  Mike Massonnet
+
+Remove version information consts from libxfce4gui
+
+The version information is only useful in C sources, there is no way to
+do #if LIBFOO_CHECK_VERSION (0,1,2) in Vala. So, out!
+
+Update the test program to flush the RC data before opening it again for
+reading. In fact, when creating the new instance, it is created inside a
+temp var, then the original var is closed (=flushed too btw), and
+finally the temp var is assigned to the original var. So, flush!
+
+2009-03-17  Mike Massonnet
+
+First commit with working libxfce4util bindings
+
