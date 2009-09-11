@@ -4,6 +4,7 @@ dnl
 dnl 2009 Jack Sparr <got@noinet.com>
 dnl
 
+dnl Version Major.Minor.Micro[.Nano][Tag[-Build]]
 m4_define([product_version_major], [0])
 m4_define([product_version_minor], [0])
 m4_define([product_version_micro], [0])
@@ -12,12 +13,14 @@ m4_define([product_version_build], [@REVISION@])
 m4_define([product_version_tag], [git]) # Leave empty for releases
 m4_define([product_version], [product_version_major().product_version_minor().product_version_micro()ifelse(product_version_nano(), [], [], [.product_version_nano()])ifelse(product_version_tag(), [git], [product_version_tag()-product_version_build()], [product_version_tag()])])
 
+dnl Initialize autoconf
 AC_PREREQ([2.50])
 AC_INIT([Product], [product_version], [http://bugzilla.noinet.com/], [product],
 	[http://noinet.com/])
 AC_REVISION([product_version_build])
 AC_CANONICAL_TARGET()
 
+dnl Initialize automake
 AM_INIT_AUTOMAKE([1.11 dist-bzip2])
 AM_CONFIG_HEADER([config.h])
 AM_MAINTAINER_MODE()
@@ -47,17 +50,16 @@ fi
 dnl Translations
 XDT_I18N([@LINGUAS@])
 
-dnl Check for debugging support
+dnl Debug support
 XDT_FEATURE_DEBUG()
 
+dnl Generated .in files
 AC_OUTPUT([
 Makefile
 src/Makefile
 ])
 
-dnl ***************************
-dnl *** Print configuration ***
-dnl ***************************
+dnl Build configuration
 echo
 echo "Build Configuration:"
 echo
