@@ -42,7 +42,7 @@ dnl Check for valac
 if test "x$USE_MAINTAINER_MODE" = "xyes" ; then
 	AM_PROG_VALAC([0.7.1])
 	if test "x$VALAC" = "x" ; then
-		AC_MSG_WARN([Cannot find the "valac" compiler in your PATH])
+		AC_MSG_ERROR([Cannot find the "valac" compiler in your PATH])
 	fi
 	XDT_CHECK_PACKAGE([XFCE4VALA], [xfce4-vala], [0.1]) # 4.6
 fi

@@ -15,7 +15,7 @@ product_VALASOURCES =							\
 	obj2.vala							\
 	main.vala
 
-product_VALABUILTSOURCES = $(product_VALASOURCES:.vala=.c)
+product_VALABUILTSOURCES = $(product_VALASOURCES:.vala=.c) product.h
 
 if MAINTAINER_MODE
 PACKAGES = --pkg=gtk+-2.0
