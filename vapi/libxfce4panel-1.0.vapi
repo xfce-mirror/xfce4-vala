@@ -24,6 +24,18 @@ namespace Xfce {
 		public void set_orientation (Gtk.Orientation orientation);
 	}
 	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h")]
+	public class PanelImage : Gtk.Widget {
+		[CCode (has_construct_function = false)]
+		public PanelImage ();
+		public void clear ();
+		[CCode (has_construct_function = false)]
+		public PanelImage.from_pixbuf (Gdk.Pixbuf pixbuf);
+		[CCode (has_construct_function = false)]
+		public PanelImage.from_source (string source);
+		public void set_from_pixbuf (Gdk.Pixbuf pixbuf);
+		public void set_from_source (string source);
+	}
+	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h")]
 	public class PanelPlugin : Gtk.EventBox, Gtk.Buildable, Atk.Implementor, Xfce.PanelPluginProvider {
 		public void add_action_widget (Gtk.Widget widget);
 		public Gtk.ArrowType arrow_type ();
