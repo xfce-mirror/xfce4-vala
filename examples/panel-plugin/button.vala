@@ -3,9 +3,12 @@ using Xfce;
 public class ButtonPlugin : Xfce.PanelPlugin {
 	private Gtk.Button button;
 
+	/* The constructor is never called, but since Vala 0.7.8 prints a warning if the sub-classed
+	 * class doesn't provide a public constructor and tries to chain up to it, it is possible to
+	 * chain directly to Object. This only avoids the warning to be printed.
+	 */
 	public ButtonPlugin () {
 		GLib.Object ();
-		debug ("constructor");
 	}
 
 	public override void @construct () {
