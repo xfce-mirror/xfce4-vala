@@ -15,6 +15,22 @@ public class ButtonPlugin : Xfce.PanelPlugin {
 		button = new Gtk.Button.with_label ("Hello World!");
 		add (button);
 		button.show ();
+
+		add_action_widget (button);
+
+		save.connect (() => { debug ("save yourself"); });
+		free_data.connect (() => { debug ("free yourself"); });
+		size_changed.connect (() => { debug ("panel size changed"); });
+
+		menu_show_about ();
+		about.connect (() => {
+				Gtk.show_about_dialog (null,
+					"program-name", "Button",
+					"comments", "Test plugin for the Xfce 4.7 Panel",
+					null);
+			});
+
+		destroy.connect (() => { Gtk.main_quit (); });
 	}
 }
 
