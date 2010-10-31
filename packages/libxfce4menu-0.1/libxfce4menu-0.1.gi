@@ -657,6 +657,14 @@
 					<parameter name="cache" type="XfceMenuItemCache*"/>
 				</parameters>
 			</method>
+			<method name="lookup" symbol="xfce_menu_item_cache_lookup">
+				<return-type type="XfceMenuItem*"/>
+				<parameters>
+					<parameter name="cache" type="XfceMenuItemCache*"/>
+					<parameter name="filename" type="gchar*"/>
+					<parameter name="desktop_id" type="gchar*"/>
+				</parameters>
+			</method>
 		</object>
 		<object name="XfceMenuItemPool" parent="GObject" type-name="XfceMenuItemPool" get-type="xfce_menu_item_pool_get_type">
 			<method name="apply_exclude_rule" symbol="xfce_menu_item_pool_apply_exclude_rule">
@@ -678,20 +686,6 @@
 				<return-type type="gboolean"/>
 				<parameters>
 					<parameter name="pool" type="XfceMenuItemPool*"/>
-				</parameters>
-			</method>
-			<method name="insert" symbol="xfce_menu_item_pool_insert">
-				<return-type type="void"/>
-				<parameters>
-					<parameter name="pool" type="XfceMenuItemPool*"/>
-					<parameter name="item" type="XfceMenuItem*"/>
-				</parameters>
-			</method>
-			<method name="lookup" symbol="xfce_menu_item_pool_lookup">
-				<return-type type="XfceMenuItem*"/>
-				<parameters>
-					<parameter name="pool" type="XfceMenuItemPool*"/>
-					<parameter name="desktop_id" type="gchar*"/>
 				</parameters>
 			</method>
 			<constructor name="new" symbol="xfce_menu_item_pool_new">

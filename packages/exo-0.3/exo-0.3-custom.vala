@@ -68,9 +68,9 @@ namespace Exo {
 	[Compact]
 	public class String {
 		[CCode (cname = "exo_intern_static_string")]
-		public static weak string intern_static (string str);
+		public static unowned string intern_static (string str);
 		[CCode (cname = "exo_intern_string")]
-		public static weak string intern (string str);
+		public static unowned string intern (string str);
 		[CCode (cname = "exo_str_elide_underscores")]
 		public static string elide_underscores (string text);
 		[CCode (cname = "exo_str_is_equal")]

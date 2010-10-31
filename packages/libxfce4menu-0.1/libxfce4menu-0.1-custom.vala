@@ -1,10 +1,5 @@
 namespace Xfce {
 
-	public class MenuItemCache {
-		/* Should be scanned by gen-introspect (bug?) */
-		public	unowned Xfce.MenuItem lookup (string filename, string desktop_id);
-	}
-
 	[Compact]
 	public class MenuMonitor {
 		public void* add_directory (string directory);

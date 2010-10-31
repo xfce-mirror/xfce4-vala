@@ -1018,6 +1018,7 @@
 			<implements>
 				<interface name="AtkImplementor"/>
 				<interface name="GtkBuildable"/>
+				<interface name="GtkOrientable"/>
 			</implements>
 			<method name="get_model" symbol="exo_toolbars_editor_get_model">
 				<return-type type="ExoToolbarsModel*"/>
@@ -1373,6 +1374,7 @@
 			<implements>
 				<interface name="AtkImplementor"/>
 				<interface name="GtkBuildable"/>
+				<interface name="GtkOrientable"/>
 			</implements>
 			<method name="get_editing" symbol="exo_toolbars_view_get_editing">
 				<return-type type="gboolean"/>

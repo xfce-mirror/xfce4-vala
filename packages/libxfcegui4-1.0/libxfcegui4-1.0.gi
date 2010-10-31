@@ -5,8 +5,9 @@
 		</struct>
 		<object name="XfceAppMenuItem" parent="GtkImageMenuItem" type-name="XfceAppMenuItem" get-type="xfce_app_menu_item_get_type">
 			<implements>
-				<interface name="GtkBuildable"/>
 				<interface name="AtkImplementor"/>
+				<interface name="GtkBuildable"/>
+				<interface name="GtkActivatable"/>
 			</implements>
 			<method name="get_command" symbol="xfce_app_menu_item_get_command">
 				<return-type type="gchar*"/>
@@ -127,8 +128,8 @@
 		</object>
 		<object name="XfceTitledDialog" parent="GtkDialog" type-name="XfceTitledDialog" get-type="xfce_titled_dialog_get_type">
 			<implements>
-				<interface name="GtkBuildable"/>
 				<interface name="AtkImplementor"/>
+				<interface name="GtkBuildable"/>
 			</implements>
 			<method name="get_subtitle" symbol="xfce_titled_dialog_get_subtitle">
 				<return-type type="gchar*"/>
