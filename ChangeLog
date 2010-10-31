@@ -1,3 +1,33 @@
+2010-10-31  Mike Massonnet
+
+=== Release 4.6.1 ===
+
+
+2010-10-31  Mike Massonnet
+
+Update test programs with Vala 0.10
+
+GLib.Value can be boxed/unboxed by assignation/casting.
+For example:
+
+  Value var = 1;
+  printf("%d\n", (int)var);
+
+GLib.Object.get/set_data uses generics:
+
+  widget.set_data("text", value);
+  text = widget.get_data<string> ("text");
+
+2010-10-31  Mike Massonnet
+
+Update bindings with Vala 0.10
+
+
+2010-10-27  Mike Massonnet
+
+Update build to Vala 0.10
+
+
 2009-09-11  Mike Massonnet
 
 === Release 4.6.0 ===
