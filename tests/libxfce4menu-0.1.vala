@@ -22,7 +22,6 @@ public class ButtonMenu : Gtk.Button {
 			root_menu = Xfce.Menu.get_root ();
 		} catch (Error ex) {
 			error ("Unable to build a root menu");
-			return;
 		}
 
 		/* Create the gtk menu */
@@ -48,7 +47,7 @@ public class ButtonMenu : Gtk.Button {
 				mi = new Gtk.MenuItem.with_label (item.get_name ());
 				mi.set_data ("command", item.get_command());
 				mi.activate.connect ((mi) => {
-						debug ("execute `%s'", (string)mi.get_data ("command"));
+						debug ("execute `%s'", mi.get_data<string> ("command"));
 						});
 			}
 			else if (item is Xfce.MenuSeparator) {

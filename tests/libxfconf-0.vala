@@ -8,7 +8,7 @@ public class LibxfconfTests : Object {
 		get; set;
 	}
 
-	LibxfconfTests () {
+	public LibxfconfTests () {
 		channel = new Xfconf.Channel ("test-vala-bindings");
 	}
 
@@ -37,23 +37,21 @@ public class LibxfconfTests : Object {
 		}
 
 		/* Set/get a Value */
-		Value prop_val = Value (typeof(int));
-		prop_val.set_int (5);
+		Value prop_val = 5;
 		channel.set_property ("/property", prop_val);
 		prop_val.reset ();
 		channel.get_property ("/property", prop_val);
-		print ("property: %d\n", prop_val.get_int ());
+		print ("property: %d\n", (int)prop_val);
 	}
 
 	public void test_arrays () {
 		/* Set an array */
-		Value val_int = Value (typeof(int));
-		Value val_string = Value (typeof(string));
-		val_int.set_int (5);
-		val_string.set_string ("cinq");
-		channel.set_array ("/array", typeof(int), ref val_int, typeof(string), ref val_string);
+		int val_int = 5;
+		string val_string = "cinq";
+		channel.set_array ("/array", typeof(int), &val_int, typeof(string), val_string);
 
 		/* Get an array */
+// FIXME
 		int val2_int;
 		string val2_string;
 		channel.get_array ("/array", typeof(int), out val2_int, typeof(string), out val2_string);
