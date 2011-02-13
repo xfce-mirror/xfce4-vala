@@ -344,9 +344,9 @@
 		</object>
 		<object name="ExoIconView" parent="GtkContainer" type-name="ExoIconView" get-type="exo_icon_view_get_type">
 			<implements>
-				<interface name="GtkCellLayout"/>
 				<interface name="AtkImplementor"/>
 				<interface name="GtkBuildable"/>
+				<interface name="GtkCellLayout"/>
 			</implements>
 			<method name="create_drag_icon" symbol="exo_icon_view_create_drag_icon">
 				<return-type type="GdkPixmap*"/>

@@ -1,3 +1,53 @@
+2011-02-13  Mike Massonnet
+
+=== Release 4.8.0 ===
+
+Update bindings to Xfce 4.8.
+
+Dropped Xfconf.get/set_array functions, since tests didn't pass and using
+GLib.Value with Vala changed.
+
+2010-10-27  Mike Massonnet
+
+Update build to Vala 0.10
+
+
+2009-12-23  Mike Massonnet
+
+Make the panel plugin example a bit more complete
+
+The plugin needs to call Gtk.main_quit() when it gets free'd or
+destroy'd. I settled for the destroy signal cause it separates a bit the
+logic of what do do on free or destroy. This is new, and if you don't do
+this call, the wrapper process will still be around after you remove the
+plugin from the panel.
+
+Connected a few signal to populate the example and made the button an
+action widget so it can be right clicked.
+
+2009-12-22  Mike Massonnet
+
+Update panel plugin example
+
+No need to pull a directory inside the desktop file (bug #5455) and also
+put an explanation about the plugin constructor.
+
+2009-12-22  Mike Massonnet
+
+Add the button panel plugin example
+
+The panel plugin example is in and builds fine for 4.7.
+
+2009-12-21  Mike Massonnet
+
+Add Xfce.PanelImage to libxfce4panel
+
+
+2009-06-14  Mike Massonnet
+
+Update bindings to Xfce 4.7
+
+
 2009-09-11  Mike Massonnet
 
 === Release 4.6.0 ===

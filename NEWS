@@ -1,4 +1,21 @@
 
++ Version 4.8.0, 2011-02-13
+
+Added libxfce4ui.
+Dropped libxfce4menu and libxfcegui4.
+Updated API to Xfce 4.8.0.
+
+Dropped Xfconf.get/set_array methods, currently there is are no bindings to get
+or set values from Arrays.
+
+Updated test functions.
+
++ Version 4.6.1, 2010-10-31
+
+Updated package to Vala 0.10.
+
 + Version 4.6.0, 2009-09-11
 
-Bindings for libxfce4util, libxfce4menu, libxfconf, libxfcegui4, libexo, libxfce4panel.
+Bindings for libxfce4util, libxfce4menu, libxfconf, libxfcegui4, libexo,
+libxfce4panel.
+

@@ -157,11 +157,11 @@
 			<member name="XFCE_SM_CLIENT_PRIORITY_DEFAULT" value="50"/>
 			<member name="XFCE_SM_CLIENT_PRIORITY_LOWEST" value="255"/>
 		</enum>
-		<enum name="XfceSMClientRestartStyle" type-name="XfceSMClientRestartStyle" get-type="xfce_sm_client_restart_style_get_type">
+		<enum name="XfceSMClientRestartStyle">
 			<member name="XFCE_SM_CLIENT_RESTART_NORMAL" value="0"/>
 			<member name="XFCE_SM_CLIENT_RESTART_IMMEDIATELY" value="1"/>
 		</enum>
-		<enum name="XfceSMClientShutdownHint" type-name="XfceSMClientShutdownHint" get-type="xfce_sm_client_shutdown_hint_get_type">
+		<enum name="XfceSMClientShutdownHint">
 			<member name="XFCE_SM_CLIENT_SHUTDOWN_HINT_ASK" value="0"/>
 			<member name="XFCE_SM_CLIENT_SHUTDOWN_HINT_LOGOUT" value="1"/>
 			<member name="XFCE_SM_CLIENT_SHUTDOWN_HINT_HALT" value="2"/>
@@ -332,7 +332,6 @@
 				<return-type type="void"/>
 				<parameters>
 					<parameter name="object" type="XfceSMClient*"/>
-					<parameter name="p0" type="gboolean"/>
 				</parameters>
 			</signal>
 			<signal name="save-state-extended" when="LAST">
@@ -344,8 +343,8 @@
 		</object>
 		<object name="XfceTitledDialog" parent="GtkDialog" type-name="XfceTitledDialog" get-type="xfce_titled_dialog_get_type">
 			<implements>
-				<interface name="GtkBuildable"/>
 				<interface name="AtkImplementor"/>
+				<interface name="GtkBuildable"/>
 			</implements>
 			<method name="get_subtitle" symbol="xfce_titled_dialog_get_subtitle">
 				<return-type type="gchar*"/>
@@ -393,8 +392,8 @@
 			</vfunc>
 		</object>
 		<constant name="LIBXFCE4UI_MAJOR_VERSION" type="int" value="4"/>
-		<constant name="LIBXFCE4UI_MICRO_VERSION" type="int" value="1"/>
-		<constant name="LIBXFCE4UI_MINOR_VERSION" type="int" value="7"/>
+		<constant name="LIBXFCE4UI_MICRO_VERSION" type="int" value="0"/>
+		<constant name="LIBXFCE4UI_MINOR_VERSION" type="int" value="8"/>
 		<constant name="XFCE_BUTTON_TYPE_MIXED" type="char*" value="button-mixed"/>
 		<constant name="XFCE_BUTTON_TYPE_PIXBUF" type="char*" value="button-pixbuf"/>
 	</namespace>

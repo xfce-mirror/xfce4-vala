@@ -1,14 +1,22 @@
 <?xml version="1.0"?>
 <api version="1.0">
 	<namespace name="Xfce">
-		<function name="panel_allow_customization" symbol="xfce_panel_allow_customization">
-			<return-type type="gboolean"/>
-		</function>
 		<function name="panel_create_button" symbol="xfce_panel_create_button">
 			<return-type type="GtkWidget*"/>
 		</function>
 		<function name="panel_create_toggle_button" symbol="xfce_panel_create_toggle_button">
 			<return-type type="GtkWidget*"/>
+		</function>
+		<function name="panel_get_channel_name" symbol="xfce_panel_get_channel_name">
+			<return-type type="gchar*"/>
+		</function>
+		<function name="panel_pixbuf_from_source" symbol="xfce_panel_pixbuf_from_source">
+			<return-type type="GdkPixbuf*"/>
+			<parameters>
+				<parameter name="source" type="gchar*"/>
+				<parameter name="icon_theme" type="GtkIconTheme*"/>
+				<parameter name="size" type="gint"/>
+			</parameters>
 		</function>
 		<callback name="XfcePanelPluginCheck">
 			<return-type type="gboolean"/>
@@ -50,9 +58,9 @@
 		</enum>
 		<object name="XfceArrowButton" parent="GtkToggleButton" type-name="XfceArrowButton" get-type="xfce_arrow_button_get_type">
 			<implements>
-				<interface name="GtkActivatable"/>
-				<interface name="GtkBuildable"/>
 				<interface name="AtkImplementor"/>
+				<interface name="GtkBuildable"/>
+				<interface name="GtkActivatable"/>
 			</implements>
 			<method name="get_arrow_type" symbol="xfce_arrow_button_get_arrow_type">
 				<return-type type="GtkArrowType"/>
@@ -97,8 +105,8 @@
 		</object>
 		<object name="XfceHVBox" parent="GtkBox" type-name="XfceHVBox" get-type="xfce_hvbox_get_type">
 			<implements>
-				<interface name="GtkBuildable"/>
 				<interface name="AtkImplementor"/>
+				<interface name="GtkBuildable"/>
 				<interface name="GtkOrientable"/>
 			</implements>
 			<method name="get_orientation" symbol="xfce_hvbox_get_orientation">
@@ -126,8 +134,8 @@
 		</object>
 		<object name="XfcePanelPlugin" parent="GtkEventBox" type-name="XfcePanelPlugin" get-type="xfce_panel_plugin_get_type">
 			<implements>
-				<interface name="GtkBuildable"/>
 				<interface name="AtkImplementor"/>
+				<interface name="GtkBuildable"/>
 				<interface name="XfcePanelPluginProvider"/>
 			</implements>
 			<method name="add_action_widget" symbol="xfce_panel_plugin_add_action_widget">
@@ -182,6 +190,12 @@
 				</parameters>
 			</method>
 			<method name="get_expand" symbol="xfce_panel_plugin_get_expand">
+				<return-type type="gboolean"/>
+				<parameters>
+					<parameter name="plugin" type="XfcePanelPlugin*"/>
+				</parameters>
+			</method>
+			<method name="get_locked" symbol="xfce_panel_plugin_get_locked">
 				<return-type type="gboolean"/>
 				<parameters>
 					<parameter name="plugin" type="XfcePanelPlugin*"/>
@@ -273,6 +287,12 @@
 				<parameters>
 					<parameter name="plugin" type="XfcePanelPlugin*"/>
 					<parameter name="menu" type="GtkMenu*"/>
+				</parameters>
+			</method>
+			<method name="remove" symbol="xfce_panel_plugin_remove">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="plugin" type="XfcePanelPlugin*"/>
 				</parameters>
 			</method>
 			<method name="save_location" symbol="xfce_panel_plugin_save_location">
@@ -389,6 +409,8 @@
 				<return-type type="void"/>
 			</vfunc>
 		</object>
-		<constant name="XFCE_PANEL_PLUGIN_CHANNEL_NAME" type="char*" value="xfce4-panel"/>
+		<constant name="PANEL_PARAM_READABLE" type="int" value="0"/>
+		<constant name="PANEL_PARAM_READWRITE" type="int" value="0"/>
+		<constant name="PANEL_PARAM_WRITABLE" type="int" value="0"/>
 	</namespace>
 </api>

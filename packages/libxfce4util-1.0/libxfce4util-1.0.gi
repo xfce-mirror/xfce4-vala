@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 <api version="1.0">
 	<namespace name="Xfce">
+		<function name="get_license_text" symbol="xfce_get_license_text">
+			<return-type type="gchar*"/>
+			<parameters>
+				<parameter name="license_type" type="XfceLicenseTextType"/>
+			</parameters>
+		</function>
 		<struct name="XfceKiosk">
 			<method name="free" symbol="xfce_kiosk_free">
 				<return-type type="void"/>

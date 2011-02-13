@@ -9,21 +9,20 @@ xfconf_named_struct_register.member_types array_length_pos="1"
 XfconfChannel:channel-name hidden="1"
 XfconfChannel:property-base hidden="1"
 
+xfconf_channel_get_array hidden="1"
+xfconf_channel_set_array hidden="1"
+xfconf_channel_get_arrayv hidden="1"
+xfconf_channel_set_arrayv hidden="1"
 xfconf_channel_get_array_valist hidden="1"
 xfconf_channel_set_array_valist hidden="1"
 xfconf_channel_get_struct_valist hidden="1"
 xfconf_channel_set_struct_valist hidden="1"
-
-xfconf_channel_get_arrayv hidden="1"
-xfconf_channel_set_arrayv hidden="1"
 
 xfconf_channel_get_string transfer_ownership="1"
 
 xfconf_channel_get_string_list is_array="1" no_array_length="1" transfer_ownership="1"
 xfconf_channel_set_string_list hidden="1"
 
-xfconf_channel_set_array sentinel="G_TYPE_INVALID"
-xfconf_channel_get_array sentinel="G_TYPE_INVALID"
 xfconf_channel_set_struct sentinel="G_TYPE_INVALID"
 xfconf_channel_get_struct sentinel="G_TYPE_INVALID"
 xfconf_channel_set_structv.n_members hidden="1"

@@ -28,15 +28,6 @@ public class ExoTests {
 		print ("MutualBinding: dummy1.prop_string: %s\n", dummy1.prop_string);
 	}
 
-	public void test_md5 () {
-		// Deprecated since GLib 2.16 by GChecksum
-		string content = "hello world!";
-		print ("Md5: str_get_md5_str(\"%s\"): %s\n", content, Exo.Md5.str_get_md5_str (content));
-
-		var md5_digest = Exo.Md5Digest.str_get_md5_digest (content);
-		print ("Md5Digest: to_str(): %s\n", md5_digest.to_str ());
-	}
-
 	public void test_mount_point () {
 	}
 
@@ -46,7 +37,6 @@ public class ExoTests {
 	static int main () {
 		var tests = new ExoTests ();
 		tests.test_binding ();
-		tests.test_md5 ();
 		tests.test_mount_point ();
 		tests.test_string ();
 		return 0;

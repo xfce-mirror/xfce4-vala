@@ -4,5 +4,5 @@ libdir=@libdir@
 includedir=@includedir@
 
 Name: @PACKAGE_TARNAME@
-Description: Vala bindings for the Xfce framework
+Description: Vala bindings for the Xfce Desktop Environment
 Version: @PACKAGE_VERSION@

@@ -38,8 +38,7 @@ namespace Xfce {
 	}
 
 	[CCode (cname = "xfce_version_string")]
-	public static weak string get_version_string ();
-	public static weak string get_license_text (Xfce.LicenseTextType license_type);
+	public static unowned string get_version_string ();
 	public static void textdomain (string package, string localedir, string? encoding = null);
 
 }
