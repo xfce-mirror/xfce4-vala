@@ -18,7 +18,7 @@ namespace Garcon {
 		public unowned Garcon.Menu get_menu_with_name (string name);
 		public unowned GLib.List get_menus ();
 		public unowned Garcon.Menu get_parent ();
-		public bool load (GLib.Cancellable cancellable) throws GLib.Error;
+		public bool load (GLib.Cancellable? cancellable) throws GLib.Error;
 		[NoAccessorMethod]
 		public Garcon.MenuDirectory directory { owned get; set; }
 		public GLib.File file { get; construct; }

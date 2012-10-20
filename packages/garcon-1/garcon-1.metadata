@@ -1,3 +1,4 @@
 Garcon cheader_filename="garcon/garcon.h"
 garcon_menu_item_requires_terminal hidden="1"
 garcon_menu_item_supports_startup_notification hidden="1"
+garcon_menu_load.cancellable nullable="1"

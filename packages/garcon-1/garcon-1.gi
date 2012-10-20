@@ -1011,8 +1011,8 @@
 			</vfunc>
 		</interface>
 		<constant name="GARCON_MAJOR_VERSION" type="int" value="0"/>
-		<constant name="GARCON_MICRO_VERSION" type="int" value="10"/>
-		<constant name="GARCON_MINOR_VERSION" type="int" value="1"/>
+		<constant name="GARCON_MICRO_VERSION" type="int" value="0"/>
+		<constant name="GARCON_MINOR_VERSION" type="int" value="2"/>
 		<union name="GarconMenuNodeData">
 		</union>
 	</namespace>
