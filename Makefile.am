@@ -3,6 +3,7 @@ NULL =
 if MAINTAINER_MODE
 update-gi:
 	$(VALAGI) $(LIBXFCE4UTIL) packages/$(LIBXFCE4UTIL)
+	$(VALAGI) $(GARCON) packages/$(GARCON)
 	$(VALAGI) $(XFCONF) packages/$(XFCONF)
 	$(VALAGI) $(LIBXFCE4UI) packages/$(LIBXFCE4UI)
 	$(VALAGI) $(LIBXFCE4PANEL) packages/$(LIBXFCE4PANEL)
@@ -13,6 +14,8 @@ update-vapi:
 	$(VAPIGEN) --vapidir=. --library $(LIBXFCE4UTIL)\
 		../packages/$(LIBXFCE4UTIL)/$(LIBXFCE4UTIL).gi\
 		../packages/$(LIBXFCE4UTIL)/$(LIBXFCE4UTIL)-custom.vala;\
+	$(VAPIGEN) --vapidir=. --library $(GARCON)\
+		../packages/$(GARCON)/$(GARCON).gi;\
 	$(VAPIGEN) --vapidir=. --library $(XFCONF)\
 		../packages/$(XFCONF)/$(XFCONF).gi\
 		../packages/$(XFCONF)/$(XFCONF)-custom.vala;\
@@ -39,6 +42,7 @@ tests.stamp:
 
 vapi_DATA =								\
 	vapi/$(LIBXFCE4UTIL).vapi					\
+	vapi/$(GARCON).vapi						\
 	vapi/$(XFCONF).vapi						\
 	vapi/$(LIBXFCE4UI).vapi						\
 	vapi/$(LIBXFCE4UI).deps						\

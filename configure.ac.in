@@ -1,7 +1,7 @@
 dnl
 dnl Xfce4 Vala - Bindings for the Xfce4 framework
 dnl
-dnl Copyright (c) 2009-2011 Mike Massonnet <mmassonnet@xfce.org>
+dnl Copyright (c) 2009-2012 Mike Massonnet <mmassonnet@xfce.org>
 dnl
 
 dnl Version information
@@ -22,6 +22,7 @@ AC_PROG_INSTALL()
 
 dnl Check for required packages
 M8T_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.10.0])
+M8T_CHECK_PACKAGE([GARCON], [garcon-1], [0.2.0])
 M8T_CHECK_PACKAGE([XFCONF], [libxfconf-0], [4.10.0])
 M8T_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-1], [4.10.0])
 M8T_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.10.0])
