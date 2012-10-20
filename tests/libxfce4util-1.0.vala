@@ -1,4 +1,5 @@
 using Xfce;
+using Posix;
 
 public class Libxfce4utilTests {
 
@@ -18,16 +19,6 @@ public class Libxfce4utilTests {
 		print ("string = %s\n", rc.read_entry ("string", "default"));
 		print ("int = %d\n", rc.read_int_entry ("int", 0));
 		print ("bool = %d\n", (int)rc.read_bool_entry ("bool", false));
-	}
-
-	public void test_kiosk (string module) {
-		Xfce.Kiosk kiosk;
-		bool has_cap;
-
-		kiosk = new Xfce.Kiosk (module);
-		has_cap = kiosk.query ("mouse-right-click");
-
-		print ("my-module has capability mouse-right-click: %d\n", (int)has_cap);
 	}
 
 	public void test_resource () {
@@ -55,7 +46,7 @@ public class Libxfce4utilTests {
 
 	public void test_signal () {
 		try {
-			debug ("trigger a signal with: kill -TERM <pid>");
+			print ("trigger a signal with: kill -TERM %d\n", Posix.getpid());
 			Xfce.PosixSignalHandler.set_handler (ProcessSignal.TERM,
 					(@signal) => { print ("Catched SIGTERM (%d)\n", @signal); });
 		} catch (Error ex) {}
@@ -65,13 +56,11 @@ public class Libxfce4utilTests {
 		var mainloop = new MainLoop (null, false);
 		var tests = new Libxfce4utilTests ();
 		string rcfilename = "rcfile.rc";
-		string kiosk_module = "my-module";
 
 		try { Xfce.PosixSignalHandler.init (); } catch (Error ex) {}
 		Xfce.textdomain ("test-package", "/usr/share/locale", null);
 
 		tests.test_rc (rcfilename);
-		tests.test_kiosk (kiosk_module);
 		tests.test_resource ();
 		tests.test_signal ();
 

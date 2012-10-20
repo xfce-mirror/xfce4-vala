@@ -28,6 +28,16 @@ namespace Xfce {
 	}
 
 	[Compact]
+	[CCode (cheader_filename = "libxfce4util/libxfce4util.h", cprefix = "XFCE_RESOURCE_")]
+	public enum ResourceType {
+		DATA,
+		CONFIG,
+		CACHE,
+		ICONS,
+		THEMES
+	}
+
+	[Compact]
 	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
 	public class PosixSignalHandler {
 		public delegate void Callback (int @signal);

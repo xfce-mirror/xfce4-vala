@@ -31,7 +31,7 @@ endif
 tests: tests.stamp
 tests.stamp:
 	(cd tests;\
-	$(VALAC) --pkg=$(LIBXFCE4UTIL) --vapidir=../vapi $(LIBXFCE4UTIL).vala;\
+	$(VALAC) --pkg=posix --pkg=$(LIBXFCE4UTIL) --vapidir=../vapi $(LIBXFCE4UTIL).vala;\
 	$(VALAC) --pkg=$(XFCONF) --vapidir=../vapi $(XFCONF).vala;\
 	$(VALAC) --pkg=$(EXO) --vapidir=../vapi $(EXO).vala;\
 	)

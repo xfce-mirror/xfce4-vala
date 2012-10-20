@@ -1,32 +1,94 @@
 <?xml version="1.0"?>
 <api version="1.0">
 	<namespace name="Xfce">
+		<function name="expand_variables" symbol="xfce_expand_variables">
+			<return-type type="gchar*"/>
+			<parameters>
+				<parameter name="command" type="gchar*"/>
+				<parameter name="envp" type="gchar**"/>
+			</parameters>
+		</function>
+		<function name="get_homedir" symbol="xfce_get_homedir">
+			<return-type type="gchar*"/>
+		</function>
+		<function name="get_homefile_r" symbol="xfce_get_homefile_r">
+			<return-type type="gchar*"/>
+			<parameters>
+				<parameter name="buffer" type="gchar*"/>
+				<parameter name="length" type="size_t"/>
+				<parameter name="format" type="gchar*"/>
+			</parameters>
+		</function>
 		<function name="get_license_text" symbol="xfce_get_license_text">
 			<return-type type="gchar*"/>
 			<parameters>
 				<parameter name="license_type" type="XfceLicenseTextType"/>
 			</parameters>
 		</function>
-		<struct name="XfceKiosk">
-			<method name="free" symbol="xfce_kiosk_free">
-				<return-type type="void"/>
-				<parameters>
-					<parameter name="kiosk" type="XfceKiosk*"/>
-				</parameters>
-			</method>
-			<method name="new" symbol="xfce_kiosk_new">
-				<return-type type="XfceKiosk*"/>
-				<parameters>
-					<parameter name="module" type="gchar*"/>
-				</parameters>
-			</method>
-			<method name="query" symbol="xfce_kiosk_query">
-				<return-type type="gboolean"/>
-				<parameters>
-					<parameter name="kiosk" type="XfceKiosk*"/>
-					<parameter name="capability" type="gchar*"/>
-				</parameters>
-			</method>
+		<function name="get_userdir" symbol="xfce_get_userdir">
+			<return-type type="gchar*"/>
+		</function>
+		<function name="get_userfile_r" symbol="xfce_get_userfile_r">
+			<return-type type="gchar*"/>
+			<parameters>
+				<parameter name="buffer" type="gchar*"/>
+				<parameter name="length" type="size_t"/>
+				<parameter name="format" type="gchar*"/>
+			</parameters>
+		</function>
+		<function name="gethostname" symbol="xfce_gethostname">
+			<return-type type="gchar*"/>
+		</function>
+		<function name="putenv" symbol="xfce_putenv">
+			<return-type type="gint"/>
+			<parameters>
+				<parameter name="string" type="gchar*"/>
+			</parameters>
+		</function>
+		<function name="setenv" symbol="xfce_setenv">
+			<return-type type="gint"/>
+			<parameters>
+				<parameter name="name" type="gchar*"/>
+				<parameter name="value" type="gchar*"/>
+				<parameter name="overwrite" type="gboolean"/>
+			</parameters>
+		</function>
+		<function name="strjoin" symbol="xfce_strjoin">
+			<return-type type="gchar*"/>
+			<parameters>
+				<parameter name="separator" type="gchar*"/>
+				<parameter name="strings" type="gchar**"/>
+				<parameter name="count" type="gint"/>
+			</parameters>
+		</function>
+		<function name="unsetenv" symbol="xfce_unsetenv">
+			<return-type type="void"/>
+			<parameters>
+				<parameter name="name" type="gchar*"/>
+			</parameters>
+		</function>
+		<function name="utf8_remove_controls" symbol="xfce_utf8_remove_controls">
+			<return-type type="gchar*"/>
+			<parameters>
+				<parameter name="str" type="gchar*"/>
+				<parameter name="max_len" type="gssize"/>
+				<parameter name="end" type="gchar*"/>
+			</parameters>
+		</function>
+		<function name="utf8_strndup" symbol="xfce_utf8_strndup">
+			<return-type type="gchar*"/>
+			<parameters>
+				<parameter name="src" type="gchar*"/>
+				<parameter name="max_len" type="gssize"/>
+			</parameters>
+		</function>
+		<function name="version_string" symbol="xfce_version_string">
+			<return-type type="gchar*"/>
+		</function>
+		<struct name="Stack">
+			<field name="elements" type="gpointer"/>
+			<field name="nelements" type="gint"/>
+			<field name="top" type="gint"/>
 		</struct>
 		<struct name="XfceRc">
 			<method name="close" symbol="xfce_rc_close">
@@ -210,17 +272,13 @@
 				</parameters>
 			</method>
 		</struct>
-		<enum name="XfceLicenseTextType" type-name="XfceLicenseTextType" get-type="xfce_license_text_type_get_type">
+		<enum name="XfceLicenseTextType">
 			<member name="XFCE_LICENSE_TEXT_BSD" value="0"/>
 			<member name="XFCE_LICENSE_TEXT_GPL" value="1"/>
 			<member name="XFCE_LICENSE_TEXT_LGPL" value="2"/>
 		</enum>
-		<enum name="XfceResourceType" type-name="XfceResourceType" get-type="xfce_resource_type_get_type">
-			<member name="XFCE_RESOURCE_DATA" value="0"/>
-			<member name="XFCE_RESOURCE_CONFIG" value="1"/>
-			<member name="XFCE_RESOURCE_CACHE" value="2"/>
-			<member name="XFCE_RESOURCE_ICONS" value="3"/>
-			<member name="XFCE_RESOURCE_THEMES" value="4"/>
-		</enum>
+		<constant name="LIBXFCE4UTIL_MAJOR_VERSION" type="int" value="4"/>
+		<constant name="LIBXFCE4UTIL_MICRO_VERSION" type="int" value="0"/>
+		<constant name="LIBXFCE4UTIL_MINOR_VERSION" type="int" value="10"/>
 	</namespace>
 </api>
