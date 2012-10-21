@@ -1,6 +1,14 @@
 <?xml version="1.0"?>
 <api version="1.0">
 	<namespace name="Exo">
+		<function name="check_version" symbol="exo_check_version">
+			<return-type type="gchar*"/>
+			<parameters>
+				<parameter name="required_major" type="guint"/>
+				<parameter name="required_minor" type="guint"/>
+				<parameter name="required_micro" type="guint"/>
+			</parameters>
+		</function>
 		<callback name="ExoBindingTransform">
 			<return-type type="gboolean"/>
 			<parameters>
@@ -428,6 +436,20 @@
 					<parameter name="cell" type="GtkCellRenderer**"/>
 				</parameters>
 			</method>
+			<method name="get_item_column" symbol="exo_icon_view_get_item_column">
+				<return-type type="gint"/>
+				<parameters>
+					<parameter name="icon_view" type="ExoIconView*"/>
+					<parameter name="path" type="GtkTreePath*"/>
+				</parameters>
+			</method>
+			<method name="get_item_row" symbol="exo_icon_view_get_item_row">
+				<return-type type="gint"/>
+				<parameters>
+					<parameter name="icon_view" type="ExoIconView*"/>
+					<parameter name="path" type="GtkTreePath*"/>
+				</parameters>
+			</method>
 			<method name="get_item_width" symbol="exo_icon_view_get_item_width">
 				<return-type type="gint"/>
 				<parameters>
@@ -596,6 +618,12 @@
 					<parameter name="icon_view" type="ExoIconView*"/>
 					<parameter name="func" type="ExoIconViewForeachFunc"/>
 					<parameter name="data" type="gpointer"/>
+				</parameters>
+			</method>
+			<method name="selection_invert" symbol="exo_icon_view_selection_invert">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="icon_view" type="ExoIconView*"/>
 				</parameters>
 			</method>
 			<method name="set_column_spacing" symbol="exo_icon_view_set_column_spacing">
@@ -1615,6 +1643,12 @@
 				<return-type type="void"/>
 			</vfunc>
 		</object>
+		<constant name="EXO_MAJOR_VERSION" type="int" value="0"/>
+		<constant name="EXO_MICRO_VERSION" type="int" value="0"/>
+		<constant name="EXO_MINOR_VERSION" type="int" value="9"/>
+		<constant name="EXO_PARAM_READABLE" type="int" value="0"/>
+		<constant name="EXO_PARAM_READWRITE" type="int" value="0"/>
+		<constant name="EXO_PARAM_WRITABLE" type="int" value="0"/>
 		<constant name="EXO_TOOLBARS_ITEM_TYPE" type="char*" value="application/x-exo-toolbars-item"/>
 	</namespace>
 </api>

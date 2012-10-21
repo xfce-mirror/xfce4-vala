@@ -10,7 +10,7 @@ namespace Exo {
 	public class MutualBinding {
 	}
 
-	/* exo-gdk-pixbuf-extensions.h exo-gobject-extensions.h exo-gtk-extensions.h exo-pango-extensions.h */
+	/* exo-gdk-pixbuf-extensions.h exo-gobject-extensions.h exo-gtk-extensions.h */
 	[Compact]
 	public class Extensions {
 		public static Gdk.Pixbuf gdk_pixbuf_colorize (Gdk.Pixbuf src, Gdk.Color color);
