@@ -19,6 +19,15 @@
 				<parameter name="primary_format" type="gchar*"/>
 			</parameters>
 		</function>
+		<function name="dialog_show_help" symbol="xfce_dialog_show_help">
+			<return-type type="void"/>
+			<parameters>
+				<parameter name="parent" type="GtkWindow*"/>
+				<parameter name="application" type="gchar*"/>
+				<parameter name="page" type="gchar*"/>
+				<parameter name="offset" type="gchar*"/>
+			</parameters>
+		</function>
 		<function name="dialog_show_info" symbol="xfce_dialog_show_info">
 			<return-type type="void"/>
 			<parameters>
@@ -157,11 +166,11 @@
 			<member name="XFCE_SM_CLIENT_PRIORITY_DEFAULT" value="50"/>
 			<member name="XFCE_SM_CLIENT_PRIORITY_LOWEST" value="255"/>
 		</enum>
-		<enum name="XfceSMClientRestartStyle">
+		<enum name="XfceSMClientRestartStyle" type-name="XfceSMClientRestartStyle" get-type="xfce_sm_client_restart_style_get_type">
 			<member name="XFCE_SM_CLIENT_RESTART_NORMAL" value="0"/>
 			<member name="XFCE_SM_CLIENT_RESTART_IMMEDIATELY" value="1"/>
 		</enum>
-		<enum name="XfceSMClientShutdownHint">
+		<enum name="XfceSMClientShutdownHint" type-name="XfceSMClientShutdownHint" get-type="xfce_sm_client_shutdown_hint_get_type">
 			<member name="XFCE_SM_CLIENT_SHUTDOWN_HINT_ASK" value="0"/>
 			<member name="XFCE_SM_CLIENT_SHUTDOWN_HINT_LOGOUT" value="1"/>
 			<member name="XFCE_SM_CLIENT_SHUTDOWN_HINT_HALT" value="2"/>
@@ -393,7 +402,7 @@
 		</object>
 		<constant name="LIBXFCE4UI_MAJOR_VERSION" type="int" value="4"/>
 		<constant name="LIBXFCE4UI_MICRO_VERSION" type="int" value="0"/>
-		<constant name="LIBXFCE4UI_MINOR_VERSION" type="int" value="8"/>
+		<constant name="LIBXFCE4UI_MINOR_VERSION" type="int" value="10"/>
 		<constant name="XFCE_BUTTON_TYPE_MIXED" type="char*" value="button-mixed"/>
 		<constant name="XFCE_BUTTON_TYPE_PIXBUF" type="char*" value="button-pixbuf"/>
 	</namespace>
