@@ -3,13 +3,6 @@
 namespace Xfce {
 	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
 	[Compact]
-	public class Kiosk {
-		[CCode (has_construct_function = false)]
-		public Kiosk (string module);
-		public bool query (string capability);
-	}
-	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
-	[Compact]
 	public class PosixSignalHandler {
 		public delegate void Callback (int @signal);
 		public static bool init () throws GLib.Error;
@@ -59,13 +52,14 @@ namespace Xfce {
 		public static string[] match (Xfce.ResourceType type, string pattern, bool unique);
 		public static unowned string save_location (Xfce.ResourceType type, string relpath, bool create);
 	}
-	[CCode (cheader_filename = "libxfce4util/libxfce4util.h", cprefix = "XFCE_LICENSE_TEXT_")]
+	[CCode (cheader_filename = "libxfce4util/libxfce4util.h", cprefix = "XFCE_LICENSE_TEXT_", has_type_id = false)]
 	public enum LicenseTextType {
 		BSD,
 		GPL,
 		LGPL
 	}
 	[CCode (cheader_filename = "libxfce4util/libxfce4util.h", cprefix = "XFCE_RESOURCE_")]
+	[Compact]
 	public enum ResourceType {
 		DATA,
 		CONFIG,
@@ -74,9 +68,41 @@ namespace Xfce {
 		THEMES
 	}
 	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
+	public const int LIBXFCE4UTIL_MAJOR_VERSION;
+	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
+	public const int LIBXFCE4UTIL_MICRO_VERSION;
+	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
+	public const int LIBXFCE4UTIL_MINOR_VERSION;
+	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
+	public static unowned string expand_variables (string command, string envp);
+	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
+	public static unowned string get_homedir ();
+	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
+	public static unowned string get_homefile_r (string buffer, size_t length, string format);
+	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
 	public static unowned string get_license_text (Xfce.LicenseTextType license_type);
+	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
+	public static unowned string get_userdir ();
+	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
+	public static unowned string get_userfile_r (string buffer, size_t length, string format);
 	[CCode (cheader_filename = "libxfce4util/libxfce4util.h", cname = "xfce_version_string")]
 	public static unowned string get_version_string ();
 	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
+	public static unowned string gethostname ();
+	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
+	public static int putenv (string str);
+	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
+	public static int setenv (string name, string value, bool overwrite);
+	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
+	public static unowned string strjoin (string separator, string strings, int count);
+	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
 	public static void textdomain (string package, string localedir, string? encoding = null);
+	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
+	public static void unsetenv (string name);
+	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
+	public static unowned string utf8_remove_controls (string str, ssize_t max_len, string end);
+	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
+	public static unowned string utf8_strndup (string src, ssize_t max_len);
+	[CCode (cheader_filename = "libxfce4util/libxfce4util.h")]
+	public static unowned string version_string ();
 }
