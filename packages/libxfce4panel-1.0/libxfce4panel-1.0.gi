@@ -18,6 +18,15 @@
 				<parameter name="size" type="gint"/>
 			</parameters>
 		</function>
+		<function name="panel_pixbuf_from_source_at_size" symbol="xfce_panel_pixbuf_from_source_at_size">
+			<return-type type="GdkPixbuf*"/>
+			<parameters>
+				<parameter name="source" type="gchar*"/>
+				<parameter name="icon_theme" type="GtkIconTheme*"/>
+				<parameter name="dest_width" type="gint"/>
+				<parameter name="dest_height" type="gint"/>
+			</parameters>
+		</function>
 		<callback name="XfcePanelPluginCheck">
 			<return-type type="gboolean"/>
 			<parameters>
@@ -39,6 +48,11 @@
 		</callback>
 		<struct name="XfcePanelTypeModule">
 		</struct>
+		<enum name="XfcePanelPluginMode" type-name="XfcePanelPluginMode" get-type="xfce_panel_plugin_mode_get_type">
+			<member name="XFCE_PANEL_PLUGIN_MODE_HORIZONTAL" value="0"/>
+			<member name="XFCE_PANEL_PLUGIN_MODE_VERTICAL" value="1"/>
+			<member name="XFCE_PANEL_PLUGIN_MODE_DESKBAR" value="2"/>
+		</enum>
 		<enum name="XfceScreenPosition" type-name="XfceScreenPosition" get-type="xfce_screen_position_get_type">
 			<member name="XFCE_SCREEN_POSITION_NONE" value="0"/>
 			<member name="XFCE_SCREEN_POSITION_NW_H" value="1"/>
@@ -201,8 +215,20 @@
 					<parameter name="plugin" type="XfcePanelPlugin*"/>
 				</parameters>
 			</method>
+			<method name="get_mode" symbol="xfce_panel_plugin_get_mode">
+				<return-type type="XfcePanelPluginMode"/>
+				<parameters>
+					<parameter name="plugin" type="XfcePanelPlugin*"/>
+				</parameters>
+			</method>
 			<method name="get_name" symbol="xfce_panel_plugin_get_name">
 				<return-type type="gchar*"/>
+				<parameters>
+					<parameter name="plugin" type="XfcePanelPlugin*"/>
+				</parameters>
+			</method>
+			<method name="get_nrows" symbol="xfce_panel_plugin_get_nrows">
+				<return-type type="guint"/>
 				<parameters>
 					<parameter name="plugin" type="XfcePanelPlugin*"/>
 				</parameters>
@@ -225,8 +251,20 @@
 					<parameter name="plugin" type="XfcePanelPlugin*"/>
 				</parameters>
 			</method>
+			<method name="get_shrink" symbol="xfce_panel_plugin_get_shrink">
+				<return-type type="gboolean"/>
+				<parameters>
+					<parameter name="plugin" type="XfcePanelPlugin*"/>
+				</parameters>
+			</method>
 			<method name="get_size" symbol="xfce_panel_plugin_get_size">
 				<return-type type="gint"/>
+				<parameters>
+					<parameter name="plugin" type="XfcePanelPlugin*"/>
+				</parameters>
+			</method>
+			<method name="get_small" symbol="xfce_panel_plugin_get_small">
+				<return-type type="gboolean"/>
 				<parameters>
 					<parameter name="plugin" type="XfcePanelPlugin*"/>
 				</parameters>
@@ -309,6 +347,20 @@
 					<parameter name="expand" type="gboolean"/>
 				</parameters>
 			</method>
+			<method name="set_shrink" symbol="xfce_panel_plugin_set_shrink">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="plugin" type="XfcePanelPlugin*"/>
+					<parameter name="shrink" type="gboolean"/>
+				</parameters>
+			</method>
+			<method name="set_small" symbol="xfce_panel_plugin_set_small">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="plugin" type="XfcePanelPlugin*"/>
+					<parameter name="small" type="gboolean"/>
+				</parameters>
+			</method>
 			<method name="take_window" symbol="xfce_panel_plugin_take_window">
 				<return-type type="void"/>
 				<parameters>
@@ -326,10 +378,14 @@
 			<property name="comment" type="char*" readable="1" writable="1" construct="0" construct-only="1"/>
 			<property name="display-name" type="char*" readable="1" writable="1" construct="0" construct-only="1"/>
 			<property name="expand" type="gboolean" readable="1" writable="1" construct="0" construct-only="0"/>
+			<property name="mode" type="XfcePanelPluginMode" readable="1" writable="0" construct="0" construct-only="0"/>
 			<property name="name" type="char*" readable="1" writable="1" construct="0" construct-only="1"/>
+			<property name="nrows" type="guint" readable="1" writable="0" construct="0" construct-only="0"/>
 			<property name="orientation" type="GtkOrientation" readable="1" writable="0" construct="0" construct-only="0"/>
 			<property name="screen-position" type="XfceScreenPosition" readable="1" writable="0" construct="0" construct-only="0"/>
+			<property name="shrink" type="gboolean" readable="1" writable="1" construct="0" construct-only="0"/>
 			<property name="size" type="gint" readable="1" writable="0" construct="0" construct-only="0"/>
+			<property name="small" type="gboolean" readable="1" writable="1" construct="0" construct-only="0"/>
 			<property name="unique-id" type="gint" readable="1" writable="1" construct="0" construct-only="1"/>
 			<signal name="about" when="LAST">
 				<return-type type="void"/>
@@ -347,6 +403,20 @@
 				<return-type type="void"/>
 				<parameters>
 					<parameter name="plugin" type="XfcePanelPlugin*"/>
+				</parameters>
+			</signal>
+			<signal name="mode-changed" when="LAST">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="plugin" type="XfcePanelPlugin*"/>
+					<parameter name="mode" type="XfcePanelPluginMode"/>
+				</parameters>
+			</signal>
+			<signal name="nrows-changed" when="LAST">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="plugin" type="XfcePanelPlugin*"/>
+					<parameter name="rows" type="guint"/>
 				</parameters>
 			</signal>
 			<signal name="orientation-changed" when="LAST">
@@ -400,12 +470,6 @@
 				<return-type type="void"/>
 			</vfunc>
 			<vfunc name="reserved2">
-				<return-type type="void"/>
-			</vfunc>
-			<vfunc name="reserved3">
-				<return-type type="void"/>
-			</vfunc>
-			<vfunc name="reserved4">
 				<return-type type="void"/>
 			</vfunc>
 		</object>
