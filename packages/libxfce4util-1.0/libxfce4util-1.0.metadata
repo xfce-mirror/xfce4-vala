@@ -3,3 +3,5 @@ Xfce cheader_filename="libxfce4util/libxfce4util.h"
 xfce_rc_simple_open hidden="1"
 xfce_rc_config_open hidden="1"
 xfce_rc_close hidden="1"
+
+Stack hidden="1"
