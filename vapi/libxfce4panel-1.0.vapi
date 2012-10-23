@@ -23,16 +23,23 @@ namespace Xfce {
 		public void set_orientation (Gtk.Orientation orientation);
 	}
 	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h")]
-	public class PanelImage : Gtk.Widget {
-		[CCode (has_construct_function = false)]
+	public class PanelImage : Gtk.Widget, Atk.Implementor, Gtk.Buildable {
+		[CCode (has_construct_function = false, type = "GtkWidget*")]
 		public PanelImage ();
 		public void clear ();
-		[CCode (has_construct_function = false)]
+		[CCode (has_construct_function = false, type = "GtkWidget*")]
 		public PanelImage.from_pixbuf (Gdk.Pixbuf pixbuf);
-		[CCode (has_construct_function = false)]
+		[CCode (has_construct_function = false, type = "GtkWidget*")]
 		public PanelImage.from_source (string source);
+		public int get_size ();
 		public void set_from_pixbuf (Gdk.Pixbuf pixbuf);
 		public void set_from_source (string source);
+		public void set_size (int size);
+		[NoAccessorMethod]
+		public Gdk.Pixbuf pixbuf { owned get; set; }
+		public int size { get; set; }
+		[NoAccessorMethod]
+		public string source { owned get; set; }
 	}
 	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h")]
 	public class PanelPlugin : Gtk.EventBox, Atk.Implementor, Gtk.Buildable, Xfce.PanelPluginProvider {
@@ -58,7 +65,6 @@ namespace Xfce {
 		public bool get_shrink ();
 		public int get_size ();
 		public bool get_small ();
-		public int get_unique_id ();
 		public unowned string lookup_rc_file ();
 		public void menu_insert_item (Gtk.MenuItem item);
 		public void menu_show_about ();
@@ -105,12 +111,70 @@ namespace Xfce {
 	}
 	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h")]
 	public interface PanelPluginProvider {
+		public abstract void ask_remove ();
+		public void emit_signal (Xfce.PanelPluginProviderSignal provider_signal);
+		public abstract unowned string get_name ();
+		public abstract bool get_show_about ();
+		public abstract bool get_show_configure ();
+		public abstract int get_unique_id ();
+		public abstract bool remote_event (string name, GLib.Value value, uint handle);
+		public abstract void removed ();
+		public abstract void save ();
+		public abstract void set_locked (bool locked);
+		public abstract void set_mode (Xfce.PanelPluginMode mode);
+		public abstract void set_nrows (uint rows);
+		public abstract void set_screen_position (Xfce.ScreenPosition screen_position);
+		public abstract void set_size (int size);
+		public abstract void show_about ();
+		public abstract void show_configure ();
+		public signal void provider_signal (uint p0);
 	}
 	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h", cprefix = "XFCE_PANEL_PLUGIN_MODE_")]
 	public enum PanelPluginMode {
 		HORIZONTAL,
 		VERTICAL,
 		DESKBAR
+	}
+	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h", cprefix = "PROVIDER_PROP_TYPE_", has_type_id = false)]
+	public enum PanelPluginProviderPropType {
+		SET_SIZE,
+		SET_MODE,
+		SET_SCREEN_POSITION,
+		SET_BACKGROUND_ALPHA,
+		SET_NROWS,
+		SET_LOCKED,
+		SET_SENSITIVE,
+		SET_BACKGROUND_COLOR,
+		SET_BACKGROUND_IMAGE,
+		ACTION_REMOVED,
+		ACTION_SAVE,
+		ACTION_QUIT,
+		ACTION_QUIT_FOR_RESTART,
+		ACTION_BACKGROUND_UNSET,
+		ACTION_SHOW_CONFIGURE,
+		ACTION_SHOW_ABOUT,
+		ACTION_ASK_REMOVE
+	}
+	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h", cprefix = "PROVIDER_SIGNAL_", has_type_id = false)]
+	public enum PanelPluginProviderSignal {
+		MOVE_PLUGIN,
+		EXPAND_PLUGIN,
+		COLLAPSE_PLUGIN,
+		SMALL_PLUGIN,
+		UNSMALL_PLUGIN,
+		LOCK_PANEL,
+		UNLOCK_PANEL,
+		REMOVE_PLUGIN,
+		ADD_NEW_ITEMS,
+		PANEL_PREFERENCES,
+		PANEL_LOGOUT,
+		PANEL_ABOUT,
+		PANEL_HELP,
+		SHOW_CONFIGURE,
+		SHOW_ABOUT,
+		FOCUS_PLUGIN,
+		SHRINK_PLUGIN,
+		UNSHRINK_PLUGIN
 	}
 	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h", cprefix = "XFCE_SCREEN_POSITION_")]
 	public enum ScreenPosition {
@@ -136,10 +200,24 @@ namespace Xfce {
 	public delegate void PanelPluginFunc (Xfce.PanelPlugin plugin);
 	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h", has_target = false)]
 	public delegate bool PanelPluginPreInit (int argc, string argv);
+	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h", has_target = false)]
+	public delegate unowned Gtk.Widget PluginConstructFunc (string name, int unique_id, string display_name, string comment, string arguments, Gdk.Screen screen);
+	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h", has_target = false)]
+	public delegate GLib.Type PluginInitFunc (GLib.TypeModule module, bool make_resident);
 	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h")]
-	public static unowned Gtk.Button panel_create_button ();
+	public const int LIBXFCE4PANEL_MAJOR_VERSION;
 	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h")]
-	public static unowned Gtk.ToggleButton panel_create_toggle_button ();
+	public const int LIBXFCE4PANEL_MICRO_VERSION;
+	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h")]
+	public const int LIBXFCE4PANEL_MINOR_VERSION;
+	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h")]
+	public const string LIBXFCE4PANEL_VERSION;
+	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h", cname = "libxfce4panel_check_version")]
+	public static unowned string libxfce4panel_check_version (uint required_major, uint required_minor, uint required_micro);
+	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h")]
+	public static unowned Gtk.Widget panel_create_button ();
+	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h")]
+	public static unowned Gtk.Widget panel_create_toggle_button ();
 	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h")]
 	public static unowned string panel_get_channel_name ();
 	[CCode (cheader_filename = "libxfce4panel/libxfce4panel.h")]

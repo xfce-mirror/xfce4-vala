@@ -22,8 +22,7 @@ update-vapi:
 	$(VAPIGEN) --vapidir=. --library $(LIBXFCE4UI)\
 		../packages/$(LIBXFCE4UI)/$(LIBXFCE4UI).gi;\
 	$(VAPIGEN) --vapidir=. --library $(LIBXFCE4PANEL)\
-		../packages/$(LIBXFCE4PANEL)/$(LIBXFCE4PANEL).gi\
-		../packages/$(LIBXFCE4PANEL)/$(LIBXFCE4PANEL)-custom.vala;\
+		../packages/$(LIBXFCE4PANEL)/$(LIBXFCE4PANEL).gi;\
 	$(VAPIGEN) --vapidir=. --library $(EXO)\
 		../packages/$(EXO)/$(EXO).gi\
 		../packages/$(EXO)/$(EXO)-custom.vala;\

@@ -1,6 +1,14 @@
 <?xml version="1.0"?>
 <api version="1.0">
 	<namespace name="Xfce">
+		<function name="libxfce4panel_check_version" symbol="libxfce4panel_check_version">
+			<return-type type="gchar*"/>
+			<parameters>
+				<parameter name="required_major" type="guint"/>
+				<parameter name="required_minor" type="guint"/>
+				<parameter name="required_micro" type="guint"/>
+			</parameters>
+		</function>
 		<function name="panel_create_button" symbol="xfce_panel_create_button">
 			<return-type type="GtkWidget*"/>
 		</function>
@@ -27,6 +35,24 @@
 				<parameter name="dest_height" type="gint"/>
 			</parameters>
 		</function>
+		<callback name="PluginConstructFunc">
+			<return-type type="GtkWidget*"/>
+			<parameters>
+				<parameter name="name" type="gchar*"/>
+				<parameter name="unique_id" type="gint"/>
+				<parameter name="display_name" type="gchar*"/>
+				<parameter name="comment" type="gchar*"/>
+				<parameter name="arguments" type="gchar**"/>
+				<parameter name="screen" type="GdkScreen*"/>
+			</parameters>
+		</callback>
+		<callback name="PluginInitFunc">
+			<return-type type="GType"/>
+			<parameters>
+				<parameter name="module" type="GTypeModule*"/>
+				<parameter name="make_resident" type="gboolean*"/>
+			</parameters>
+		</callback>
 		<callback name="XfcePanelPluginCheck">
 			<return-type type="gboolean"/>
 			<parameters>
@@ -52,6 +78,45 @@
 			<member name="XFCE_PANEL_PLUGIN_MODE_HORIZONTAL" value="0"/>
 			<member name="XFCE_PANEL_PLUGIN_MODE_VERTICAL" value="1"/>
 			<member name="XFCE_PANEL_PLUGIN_MODE_DESKBAR" value="2"/>
+		</enum>
+		<enum name="XfcePanelPluginProviderPropType">
+			<member name="PROVIDER_PROP_TYPE_SET_SIZE" value="0"/>
+			<member name="PROVIDER_PROP_TYPE_SET_MODE" value="1"/>
+			<member name="PROVIDER_PROP_TYPE_SET_SCREEN_POSITION" value="2"/>
+			<member name="PROVIDER_PROP_TYPE_SET_BACKGROUND_ALPHA" value="3"/>
+			<member name="PROVIDER_PROP_TYPE_SET_NROWS" value="4"/>
+			<member name="PROVIDER_PROP_TYPE_SET_LOCKED" value="5"/>
+			<member name="PROVIDER_PROP_TYPE_SET_SENSITIVE" value="6"/>
+			<member name="PROVIDER_PROP_TYPE_SET_BACKGROUND_COLOR" value="7"/>
+			<member name="PROVIDER_PROP_TYPE_SET_BACKGROUND_IMAGE" value="8"/>
+			<member name="PROVIDER_PROP_TYPE_ACTION_REMOVED" value="9"/>
+			<member name="PROVIDER_PROP_TYPE_ACTION_SAVE" value="10"/>
+			<member name="PROVIDER_PROP_TYPE_ACTION_QUIT" value="11"/>
+			<member name="PROVIDER_PROP_TYPE_ACTION_QUIT_FOR_RESTART" value="12"/>
+			<member name="PROVIDER_PROP_TYPE_ACTION_BACKGROUND_UNSET" value="13"/>
+			<member name="PROVIDER_PROP_TYPE_ACTION_SHOW_CONFIGURE" value="14"/>
+			<member name="PROVIDER_PROP_TYPE_ACTION_SHOW_ABOUT" value="15"/>
+			<member name="PROVIDER_PROP_TYPE_ACTION_ASK_REMOVE" value="16"/>
+		</enum>
+		<enum name="XfcePanelPluginProviderSignal">
+			<member name="PROVIDER_SIGNAL_MOVE_PLUGIN" value="0"/>
+			<member name="PROVIDER_SIGNAL_EXPAND_PLUGIN" value="1"/>
+			<member name="PROVIDER_SIGNAL_COLLAPSE_PLUGIN" value="2"/>
+			<member name="PROVIDER_SIGNAL_SMALL_PLUGIN" value="3"/>
+			<member name="PROVIDER_SIGNAL_UNSMALL_PLUGIN" value="4"/>
+			<member name="PROVIDER_SIGNAL_LOCK_PANEL" value="5"/>
+			<member name="PROVIDER_SIGNAL_UNLOCK_PANEL" value="6"/>
+			<member name="PROVIDER_SIGNAL_REMOVE_PLUGIN" value="7"/>
+			<member name="PROVIDER_SIGNAL_ADD_NEW_ITEMS" value="8"/>
+			<member name="PROVIDER_SIGNAL_PANEL_PREFERENCES" value="9"/>
+			<member name="PROVIDER_SIGNAL_PANEL_LOGOUT" value="10"/>
+			<member name="PROVIDER_SIGNAL_PANEL_ABOUT" value="11"/>
+			<member name="PROVIDER_SIGNAL_PANEL_HELP" value="12"/>
+			<member name="PROVIDER_SIGNAL_SHOW_CONFIGURE" value="13"/>
+			<member name="PROVIDER_SIGNAL_SHOW_ABOUT" value="14"/>
+			<member name="PROVIDER_SIGNAL_FOCUS_PLUGIN" value="15"/>
+			<member name="PROVIDER_SIGNAL_SHRINK_PLUGIN" value="16"/>
+			<member name="PROVIDER_SIGNAL_UNSHRINK_PLUGIN" value="17"/>
 		</enum>
 		<enum name="XfceScreenPosition" type-name="XfceScreenPosition" get-type="xfce_screen_position_get_type">
 			<member name="XFCE_SCREEN_POSITION_NONE" value="0"/>
@@ -145,6 +210,75 @@
 				</parameters>
 			</method>
 			<field name="orientation" type="GtkOrientation"/>
+		</object>
+		<object name="XfcePanelImage" parent="GtkWidget" type-name="XfcePanelImage" get-type="xfce_panel_image_get_type">
+			<implements>
+				<interface name="AtkImplementor"/>
+				<interface name="GtkBuildable"/>
+			</implements>
+			<method name="clear" symbol="xfce_panel_image_clear">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="image" type="XfcePanelImage*"/>
+				</parameters>
+			</method>
+			<method name="get_size" symbol="xfce_panel_image_get_size">
+				<return-type type="gint"/>
+				<parameters>
+					<parameter name="image" type="XfcePanelImage*"/>
+				</parameters>
+			</method>
+			<constructor name="new" symbol="xfce_panel_image_new">
+				<return-type type="GtkWidget*"/>
+			</constructor>
+			<constructor name="new_from_pixbuf" symbol="xfce_panel_image_new_from_pixbuf">
+				<return-type type="GtkWidget*"/>
+				<parameters>
+					<parameter name="pixbuf" type="GdkPixbuf*"/>
+				</parameters>
+			</constructor>
+			<constructor name="new_from_source" symbol="xfce_panel_image_new_from_source">
+				<return-type type="GtkWidget*"/>
+				<parameters>
+					<parameter name="source" type="gchar*"/>
+				</parameters>
+			</constructor>
+			<method name="set_from_pixbuf" symbol="xfce_panel_image_set_from_pixbuf">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="image" type="XfcePanelImage*"/>
+					<parameter name="pixbuf" type="GdkPixbuf*"/>
+				</parameters>
+			</method>
+			<method name="set_from_source" symbol="xfce_panel_image_set_from_source">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="image" type="XfcePanelImage*"/>
+					<parameter name="source" type="gchar*"/>
+				</parameters>
+			</method>
+			<method name="set_size" symbol="xfce_panel_image_set_size">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="image" type="XfcePanelImage*"/>
+					<parameter name="size" type="gint"/>
+				</parameters>
+			</method>
+			<property name="pixbuf" type="GdkPixbuf*" readable="1" writable="1" construct="0" construct-only="0"/>
+			<property name="size" type="gint" readable="1" writable="1" construct="0" construct-only="0"/>
+			<property name="source" type="char*" readable="1" writable="1" construct="0" construct-only="0"/>
+			<vfunc name="reserved1">
+				<return-type type="void"/>
+			</vfunc>
+			<vfunc name="reserved2">
+				<return-type type="void"/>
+			</vfunc>
+			<vfunc name="reserved3">
+				<return-type type="void"/>
+			</vfunc>
+			<vfunc name="reserved4">
+				<return-type type="void"/>
+			</vfunc>
 		</object>
 		<object name="XfcePanelPlugin" parent="GtkEventBox" type-name="XfcePanelPlugin" get-type="xfce_panel_plugin_get_type">
 			<implements>
@@ -473,8 +607,221 @@
 				<return-type type="void"/>
 			</vfunc>
 		</object>
-		<constant name="PANEL_PARAM_READABLE" type="int" value="0"/>
-		<constant name="PANEL_PARAM_READWRITE" type="int" value="0"/>
-		<constant name="PANEL_PARAM_WRITABLE" type="int" value="0"/>
+		<interface name="XfcePanelPluginProvider" type-name="XfcePanelPluginProvider" get-type="xfce_panel_plugin_provider_get_type">
+			<method name="ask_remove" symbol="xfce_panel_plugin_provider_ask_remove">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+				</parameters>
+			</method>
+			<method name="emit_signal" symbol="xfce_panel_plugin_provider_emit_signal">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+					<parameter name="provider_signal" type="XfcePanelPluginProviderSignal"/>
+				</parameters>
+			</method>
+			<method name="get_name" symbol="xfce_panel_plugin_provider_get_name">
+				<return-type type="gchar*"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+				</parameters>
+			</method>
+			<method name="get_show_about" symbol="xfce_panel_plugin_provider_get_show_about">
+				<return-type type="gboolean"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+				</parameters>
+			</method>
+			<method name="get_show_configure" symbol="xfce_panel_plugin_provider_get_show_configure">
+				<return-type type="gboolean"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+				</parameters>
+			</method>
+			<method name="get_unique_id" symbol="xfce_panel_plugin_provider_get_unique_id">
+				<return-type type="gint"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+				</parameters>
+			</method>
+			<method name="remote_event" symbol="xfce_panel_plugin_provider_remote_event">
+				<return-type type="gboolean"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+					<parameter name="name" type="gchar*"/>
+					<parameter name="value" type="GValue*"/>
+					<parameter name="handle" type="guint*"/>
+				</parameters>
+			</method>
+			<method name="removed" symbol="xfce_panel_plugin_provider_removed">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+				</parameters>
+			</method>
+			<method name="save" symbol="xfce_panel_plugin_provider_save">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+				</parameters>
+			</method>
+			<method name="set_locked" symbol="xfce_panel_plugin_provider_set_locked">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+					<parameter name="locked" type="gboolean"/>
+				</parameters>
+			</method>
+			<method name="set_mode" symbol="xfce_panel_plugin_provider_set_mode">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+					<parameter name="mode" type="XfcePanelPluginMode"/>
+				</parameters>
+			</method>
+			<method name="set_nrows" symbol="xfce_panel_plugin_provider_set_nrows">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+					<parameter name="rows" type="guint"/>
+				</parameters>
+			</method>
+			<method name="set_screen_position" symbol="xfce_panel_plugin_provider_set_screen_position">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+					<parameter name="screen_position" type="XfceScreenPosition"/>
+				</parameters>
+			</method>
+			<method name="set_size" symbol="xfce_panel_plugin_provider_set_size">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+					<parameter name="size" type="gint"/>
+				</parameters>
+			</method>
+			<method name="show_about" symbol="xfce_panel_plugin_provider_show_about">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+				</parameters>
+			</method>
+			<method name="show_configure" symbol="xfce_panel_plugin_provider_show_configure">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+				</parameters>
+			</method>
+			<signal name="provider-signal" when="LAST">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="object" type="XfcePanelPluginProvider*"/>
+					<parameter name="p0" type="guint"/>
+				</parameters>
+			</signal>
+			<vfunc name="ask_remove">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+				</parameters>
+			</vfunc>
+			<vfunc name="get_name">
+				<return-type type="gchar*"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+				</parameters>
+			</vfunc>
+			<vfunc name="get_show_about">
+				<return-type type="gboolean"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+				</parameters>
+			</vfunc>
+			<vfunc name="get_show_configure">
+				<return-type type="gboolean"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+				</parameters>
+			</vfunc>
+			<vfunc name="get_unique_id">
+				<return-type type="gint"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+				</parameters>
+			</vfunc>
+			<vfunc name="remote_event">
+				<return-type type="gboolean"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+					<parameter name="name" type="gchar*"/>
+					<parameter name="value" type="GValue*"/>
+					<parameter name="handle" type="guint*"/>
+				</parameters>
+			</vfunc>
+			<vfunc name="removed">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+				</parameters>
+			</vfunc>
+			<vfunc name="save">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+				</parameters>
+			</vfunc>
+			<vfunc name="set_locked">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+					<parameter name="locked" type="gboolean"/>
+				</parameters>
+			</vfunc>
+			<vfunc name="set_mode">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+					<parameter name="mode" type="XfcePanelPluginMode"/>
+				</parameters>
+			</vfunc>
+			<vfunc name="set_nrows">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+					<parameter name="rows" type="guint"/>
+				</parameters>
+			</vfunc>
+			<vfunc name="set_screen_position">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+					<parameter name="screen_position" type="XfceScreenPosition"/>
+				</parameters>
+			</vfunc>
+			<vfunc name="set_size">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+					<parameter name="size" type="gint"/>
+				</parameters>
+			</vfunc>
+			<vfunc name="show_about">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+				</parameters>
+			</vfunc>
+			<vfunc name="show_configure">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="provider" type="XfcePanelPluginProvider*"/>
+				</parameters>
+			</vfunc>
+		</interface>
+		<constant name="LIBXFCE4PANEL_MAJOR_VERSION" type="int" value="4"/>
+		<constant name="LIBXFCE4PANEL_MICRO_VERSION" type="int" value="0"/>
+		<constant name="LIBXFCE4PANEL_MINOR_VERSION" type="int" value="10"/>
+		<constant name="LIBXFCE4PANEL_VERSION" type="char*" value="4.10.0git-e3e5071"/>
 	</namespace>
 </api>

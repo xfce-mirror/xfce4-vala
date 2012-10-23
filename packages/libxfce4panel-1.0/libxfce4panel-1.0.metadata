@@ -1,12 +1,2 @@
 Xfce cheader_filename="libxfce4panel/libxfce4panel.h"
-
-xfce_panel_create_button hidden="1"
-xfce_panel_create_toggle_button hidden="1"
-
-xfce_panel_plugin_reserved* hidden="1"
-
-ScaledImageClass hidden="1"
-G_PARAM_STATIC_STRINGS hidden="1"
-PANEL_PARAM_READABLE hidden="1"
-PANEL_PARAM_READWRITE hidden="1"
-PANEL_PARAM_WRITABLE hidden="1"
+*reserved* hidden="1"
