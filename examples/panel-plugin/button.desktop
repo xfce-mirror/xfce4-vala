@@ -2,7 +2,7 @@
 Type=X-XFCE-PanelPlugin
 Encoding=UTF-8
 Name=Button
-Comment=Test plugin for the Xfce 4.7 Panel
+Comment=Test plugin for the Xfce 4.10 Panel
 X-XFCE-Unique=true
 X-XFCE-Module=button
 X-XFCE-Internal=FALSE
