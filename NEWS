@@ -1,4 +1,10 @@
 
++ Version 4.10.0, 2012-10-23
+
+Added garcon (package, VAPI, and test program).
+Updated API to Xfce 4.10.0.
+Updated package to Vala 0.16.
+
 + Version 4.8.0, 2011-02-13
 
 Added libxfce4ui.
