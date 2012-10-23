@@ -43,6 +43,7 @@ tests.stamp:
 vapi_DATA =								\
 	vapi/$(LIBXFCE4UTIL).vapi					\
 	vapi/$(GARCON).vapi						\
+	vapi/$(GARCON).deps						\
 	vapi/$(XFCONF).vapi						\
 	vapi/$(LIBXFCE4UI).vapi						\
 	vapi/$(LIBXFCE4UI).deps						\
