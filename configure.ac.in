@@ -29,14 +29,19 @@ M8T_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.10.0])
 M8T_CHECK_PACKAGE([EXO], [exo-1], [0.8.0])
 
 dnl Check for Vala
-M8T_CHECK_VALA([0.16.0])
+AC_ARG_WITH([vala-api],
+		AC_HELP_STRING([--with-vala-api=VERSION],
+				[Use Vala API version VERSION]),
+		[vala_api=$withval],
+		[vala_api='0.16'])
+M8T_CHECK_VALA([$vala_api])
 AC_ARG_WITH([default-vapidir],
 		AC_HELP_STRING([--with-default-vapidir],
 				[Use default VAPI prefix from Vala installation]),
 		[],
 		[with_default_vapidir=no])
 if test x"$with_default_vapidir" == xno ; then
-	AC_SUBST([vapidir], [${datarootdir}/vala-0.16/vapi])
+	AC_SUBST([vapidir], [${datarootdir}/vala-${vala_api}/vapi])
 fi
 
 dnl Makefile outputs

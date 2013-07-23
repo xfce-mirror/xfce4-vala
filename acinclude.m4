@@ -18,31 +18,31 @@ PKG_CHECK_EXISTS([$2 >= $3], [],
 
 dnl # M8T_CHECK_VALA(minimum_version)
 dnl #
-dnl # Check for the package vala-0.16 and substitutes useful Vala variables.
+dnl # Check for the package libvala and substitutes useful Vala variables.
 dnl #
 AC_DEFUN([M8T_CHECK_VALA],
 [
-PKG_CHECK_MODULES([VALA], [libvala-0.16 >= $1])
-M8T_VALA_PROGS()
-M8T_VAPI_DIR()
+PKG_CHECK_MODULES([VALA], [libvala-$1])
+M8T_VALA_PROGS([$1])
+M8T_VAPI_DIR([$1])
 ])
 
 dnl # M8T_VALA_PROGS()
 dnl #
-dnl # Substitutes VALAC, VAPIGEN and VALAGI from vala-0.16 pkgconfig file.
+dnl # Substitutes VALAC, VAPIGEN and VALAGI from libvala pkgconfig file.
 dnl #
 AC_DEFUN([M8T_VALA_PROGS],
 [
 AC_PATH_PROG([VALAC], [valac], [valac])
-AC_SUBST([VAPIGEN], `$PKG_CONFIG --variable=vapigen libvala-0.16`)
-AC_SUBST([VALAGI], `$PKG_CONFIG --variable=vala_gen_introspect libvala-0.16`)
+AC_SUBST([VAPIGEN], `$PKG_CONFIG --variable=vapigen libvala-$1`)
+AC_SUBST([VALAGI], `$PKG_CONFIG --variable=vala_gen_introspect libvala-$1`)
 ])
 
 dnl # M8T_VAPI_DIR()
 dnl #
-dnl # Substitutes vapidir from vala-0.16 pkgconfig file.
+dnl # Substitutes vapidir from libvala pkgconfig file.
 dnl #
 AC_DEFUN([M8T_VAPI_DIR],
 [
-AC_SUBST([vapidir], `$PKG_CONFIG --variable=vapidir libvala-0.16`)
+AC_SUBST([vapidir], `$PKG_CONFIG --variable=vapidir libvala-$1`)
 ])
