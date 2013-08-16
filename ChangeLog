@@ -1,3 +1,22 @@
+2013-08-16  Mike Massonnet
+
+=== Release 4.10.3 ===
+
+
+2013-08-16  Kalev Lember
+
+Make the pkgconfig file noarch
+
+
+2013-07-23  Natanael Copa
+
+Add --with-vala-api option to allow packagers select vala api version
+
+Let packagers set what vala API version they want build the bindings, rather
+than require the they use whatever the xfce4-vala maintainer's distro happens
+to use.
+
+
 2012-10-23  Mike Massonnet
 
 === Release 4.10.2 ===
