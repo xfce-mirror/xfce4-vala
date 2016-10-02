@@ -39,34 +39,6 @@
 		<function name="gethostname" symbol="xfce_gethostname">
 			<return-type type="gchar*"/>
 		</function>
-		<function name="putenv" symbol="xfce_putenv">
-			<return-type type="gint"/>
-			<parameters>
-				<parameter name="string" type="gchar*"/>
-			</parameters>
-		</function>
-		<function name="setenv" symbol="xfce_setenv">
-			<return-type type="gint"/>
-			<parameters>
-				<parameter name="name" type="gchar*"/>
-				<parameter name="value" type="gchar*"/>
-				<parameter name="overwrite" type="gboolean"/>
-			</parameters>
-		</function>
-		<function name="strjoin" symbol="xfce_strjoin">
-			<return-type type="gchar*"/>
-			<parameters>
-				<parameter name="separator" type="gchar*"/>
-				<parameter name="strings" type="gchar**"/>
-				<parameter name="count" type="gint"/>
-			</parameters>
-		</function>
-		<function name="unsetenv" symbol="xfce_unsetenv">
-			<return-type type="void"/>
-			<parameters>
-				<parameter name="name" type="gchar*"/>
-			</parameters>
-		</function>
 		<function name="utf8_remove_controls" symbol="xfce_utf8_remove_controls">
 			<return-type type="gchar*"/>
 			<parameters>
@@ -278,7 +250,7 @@
 			<member name="XFCE_LICENSE_TEXT_LGPL" value="2"/>
 		</enum>
 		<constant name="LIBXFCE4UTIL_MAJOR_VERSION" type="int" value="4"/>
-		<constant name="LIBXFCE4UTIL_MICRO_VERSION" type="int" value="0"/>
-		<constant name="LIBXFCE4UTIL_MINOR_VERSION" type="int" value="10"/>
+		<constant name="LIBXFCE4UTIL_MICRO_VERSION" type="int" value="1"/>
+		<constant name="LIBXFCE4UTIL_MINOR_VERSION" type="int" value="12"/>
 	</namespace>
 </api>

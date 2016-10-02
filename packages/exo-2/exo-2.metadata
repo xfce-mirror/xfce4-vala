@@ -1,0 +1,7 @@
+Exo cheader_filename="exo/exo.h"
+
+exo_*_reserved* hidden="1"
+
+# Rename signal names duplicated with method names
+ExoJob::info_message name="info_message_received"
+ExoJob::percent name="percent_progress"

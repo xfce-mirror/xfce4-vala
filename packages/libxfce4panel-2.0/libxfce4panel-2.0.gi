@@ -139,6 +139,7 @@
 			<implements>
 				<interface name="AtkImplementor"/>
 				<interface name="GtkBuildable"/>
+				<interface name="GtkActionable"/>
 				<interface name="GtkActivatable"/>
 			</implements>
 			<method name="get_arrow_type" symbol="xfce_arrow_button_get_arrow_type">
@@ -181,35 +182,6 @@
 					<parameter name="type" type="GtkArrowType"/>
 				</parameters>
 			</signal>
-		</object>
-		<object name="XfceHVBox" parent="GtkBox" type-name="XfceHVBox" get-type="xfce_hvbox_get_type">
-			<implements>
-				<interface name="AtkImplementor"/>
-				<interface name="GtkBuildable"/>
-				<interface name="GtkOrientable"/>
-			</implements>
-			<method name="get_orientation" symbol="xfce_hvbox_get_orientation">
-				<return-type type="GtkOrientation"/>
-				<parameters>
-					<parameter name="hvbox" type="XfceHVBox*"/>
-				</parameters>
-			</method>
-			<constructor name="new" symbol="xfce_hvbox_new">
-				<return-type type="GtkWidget*"/>
-				<parameters>
-					<parameter name="orientation" type="GtkOrientation"/>
-					<parameter name="homogeneous" type="gboolean"/>
-					<parameter name="spacing" type="gint"/>
-				</parameters>
-			</constructor>
-			<method name="set_orientation" symbol="xfce_hvbox_set_orientation">
-				<return-type type="void"/>
-				<parameters>
-					<parameter name="hvbox" type="XfceHVBox*"/>
-					<parameter name="orientation" type="GtkOrientation"/>
-				</parameters>
-			</method>
-			<field name="orientation" type="GtkOrientation"/>
 		</object>
 		<object name="XfcePanelImage" parent="GtkWidget" type-name="XfcePanelImage" get-type="xfce_panel_image_get_type">
 			<implements>

@@ -1,0 +1,6 @@
+#exo-config.h
+exo-gdk-pixbuf-extensions.h
+#exo-job.h
+#exo-simple-job.h
+exo-string.h
+exo-utils.h

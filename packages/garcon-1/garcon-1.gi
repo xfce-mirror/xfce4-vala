@@ -41,6 +41,12 @@
 				<parameter name="env" type="gchar*"/>
 			</parameters>
 		</function>
+		<function name="set_environment_xdg" symbol="garcon_set_environment_xdg">
+			<return-type type="void"/>
+			<parameters>
+				<parameter name="fallback_env" type="gchar*"/>
+			</parameters>
+		</function>
 		<struct name="GarconMenuItemPoolClass">
 		</struct>
 		<struct name="GarconMenuNodeClass">
@@ -96,12 +102,6 @@
 				<parameters>
 					<parameter name="menu" type="GarconMenu*"/>
 					<parameter name="submenu" type="GarconMenu*"/>
-				</parameters>
-			</method>
-			<method name="get_directory" symbol="garcon_menu_get_directory">
-				<return-type type="GarconMenuDirectory*"/>
-				<parameters>
-					<parameter name="menu" type="GarconMenu*"/>
 				</parameters>
 			</method>
 			<method name="get_elements" symbol="garcon_menu_get_elements">
@@ -1010,9 +1010,10 @@
 				</parameters>
 			</vfunc>
 		</interface>
+		<constant name="GARCON_ENVIRONMENT_XFCE" type="char*" value="XFCE"/>
 		<constant name="GARCON_MAJOR_VERSION" type="int" value="0"/>
 		<constant name="GARCON_MICRO_VERSION" type="int" value="0"/>
-		<constant name="GARCON_MINOR_VERSION" type="int" value="2"/>
+		<constant name="GARCON_MINOR_VERSION" type="int" value="5"/>
 		<union name="GarconMenuNodeData">
 		</union>
 	</namespace>
