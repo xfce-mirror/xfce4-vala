@@ -104,6 +104,12 @@
 					<parameter name="submenu" type="GarconMenu*"/>
 				</parameters>
 			</method>
+			<method name="get_directory" symbol="garcon_menu_get_directory">
+				<return-type type="GarconMenuDirectory*"/>
+				<parameters>
+					<parameter name="menu" type="GarconMenu*"/>
+				</parameters>
+			</method>
 			<method name="get_elements" symbol="garcon_menu_get_elements">
 				<return-type type="GList*"/>
 				<parameters>
@@ -293,6 +299,19 @@
 					<parameter name="item" type="GarconMenuItem*"/>
 				</parameters>
 			</method>
+			<method name="get_action" symbol="garcon_menu_item_get_action">
+				<return-type type="GarconMenuItemAction*"/>
+				<parameters>
+					<parameter name="item" type="GarconMenuItem*"/>
+					<parameter name="action_name" type="gchar*"/>
+				</parameters>
+			</method>
+			<method name="get_actions" symbol="garcon_menu_item_get_actions">
+				<return-type type="GList*"/>
+				<parameters>
+					<parameter name="item" type="GarconMenuItem*"/>
+				</parameters>
+			</method>
 			<method name="get_allocated" symbol="garcon_menu_item_get_allocated">
 				<return-type type="gint"/>
 				<parameters>
@@ -383,6 +402,13 @@
 					<parameter name="item" type="GarconMenuItem*"/>
 				</parameters>
 			</method>
+			<method name="has_action" symbol="garcon_menu_item_has_action">
+				<return-type type="gboolean"/>
+				<parameters>
+					<parameter name="item" type="GarconMenuItem*"/>
+					<parameter name="action_name" type="gchar*"/>
+				</parameters>
+			</method>
 			<method name="has_category" symbol="garcon_menu_item_has_category">
 				<return-type type="gboolean"/>
 				<parameters>
@@ -447,6 +473,14 @@
 				<return-type type="gboolean"/>
 				<parameters>
 					<parameter name="item" type="GarconMenuItem*"/>
+				</parameters>
+			</method>
+			<method name="set_action" symbol="garcon_menu_item_set_action">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="item" type="GarconMenuItem*"/>
+					<parameter name="action_name" type="gchar*"/>
+					<parameter name="action" type="GarconMenuItemAction*"/>
 				</parameters>
 			</method>
 			<method name="set_categories" symbol="garcon_menu_item_set_categories">
@@ -571,6 +605,71 @@
 					<parameter name="item" type="GarconMenuItem*"/>
 				</parameters>
 			</signal>
+		</object>
+		<object name="GarconMenuItemAction" parent="GObject" type-name="GarconMenuItemAction" get-type="garcon_menu_item_action_get_type">
+			<method name="get_command" symbol="garcon_menu_item_action_get_command">
+				<return-type type="gchar*"/>
+				<parameters>
+					<parameter name="action" type="GarconMenuItemAction*"/>
+				</parameters>
+			</method>
+			<method name="get_icon_name" symbol="garcon_menu_item_action_get_icon_name">
+				<return-type type="gchar*"/>
+				<parameters>
+					<parameter name="action" type="GarconMenuItemAction*"/>
+				</parameters>
+			</method>
+			<method name="get_name" symbol="garcon_menu_item_action_get_name">
+				<return-type type="gchar*"/>
+				<parameters>
+					<parameter name="action" type="GarconMenuItemAction*"/>
+				</parameters>
+			</method>
+			<constructor name="new" symbol="garcon_menu_item_action_new">
+				<return-type type="GarconMenuItemAction*"/>
+			</constructor>
+			<method name="ref" symbol="garcon_menu_item_action_ref">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="action" type="GarconMenuItemAction*"/>
+				</parameters>
+			</method>
+			<method name="set_command" symbol="garcon_menu_item_action_set_command">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="action" type="GarconMenuItemAction*"/>
+					<parameter name="command" type="gchar*"/>
+				</parameters>
+			</method>
+			<method name="set_icon_name" symbol="garcon_menu_item_action_set_icon_name">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="action" type="GarconMenuItemAction*"/>
+					<parameter name="icon_name" type="gchar*"/>
+				</parameters>
+			</method>
+			<method name="set_name" symbol="garcon_menu_item_action_set_name">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="action" type="GarconMenuItemAction*"/>
+					<parameter name="name" type="gchar*"/>
+				</parameters>
+			</method>
+			<method name="unref" symbol="garcon_menu_item_action_unref">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="action" type="GarconMenuItemAction*"/>
+				</parameters>
+			</method>
+			<property name="command" type="char*" readable="1" writable="1" construct="0" construct-only="0"/>
+			<property name="icon-name" type="char*" readable="1" writable="1" construct="0" construct-only="0"/>
+			<property name="name" type="char*" readable="1" writable="1" construct="0" construct-only="0"/>
+			<vfunc name="changed">
+				<return-type type="void"/>
+				<parameters>
+					<parameter name="action" type="GarconMenuItemAction*"/>
+				</parameters>
+			</vfunc>
 		</object>
 		<object name="GarconMenuItemCache" parent="GObject" type-name="GarconMenuItemCache" get-type="garcon_menu_item_cache_get_type">
 			<method name="foreach" symbol="garcon_menu_item_cache_foreach">

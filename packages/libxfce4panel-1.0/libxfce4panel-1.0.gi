@@ -821,7 +821,7 @@
 		</interface>
 		<constant name="LIBXFCE4PANEL_MAJOR_VERSION" type="int" value="4"/>
 		<constant name="LIBXFCE4PANEL_MICRO_VERSION" type="int" value="0"/>
-		<constant name="LIBXFCE4PANEL_MINOR_VERSION" type="int" value="12"/>
-		<constant name="LIBXFCE4PANEL_VERSION" type="char*" value="4.12.0git-1f2d853"/>
+		<constant name="LIBXFCE4PANEL_MINOR_VERSION" type="int" value="13"/>
+		<constant name="LIBXFCE4PANEL_VERSION" type="char*" value="4.13.0git-2b0ad995"/>
 	</namespace>
 </api>

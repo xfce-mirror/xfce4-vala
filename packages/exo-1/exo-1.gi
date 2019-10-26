@@ -130,7 +130,7 @@
 		</struct>
 		<struct name="ExoSimpleJobClass">
 		</struct>
-		<enum name="ExoIconViewDropPosition">
+		<enum name="ExoIconViewDropPosition" type-name="ExoIconViewDropPosition" get-type="exo_icon_view_drop_position_get_type">
 			<member name="EXO_ICON_VIEW_NO_DROP" value="0"/>
 			<member name="EXO_ICON_VIEW_DROP_INTO" value="1"/>
 			<member name="EXO_ICON_VIEW_DROP_LEFT" value="2"/>
@@ -138,15 +138,15 @@
 			<member name="EXO_ICON_VIEW_DROP_ABOVE" value="4"/>
 			<member name="EXO_ICON_VIEW_DROP_BELOW" value="5"/>
 		</enum>
-		<enum name="ExoIconViewLayoutMode">
+		<enum name="ExoIconViewLayoutMode" type-name="ExoIconViewLayoutMode" get-type="exo_icon_view_layout_mode_get_type">
 			<member name="EXO_ICON_VIEW_LAYOUT_ROWS" value="0"/>
 			<member name="EXO_ICON_VIEW_LAYOUT_COLS" value="1"/>
 		</enum>
-		<enum name="ExoToolbarsModelFlags">
+		<flags name="ExoToolbarsModelFlags" type-name="ExoToolbarsModelFlags" get-type="exo_toolbars_model_flags_get_type">
 			<member name="EXO_TOOLBARS_MODEL_NOT_REMOVABLE" value="1"/>
 			<member name="EXO_TOOLBARS_MODEL_ACCEPT_ITEMS_ONLY" value="2"/>
 			<member name="EXO_TOOLBARS_MODEL_OVERRIDE_STYLE" value="4"/>
-		</enum>
+		</flags>
 		<object name="ExoCellRendererEllipsizedText" parent="GtkCellRendererText" type-name="ExoCellRendererEllipsizedText" get-type="exo_cell_renderer_ellipsized_text_get_type">
 			<constructor name="new" symbol="exo_cell_renderer_ellipsized_text_new">
 				<return-type type="GtkCellRenderer*"/>
@@ -1645,8 +1645,8 @@
 			</vfunc>
 		</object>
 		<constant name="EXO_MAJOR_VERSION" type="int" value="0"/>
-		<constant name="EXO_MICRO_VERSION" type="int" value="7"/>
-		<constant name="EXO_MINOR_VERSION" type="int" value="10"/>
+		<constant name="EXO_MICRO_VERSION" type="int" value="2"/>
+		<constant name="EXO_MINOR_VERSION" type="int" value="11"/>
 		<constant name="EXO_PARAM_READABLE" type="int" value="0"/>
 		<constant name="EXO_PARAM_READWRITE" type="int" value="0"/>
 		<constant name="EXO_PARAM_WRITABLE" type="int" value="0"/>

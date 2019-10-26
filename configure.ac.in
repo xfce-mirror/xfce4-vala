@@ -39,7 +39,7 @@ AC_ARG_WITH([vala-api],
 		AC_HELP_STRING([--with-vala-api=VERSION],
 				[Use Vala API version VERSION]),
 		[vala_api=$withval],
-		[vala_api='0.26'])
+		[vala_api='0.34'])
 M8T_CHECK_VALA([$vala_api])
 AC_ARG_WITH([default-vapidir],
 		AC_HELP_STRING([--with-default-vapidir],

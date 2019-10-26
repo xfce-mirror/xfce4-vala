@@ -81,6 +81,18 @@
 				<parameter name="content" type="GtkWidget*"/>
 			</parameters>
 		</function>
+		<function name="gtk_menu_popup_until_mapped" symbol="xfce_gtk_menu_popup_until_mapped">
+			<return-type type="gboolean"/>
+			<parameters>
+				<parameter name="menu" type="GtkMenu*"/>
+				<parameter name="parent_menu_shell" type="GtkWidget*"/>
+				<parameter name="parent_menu_item" type="GtkWidget*"/>
+				<parameter name="func" type="GtkMenuPositionFunc"/>
+				<parameter name="data" type="gpointer"/>
+				<parameter name="button" type="guint"/>
+				<parameter name="activate_time" type="guint32"/>
+			</parameters>
+		</function>
 		<function name="gtk_window_center_on_active_screen" symbol="xfce_gtk_window_center_on_active_screen">
 			<return-type type="void"/>
 			<parameters>
@@ -166,6 +178,13 @@
 				<parameter name="startup_icon_name" type="gchar*"/>
 				<parameter name="child_watch_closure" type="GClosure*"/>
 				<parameter name="error" type="GError**"/>
+			</parameters>
+		</function>
+		<function name="widget_reparent" symbol="xfce_widget_reparent">
+			<return-type type="gboolean"/>
+			<parameters>
+				<parameter name="widget" type="GtkWidget*"/>
+				<parameter name="new_parent" type="GtkWidget*"/>
 			</parameters>
 		</function>
 		<enum name="XfceSMClientPriority">
@@ -390,6 +409,16 @@
 					<parameter name="first_button_text" type="gchar*"/>
 				</parameters>
 			</constructor>
+			<constructor name="new_with_mixed_buttons" symbol="xfce_titled_dialog_new_with_mixed_buttons">
+				<return-type type="GtkWidget*"/>
+				<parameters>
+					<parameter name="title" type="gchar*"/>
+					<parameter name="parent" type="GtkWindow*"/>
+					<parameter name="flags" type="GtkDialogFlags"/>
+					<parameter name="first_button_icon_name" type="gchar*"/>
+					<parameter name="first_button_text" type="gchar*"/>
+				</parameters>
+			</constructor>
 			<method name="set_subtitle" symbol="xfce_titled_dialog_set_subtitle">
 				<return-type type="void"/>
 				<parameters>
@@ -418,7 +447,7 @@
 			</vfunc>
 		</object>
 		<constant name="LIBXFCE4UI_MAJOR_VERSION" type="int" value="4"/>
-		<constant name="LIBXFCE4UI_MICRO_VERSION" type="int" value="0"/>
+		<constant name="LIBXFCE4UI_MICRO_VERSION" type="int" value="1"/>
 		<constant name="LIBXFCE4UI_MINOR_VERSION" type="int" value="13"/>
 		<constant name="XFCE_BUTTON_TYPE_MIXED" type="char*" value="button-mixed"/>
 		<constant name="XFCE_BUTTON_TYPE_PIXBUF" type="char*" value="button-pixbuf"/>
